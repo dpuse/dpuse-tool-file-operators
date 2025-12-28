@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-tool-file-operators",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "",
     "license": "MIT",
     "private": false,
@@ -63,5 +63,10 @@
         "sync": "node -e \"import('@datapos/datapos-development').then(m => m.syncProjectWithGitHub())\"",
         "test": "node -e \"import('@datapos/datapos-development').then(m => m.testProject())\"",
         "update": "node -e \"import('@datapos/datapos-development').then(m => m.updateDataPosDependencies(['development']))\""
+    },
+    "dependencies": {
+        "@datapos/datapos-shared": "^0.3.428",
+        "chardet": "^2.1.1",
+        "file-type": "^21.2.0"
     }
 }
