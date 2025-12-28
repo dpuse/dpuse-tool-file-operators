@@ -1,0 +1,12 @@
+{
+    "id": "datapos-tool-file-operators",
+    "label": {
+        "en-gb": "File Operators"
+    },
+    "description": {
+        "en-gb": "..."
+    },
+    "statusId": "alpha",
+    "typeId": "tool",
+    "version": "0.0.2"
+}
