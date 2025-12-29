@@ -1,24 +1,24 @@
-function F0(i) {
+function S0(i) {
   return i && i.__esModule && Object.prototype.hasOwnProperty.call(i, "default") ? i.default : i;
 }
-var E = {}, G = {}, c0;
+var E = {}, G = {}, n0;
 function B0() {
-  return c0 || (c0 = 1, Object.defineProperty(G, "__esModule", { value: !0 }), G.default = () => {
+  return n0 || (n0 = 1, Object.defineProperty(G, "__esModule", { value: !0 }), G.default = () => {
     throw new Error("File system is not available");
   }), G;
 }
-var R = {}, J = {}, s0;
+var R = {}, J = {}, c0;
 function N() {
-  return s0 || (s0 = 1, Object.defineProperty(J, "__esModule", { value: !0 }), J.default = (i, e, x) => ({
+  return c0 || (c0 = 1, Object.defineProperty(J, "__esModule", { value: !0 }), J.default = (i, e, x) => ({
     confidence: x,
     name: e.name(i),
     lang: e.language ? e.language() : void 0
   })), J;
 }
-var o0;
+var s0;
 function I0() {
-  if (o0) return R;
-  o0 = 1;
+  if (s0) return R;
+  s0 = 1;
   var i = R && R.__importDefault || function(t) {
     return t && t.__esModule ? t : { default: t };
   };
@@ -29,9 +29,9 @@ function I0() {
       return "ASCII";
     }
     match(a) {
-      const r = a.rawInput;
+      const n = a.rawInput;
       for (let s = 0; s < a.rawLen; s++) {
-        const m = r[s];
+        const m = n[s];
         if (m < 32 || m > 126)
           return (0, e.default)(a, this, 0);
       }
@@ -40,10 +40,10 @@ function I0() {
   }
   return R.default = x, R;
 }
-var P = {}, f0;
+var P = {}, o0;
 function O0() {
-  if (f0) return P;
-  f0 = 1;
+  if (o0) return P;
+  o0 = 1;
   var i = P && P.__importDefault || function(t) {
     return t && t.__esModule ? t : { default: t };
   };
@@ -54,11 +54,11 @@ function O0() {
       return "UTF-8";
     }
     match(a) {
-      let r = !1, s = 0, m = 0, o = 0, f;
+      let n = !1, s = 0, m = 0, o = 0, f;
       const d = a.rawInput;
-      a.rawLen >= 3 && (d[0] & 255) == 239 && (d[1] & 255) == 187 && (d[2] & 255) == 191 && (r = !0);
-      for (let n = 0; n < a.rawLen; n++) {
-        const c = d[n];
+      a.rawLen >= 3 && (d[0] & 255) == 239 && (d[1] & 255) == 187 && (d[2] & 255) == 191 && (n = !0);
+      for (let r = 0; r < a.rawLen; r++) {
+        const c = d[r];
         if ((c & 128) != 0) {
           if ((c & 224) == 192)
             o = 1;
@@ -71,8 +71,8 @@ function O0() {
               break;
             o = 0;
           }
-          for (; n++, !(n >= a.rawLen); ) {
-            if ((d[n] & 192) != 128) {
+          for (; r++, !(r >= a.rawLen); ) {
+            if ((d[r] & 192) != 128) {
               m++;
               break;
             }
@@ -83,9 +83,9 @@ function O0() {
           }
         }
       }
-      if (f = 0, r && m == 0)
+      if (f = 0, n && m == 0)
         f = 100;
-      else if (r && s > m * 10)
+      else if (n && s > m * 10)
         f = 80;
       else if (s > 3 && m == 0)
         f = 100;
@@ -102,10 +102,10 @@ function O0() {
   }
   return P.default = x, P;
 }
-var O = {}, d0;
+var O = {}, f0;
 function E0() {
-  if (d0) return O;
-  d0 = 1;
+  if (f0) return O;
+  f0 = 1;
   var i = O && O.__importDefault || function(m) {
     return m && m.__esModule ? m : { default: m };
   };
@@ -139,19 +139,19 @@ function E0() {
       return -1;
     }
     match(o) {
-      let f = 0, d = 0, n = !1, c = 0;
+      let f = 0, d = 0, r = !1, c = 0;
       const u = o.rawLen / 4 * 4, h = o.rawInput;
       if (u == 0)
         return null;
-      this.getChar(h, 0) == 65279 && (n = !0);
+      this.getChar(h, 0) == 65279 && (r = !0);
       for (let g = 0; g < u; g += 4) {
         const k = this.getChar(h, g);
         k < 0 || k >= 1114111 || k >= 55296 && k <= 57343 ? d += 1 : f += 1;
       }
-      return n && d == 0 ? c = 100 : n && f > d * 10 ? c = 80 : f > 3 && d == 0 ? c = 100 : f > 0 && d == 0 ? c = 80 : f > d * 10 && (c = 25), c == 0 ? null : (0, e.default)(o, this, c);
+      return r && d == 0 ? c = 100 : r && f > d * 10 ? c = 80 : f > 3 && d == 0 ? c = 100 : f > 0 && d == 0 ? c = 80 : f > d * 10 && (c = 25), c == 0 ? null : (0, e.default)(o, this, c);
     }
   }
-  class r extends a {
+  class n extends a {
     name() {
       return "UTF-32BE";
     }
@@ -159,7 +159,7 @@ function E0() {
       return (o[f + 0] & 255) << 24 | (o[f + 1] & 255) << 16 | (o[f + 2] & 255) << 8 | o[f + 3] & 255;
     }
   }
-  O.UTF_32BE = r;
+  O.UTF_32BE = n;
   class s extends a {
     name() {
       return "UTF-32LE";
@@ -170,23 +170,23 @@ function E0() {
   }
   return O.UTF_32LE = s, O;
 }
-var D = {}, l0;
+var D = {}, d0;
 function L0() {
-  if (l0) return D;
-  l0 = 1;
-  var i = D && D.__importDefault || function(n) {
-    return n && n.__esModule ? n : { default: n };
+  if (d0) return D;
+  d0 = 1;
+  var i = D && D.__importDefault || function(r) {
+    return r && r.__esModule ? r : { default: r };
   };
   Object.defineProperty(D, "__esModule", { value: !0 }), D.gb_18030 = D.euc_kr = D.euc_jp = D.big5 = D.sjis = void 0;
   const e = i(N());
-  function x(n, c) {
+  function x(r, c) {
     const u = (h, g, k, b) => {
       if (b < k)
         return -1;
       const l = Math.floor(k + b >>> 1);
       return g > h[l] ? u(h, g, l + 1, b) : g < h[l] ? u(h, g, k, l - 1) : l;
     };
-    return u(n, c, 0, n.length - 1);
+    return u(r, c, 0, r.length - 1);
   }
   class t {
     constructor() {
@@ -241,7 +241,7 @@ function L0() {
       return !0;
     }
   };
-  class r extends a {
+  class n extends a {
     constructor() {
       super(...arguments), this.commonChars = [
         33088,
@@ -320,7 +320,7 @@ function L0() {
       return g < 0 ? !1 : (c.charValue = h << 8 | g, g >= 64 && g <= 127 || g >= 128 && g <= 255 || (c.error = !0), !0);
     }
   }
-  D.sjis = r;
+  D.sjis = n;
   class s extends a {
     constructor() {
       super(...arguments), this.commonChars = [
@@ -440,27 +440,27 @@ function L0() {
     }
   }
   D.big5 = s;
-  function m(n, c) {
-    n.index = n.nextIndex, n.error = !1;
+  function m(r, c) {
+    r.index = r.nextIndex, r.error = !1;
     let u = 0, h = 0, g = 0;
     e: {
-      if (u = n.charValue = n.nextByte(c), u < 0) {
-        n.done = !0;
+      if (u = r.charValue = r.nextByte(c), u < 0) {
+        r.done = !0;
         break e;
       }
       if (u <= 141)
         break e;
-      if (h = n.nextByte(c), n.charValue = n.charValue << 8 | h, u >= 161 && u <= 254) {
-        h < 161 && (n.error = !0);
+      if (h = r.nextByte(c), r.charValue = r.charValue << 8 | h, u >= 161 && u <= 254) {
+        h < 161 && (r.error = !0);
         break e;
       }
       if (u == 142) {
-        h < 161 && (n.error = !0);
+        h < 161 && (r.error = !0);
         break e;
       }
-      u == 143 && (g = n.nextByte(c), n.charValue = n.charValue << 8 | g, g < 161 && (n.error = !0));
+      u == 143 && (g = r.nextByte(c), r.charValue = r.charValue << 8 | g, g < 161 && (r.error = !0));
     }
-    return n.done == !1;
+    return r.done == !1;
   }
   class o extends a {
     constructor() {
@@ -825,14 +825,14 @@ function L0() {
   }
   return D.gb_18030 = d, D;
 }
-var S = {}, u0;
-function T0() {
-  if (u0) return S;
-  u0 = 1;
-  var i = S && S.__importDefault || function(b) {
+var F = {}, l0;
+function A0() {
+  if (l0) return F;
+  l0 = 1;
+  var i = F && F.__importDefault || function(b) {
     return b && b.__esModule ? b : { default: b };
   };
-  Object.defineProperty(S, "__esModule", { value: !0 }), S.KOI8_R = S.windows_1256 = S.windows_1251 = S.ISO_8859_9 = S.ISO_8859_8 = S.ISO_8859_7 = S.ISO_8859_6 = S.ISO_8859_5 = S.ISO_8859_2 = S.ISO_8859_1 = void 0;
+  Object.defineProperty(F, "__esModule", { value: !0 }), F.KOI8_R = F.windows_1256 = F.windows_1251 = F.ISO_8859_9 = F.ISO_8859_8 = F.ISO_8859_7 = F.ISO_8859_6 = F.ISO_8859_5 = F.ISO_8859_2 = F.ISO_8859_1 = void 0;
   const e = i(N()), x = 16777215;
   class t {
     constructor(l, p) {
@@ -867,7 +867,7 @@ function T0() {
       this.fLang = l, this.fNGrams = p;
     }
   }
-  const r = (b) => Array.isArray(b) && isFinite(b[0]);
+  const n = (b) => Array.isArray(b) && isFinite(b[0]);
   let s = class {
     constructor() {
       this.spaceChar = 32, this.nGramLang = void 0;
@@ -887,14 +887,14 @@ function T0() {
     match(l) {
       this.nGramLang = void 0;
       const p = this.ngrams();
-      if (r(p)) {
+      if (n(p)) {
         const C = new t(p, this.byteMap()).parse(l, this.spaceChar);
         return C <= 0 ? null : (0, e.default)(l, this, C);
       }
       let w = -1;
       for (let y = p.length - 1; y >= 0; y--) {
-        const C = p[y], T = new t(C.fNGrams, this.byteMap()).parse(l, this.spaceChar);
-        T > w && (w = T, this.nGramLang = C.fLang);
+        const C = p[y], A = new t(C.fNGrams, this.byteMap()).parse(l, this.spaceChar);
+        A > w && (w = A, this.nGramLang = C.fLang);
       }
       return w <= 0 ? null : (0, e.default)(l, this, w);
     }
@@ -1828,7 +1828,7 @@ function T0() {
       return l && l.c1Bytes ? "windows-1252" : "ISO-8859-1";
     }
   }
-  S.ISO_8859_1 = m;
+  F.ISO_8859_1 = m;
   class o extends s {
     byteMap() {
       return [
@@ -2362,7 +2362,7 @@ function T0() {
       return l && l.c1Bytes ? "windows-1250" : "ISO-8859-2";
     }
   }
-  S.ISO_8859_2 = o;
+  F.ISO_8859_2 = o;
   class f extends s {
     byteMap() {
       return [
@@ -2699,7 +2699,7 @@ function T0() {
       return "ru";
     }
   }
-  S.ISO_8859_5 = f;
+  F.ISO_8859_5 = f;
   class d extends s {
     byteMap() {
       return [
@@ -3036,8 +3036,8 @@ function T0() {
       return "ar";
     }
   }
-  S.ISO_8859_6 = d;
-  class n extends s {
+  F.ISO_8859_6 = d;
+  class r extends s {
     byteMap() {
       return [
         32,
@@ -3373,7 +3373,7 @@ function T0() {
       return "el";
     }
   }
-  S.ISO_8859_7 = n;
+  F.ISO_8859_7 = r;
   class c extends s {
     byteMap() {
       return [
@@ -3778,7 +3778,7 @@ function T0() {
       return "he";
     }
   }
-  S.ISO_8859_8 = c;
+  F.ISO_8859_8 = c;
   class u extends s {
     byteMap() {
       return [
@@ -4115,7 +4115,7 @@ function T0() {
       return "tr";
     }
   }
-  S.ISO_8859_9 = u;
+  F.ISO_8859_9 = u;
   class h extends s {
     byteMap() {
       return [
@@ -4452,7 +4452,7 @@ function T0() {
       return "ru";
     }
   }
-  S.windows_1251 = h;
+  F.windows_1251 = h;
   class g extends s {
     byteMap() {
       return [
@@ -4789,7 +4789,7 @@ function T0() {
       return "ar";
     }
   }
-  S.windows_1256 = g;
+  F.windows_1256 = g;
   class k extends s {
     byteMap() {
       return [
@@ -5126,12 +5126,12 @@ function T0() {
       return "ru";
     }
   }
-  return S.KOI8_R = k, S;
+  return F.KOI8_R = k, F;
 }
-var L = {}, m0;
-function A0() {
-  if (m0) return L;
-  m0 = 1;
+var L = {}, u0;
+function T0() {
+  if (u0) return L;
+  u0 = 1;
   var i = L && L.__importDefault || function(s) {
     return s && s.__esModule ? s : { default: s };
   };
@@ -5145,7 +5145,7 @@ function A0() {
       return "ISO_2022";
     }
     match(m) {
-      let o, f, d, n = 0, c = 0, u = 0, h;
+      let o, f, d, r = 0, c = 0, u = 0, h;
       const g = m.inputBytes, k = m.inputLen;
       e: for (o = 0; o < k; o++) {
         if (g[o] == 27) {
@@ -5156,14 +5156,14 @@ function A0() {
             for (f = 1; f < b.length; f++)
               if (b[f] != g[o + f])
                 continue x;
-            n++, o += b.length - 1;
+            r++, o += b.length - 1;
             continue e;
           }
           c++;
         }
         (g[o] == 14 || g[o] == 15) && u++;
       }
-      return n == 0 ? null : (h = (100 * n - 100 * c) / (n + c), n + u < 5 && (h -= (5 - (n + u)) * 10), h <= 0 ? null : (0, e.default)(m, this, h));
+      return r == 0 ? null : (h = (100 * r - 100 * c) / (r + c), r + u < 5 && (h -= (5 - (r + u)) * 10), h <= 0 ? null : (0, e.default)(m, this, h));
     }
   }
   class t extends x {
@@ -5203,7 +5203,7 @@ function A0() {
     }
   }
   L.ISO_2022_KR = a;
-  class r extends x {
+  class n extends x {
     constructor() {
       super(...arguments), this.escapeSequences = [
         [27, 36, 41, 65],
@@ -5226,18 +5226,18 @@ function A0() {
       return "zh";
     }
   }
-  return L.ISO_2022_CN = r, L;
+  return L.ISO_2022_CN = n, L;
 }
-var H = {}, p0;
+var H = {}, m0;
 function M0() {
-  if (p0) return H;
-  p0 = 1, Object.defineProperty(H, "__esModule", { value: !0 }), H.isByteArray = void 0;
+  if (m0) return H;
+  m0 = 1, Object.defineProperty(H, "__esModule", { value: !0 }), H.isByteArray = void 0;
   const i = (e) => e == null || typeof e != "object" ? !1 : isFinite(e.length) && e.length >= 0;
   return H.isByteArray = i, H;
 }
-var h0;
+var p0;
 function z0() {
-  return h0 || (h0 = 1, (function(i) {
+  return p0 || (p0 = 1, (function(i) {
     var e = E && E.__createBinding || (Object.create ? (function(l, p, w, y) {
       y === void 0 && (y = w);
       var C = Object.getOwnPropertyDescriptor(p, w);
@@ -5268,7 +5268,7 @@ function z0() {
       return l && l.__esModule ? l : { default: l };
     };
     Object.defineProperty(i, "__esModule", { value: !0 }), i.detectFileSync = i.detectFile = i.analyse = i.detect = void 0;
-    const r = a(B0()), s = a(I0()), m = a(O0()), o = t(E0()), f = t(L0()), d = t(T0()), n = t(A0()), c = M0(), u = [
+    const n = a(B0()), s = a(I0()), m = a(O0()), o = t(E0()), f = t(L0()), d = t(A0()), r = t(T0()), c = M0(), u = [
       new m.default(),
       new o.UTF_16BE(),
       new o.UTF_16LE(),
@@ -5279,9 +5279,9 @@ function z0() {
       new f.euc_jp(),
       new f.euc_kr(),
       new f.gb_18030(),
-      new n.ISO_2022_JP(),
-      new n.ISO_2022_KR(),
-      new n.ISO_2022_CN(),
+      new r.ISO_2022_JP(),
+      new r.ISO_2022_KR(),
+      new r.ISO_2022_CN(),
       new d.ISO_8859_1(),
       new d.ISO_8859_2(),
       new d.ISO_8859_5(),
@@ -5320,27 +5320,27 @@ function z0() {
         inputBytes: l,
         inputLen: l.length
       };
-      return u.map((v) => v.match(y)).filter((v) => !!v).sort((v, T) => T.confidence - v.confidence);
+      return u.map((v) => v.match(y)).filter((v) => !!v).sort((v, A) => A.confidence - v.confidence);
     };
     i.analyse = g;
     const k = (l, p = {}) => new Promise((w, y) => {
       let C;
-      const v = (0, r.default)(), T = (z, V) => {
+      const v = (0, n.default)(), A = (z, V) => {
         C && v.closeSync(C), z ? y(z) : V ? w((0, i.detect)(V)) : y(new Error("No error and no buffer received"));
       }, j = p?.sampleSize || 0;
       if (j > 0) {
         C = v.openSync(l, "r");
         let z = Buffer.allocUnsafe(j);
         v.read(C, z, 0, j, p.offset, (V, r0) => {
-          V ? T(V, null) : (r0 < j && (z = z.subarray(0, r0)), T(null, z));
+          V ? A(V, null) : (r0 < j && (z = z.subarray(0, r0)), A(null, z));
         });
         return;
       }
-      v.readFile(l, T);
+      v.readFile(l, A);
     });
     i.detectFile = k;
     const b = (l, p = {}) => {
-      const w = (0, r.default)();
+      const w = (0, n.default)();
       if (p && p.sampleSize) {
         const y = w.openSync(l, "r");
         let C = Buffer.allocUnsafe(p.sampleSize);
@@ -5358,27 +5358,27 @@ function z0() {
   })(E)), E;
 }
 var U0 = z0();
-const j0 = /* @__PURE__ */ F0(U0);
+const j0 = /* @__PURE__ */ S0(U0);
 var K = {};
-var b0;
+var h0;
 function R0() {
-  return b0 || (b0 = 1, K.read = function(i, e, x, t, a) {
-    var r, s, m = a * 8 - t - 1, o = (1 << m) - 1, f = o >> 1, d = -7, n = x ? a - 1 : 0, c = x ? -1 : 1, u = i[e + n];
-    for (n += c, r = u & (1 << -d) - 1, u >>= -d, d += m; d > 0; r = r * 256 + i[e + n], n += c, d -= 8)
+  return h0 || (h0 = 1, K.read = function(i, e, x, t, a) {
+    var n, s, m = a * 8 - t - 1, o = (1 << m) - 1, f = o >> 1, d = -7, r = x ? a - 1 : 0, c = x ? -1 : 1, u = i[e + r];
+    for (r += c, n = u & (1 << -d) - 1, u >>= -d, d += m; d > 0; n = n * 256 + i[e + r], r += c, d -= 8)
       ;
-    for (s = r & (1 << -d) - 1, r >>= -d, d += t; d > 0; s = s * 256 + i[e + n], n += c, d -= 8)
+    for (s = n & (1 << -d) - 1, n >>= -d, d += t; d > 0; s = s * 256 + i[e + r], r += c, d -= 8)
       ;
-    if (r === 0)
-      r = 1 - f;
+    if (n === 0)
+      n = 1 - f;
     else {
-      if (r === o)
+      if (n === o)
         return s ? NaN : (u ? -1 : 1) * (1 / 0);
-      s = s + Math.pow(2, t), r = r - f;
+      s = s + Math.pow(2, t), n = n - f;
     }
-    return (u ? -1 : 1) * s * Math.pow(2, r - t);
-  }, K.write = function(i, e, x, t, a, r) {
-    var s, m, o, f = r * 8 - a - 1, d = (1 << f) - 1, n = d >> 1, c = a === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0, u = t ? 0 : r - 1, h = t ? 1 : -1, g = e < 0 || e === 0 && 1 / e < 0 ? 1 : 0;
-    for (e = Math.abs(e), isNaN(e) || e === 1 / 0 ? (m = isNaN(e) ? 1 : 0, s = d) : (s = Math.floor(Math.log(e) / Math.LN2), e * (o = Math.pow(2, -s)) < 1 && (s--, o *= 2), s + n >= 1 ? e += c / o : e += c * Math.pow(2, 1 - n), e * o >= 2 && (s++, o /= 2), s + n >= d ? (m = 0, s = d) : s + n >= 1 ? (m = (e * o - 1) * Math.pow(2, a), s = s + n) : (m = e * Math.pow(2, n - 1) * Math.pow(2, a), s = 0)); a >= 8; i[x + u] = m & 255, u += h, m /= 256, a -= 8)
+    return (u ? -1 : 1) * s * Math.pow(2, n - t);
+  }, K.write = function(i, e, x, t, a, n) {
+    var s, m, o, f = n * 8 - a - 1, d = (1 << f) - 1, r = d >> 1, c = a === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0, u = t ? 0 : n - 1, h = t ? 1 : -1, g = e < 0 || e === 0 && 1 / e < 0 ? 1 : 0;
+    for (e = Math.abs(e), isNaN(e) || e === 1 / 0 ? (m = isNaN(e) ? 1 : 0, s = d) : (s = Math.floor(Math.log(e) / Math.LN2), e * (o = Math.pow(2, -s)) < 1 && (s--, o *= 2), s + r >= 1 ? e += c / o : e += c * Math.pow(2, 1 - r), e * o >= 2 && (s++, o /= 2), s + r >= d ? (m = 0, s = d) : s + r >= 1 ? (m = (e * o - 1) * Math.pow(2, a), s = s + r) : (m = e * Math.pow(2, r - 1) * Math.pow(2, a), s = 0)); a >= 8; i[x + u] = m & 255, u += h, m /= 256, a -= 8)
       ;
     for (s = s << a | m, f += a; f > 0; i[x + u] = s & 255, u += h, s /= 256, f -= 8)
       ;
@@ -5386,7 +5386,7 @@ function R0() {
   }), K;
 }
 R0();
-const i0 = {
+const t0 = {
   128: "€",
   130: "‚",
   131: "ƒ",
@@ -5415,7 +5415,7 @@ const i0 = {
   158: "ž",
   159: "Ÿ"
 };
-for (const [i, e] of Object.entries(i0))
+for (const [i, e] of Object.entries(t0))
   ;
 function P0(i, e = "utf-8") {
   switch (e.toLowerCase()) {
@@ -5445,11 +5445,11 @@ function q0(i) {
       const a = i[x++] & 63;
       e += String.fromCharCode((t & 31) << 6 | a);
     } else if (t < 240) {
-      const a = i[x++] & 63, r = i[x++] & 63;
-      e += String.fromCharCode((t & 15) << 12 | a << 6 | r);
+      const a = i[x++] & 63, n = i[x++] & 63;
+      e += String.fromCharCode((t & 15) << 12 | a << 6 | n);
     } else {
-      const a = i[x++] & 63, r = i[x++] & 63, s = i[x++] & 63;
-      let m = (t & 7) << 18 | a << 12 | r << 6 | s;
+      const a = i[x++] & 63, n = i[x++] & 63, s = i[x++] & 63;
+      let m = (t & 7) << 18 | a << 12 | n << 6 | s;
       m -= 65536, e += String.fromCharCode(55296 + (m >> 10 & 1023), 56320 + (m & 1023));
     }
   }
@@ -5470,7 +5470,7 @@ function H0(i) {
 function W0(i) {
   let e = "";
   for (const x of i)
-    x >= 128 && x <= 159 && i0[x] ? e += i0[x] : e += String.fromCharCode(x);
+    x >= 128 && x <= 159 && t0[x] ? e += t0[x] : e += String.fromCharCode(x);
   return e;
 }
 function I(i) {
@@ -5484,7 +5484,7 @@ const G0 = {
   put(i, e, x) {
     return I(i).setUint8(e, x), e + 1;
   }
-}, F = {
+}, S = {
   len: 2,
   get(i, e) {
     return I(i).getUint16(e, !0);
@@ -5580,8 +5580,8 @@ class _0 {
       const a = this.peekQueue.pop();
       if (!a)
         throw new Error("peekData should be defined");
-      const r = Math.min(a.length, x);
-      e.set(a.subarray(0, r), t), t += r, x -= r, r < a.length && this.peekQueue.push(a.subarray(r));
+      const n = Math.min(a.length, x);
+      e.set(a.subarray(0, n), t), t += n, x -= n, n < a.length && this.peekQueue.push(a.subarray(n));
     }
     return t;
   }
@@ -5625,7 +5625,7 @@ class Y0 extends X0 {
     return t.done && (this.endOfStream = t.done), t.value ? (e.set(t.value), t.value.length) : 0;
   }
 }
-class g0 extends _0 {
+class b0 extends _0 {
   constructor(e) {
     super(), this.reader = e, this.buffer = null;
   }
@@ -5668,14 +5668,14 @@ class g0 extends _0 {
 function ee(i) {
   try {
     const e = i.getReader({ mode: "byob" });
-    return e instanceof ReadableStreamDefaultReader ? new g0(e) : new Y0(e);
+    return e instanceof ReadableStreamDefaultReader ? new b0(e) : new Y0(e);
   } catch (e) {
     if (e instanceof TypeError)
-      return new g0(i.getReader());
+      return new b0(i.getReader());
     throw e;
   }
 }
-class a0 {
+class i0 {
   /**
    * Constructor
    * @param options Tokenizer options
@@ -5762,7 +5762,7 @@ class a0 {
   }
 }
 const xe = 256e3;
-class te extends a0 {
+class te extends i0 {
   /**
    * Constructor
    * @param streamReader stream-reader to read from
@@ -5785,10 +5785,10 @@ class te extends a0 {
       throw new Error("`options.position` must be equal or greater than `tokenizer.position`");
     if (t.length === 0)
       return 0;
-    const r = await this.streamReader.read(e.subarray(0, t.length), t.mayBeLess);
-    if (this.position += r, (!x || !x.mayBeLess) && r < t.length)
+    const n = await this.streamReader.read(e.subarray(0, t.length), t.mayBeLess);
+    if (this.position += n, (!x || !x.mayBeLess) && n < t.length)
       throw new B();
-    return r;
+    return n;
   }
   /**
    * Peek (read ahead) buffer from tokenizer
@@ -5800,21 +5800,21 @@ class te extends a0 {
     const t = this.normalizeOptions(e, x);
     let a = 0;
     if (t.position) {
-      const r = t.position - this.position;
-      if (r > 0) {
-        const s = new Uint8Array(t.length + r);
-        return a = await this.peekBuffer(s, { mayBeLess: t.mayBeLess }), e.set(s.subarray(r)), a - r;
+      const n = t.position - this.position;
+      if (n > 0) {
+        const s = new Uint8Array(t.length + n);
+        return a = await this.peekBuffer(s, { mayBeLess: t.mayBeLess }), e.set(s.subarray(n)), a - n;
       }
-      if (r < 0)
+      if (n < 0)
         throw new Error("Cannot peek from a negative offset in a stream");
     }
     if (t.length > 0) {
       try {
         a = await this.streamReader.peek(e.subarray(0, t.length), t.mayBeLess);
-      } catch (r) {
-        if (x?.mayBeLess && r instanceof B)
+      } catch (n) {
+        if (x?.mayBeLess && n instanceof B)
           return 0;
-        throw r;
+        throw n;
       }
       if (!t.mayBeLess && a < t.length)
         throw new B();
@@ -5825,7 +5825,7 @@ class te extends a0 {
     const x = Math.min(xe, e), t = new Uint8Array(x);
     let a = 0;
     for (; a < e; ) {
-      const r = e - a, s = await this.readBuffer(t, { length: Math.min(x, r) });
+      const n = e - a, s = await this.readBuffer(t, { length: Math.min(x, n) });
       if (s < 0)
         return s;
       a += s;
@@ -5842,7 +5842,7 @@ class te extends a0 {
     return !1;
   }
 }
-class ie extends a0 {
+class ie extends i0 {
   /**
    * Construct BufferTokenizer
    * @param uint8Array - Uint8Array to tokenize
@@ -5884,7 +5884,7 @@ class ie extends a0 {
     this.position = e;
   }
 }
-class ae extends a0 {
+class ae extends i0 {
   /**
    * Construct BufferTokenizer
    * @param blob - Uint8Array to tokenize
@@ -5914,8 +5914,8 @@ class ae extends a0 {
     const t = this.normalizeOptions(e, x), a = Math.min(this.blob.size - t.position, t.length);
     if (!t.mayBeLess && a < t.length)
       throw new B();
-    const r = await this.blob.slice(t.position, t.position + a).arrayBuffer();
-    return e.set(new Uint8Array(r)), a;
+    const n = await this.blob.slice(t.position, t.position + a).arrayBuffer();
+    return e.set(new Uint8Array(n)), a;
   }
   close() {
     return super.close();
@@ -5927,49 +5927,49 @@ class ae extends a0 {
     this.position = e;
   }
 }
-function ne(i, e) {
+function re(i, e) {
   const x = ee(i), t = e ?? {}, a = t.onClose;
   return t.onClose = async () => {
     if (await x.close(), a)
       return a();
   }, new te(x, t);
 }
-function re(i, e) {
+function ne(i, e) {
   return new ie(i, e);
 }
 function ce(i, e) {
   return new ae(i, e);
 }
-var Z = { exports: {} }, X, w0;
+var Z = { exports: {} }, Q, g0;
 function se() {
-  if (w0) return X;
-  w0 = 1;
-  var i = 1e3, e = i * 60, x = e * 60, t = x * 24, a = t * 7, r = t * 365.25;
-  X = function(d, n) {
-    n = n || {};
+  if (g0) return Q;
+  g0 = 1;
+  var i = 1e3, e = i * 60, x = e * 60, t = x * 24, a = t * 7, n = t * 365.25;
+  Q = function(d, r) {
+    r = r || {};
     var c = typeof d;
     if (c === "string" && d.length > 0)
       return s(d);
     if (c === "number" && isFinite(d))
-      return n.long ? o(d) : m(d);
+      return r.long ? o(d) : m(d);
     throw new Error(
       "val is not a non-empty string or a valid number. val=" + JSON.stringify(d)
     );
   };
   function s(d) {
     if (d = String(d), !(d.length > 100)) {
-      var n = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
+      var r = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
         d
       );
-      if (n) {
-        var c = parseFloat(n[1]), u = (n[2] || "ms").toLowerCase();
+      if (r) {
+        var c = parseFloat(r[1]), u = (r[2] || "ms").toLowerCase();
         switch (u) {
           case "years":
           case "year":
           case "yrs":
           case "yr":
           case "y":
-            return c * r;
+            return c * n;
           case "weeks":
           case "week":
           case "w":
@@ -6009,35 +6009,35 @@ function se() {
     }
   }
   function m(d) {
-    var n = Math.abs(d);
-    return n >= t ? Math.round(d / t) + "d" : n >= x ? Math.round(d / x) + "h" : n >= e ? Math.round(d / e) + "m" : n >= i ? Math.round(d / i) + "s" : d + "ms";
+    var r = Math.abs(d);
+    return r >= t ? Math.round(d / t) + "d" : r >= x ? Math.round(d / x) + "h" : r >= e ? Math.round(d / e) + "m" : r >= i ? Math.round(d / i) + "s" : d + "ms";
   }
   function o(d) {
-    var n = Math.abs(d);
-    return n >= t ? f(d, n, t, "day") : n >= x ? f(d, n, x, "hour") : n >= e ? f(d, n, e, "minute") : n >= i ? f(d, n, i, "second") : d + " ms";
+    var r = Math.abs(d);
+    return r >= t ? f(d, r, t, "day") : r >= x ? f(d, r, x, "hour") : r >= e ? f(d, r, e, "minute") : r >= i ? f(d, r, i, "second") : d + " ms";
   }
-  function f(d, n, c, u) {
-    var h = n >= c * 1.5;
+  function f(d, r, c, u) {
+    var h = r >= c * 1.5;
     return Math.round(d / c) + " " + u + (h ? "s" : "");
   }
-  return X;
+  return Q;
 }
-var Y, k0;
+var X, w0;
 function oe() {
-  if (k0) return Y;
-  k0 = 1;
+  if (w0) return X;
+  w0 = 1;
   function i(e) {
-    t.debug = t, t.default = t, t.coerce = f, t.disable = m, t.enable = r, t.enabled = o, t.humanize = se(), t.destroy = d, Object.keys(e).forEach((n) => {
-      t[n] = e[n];
+    t.debug = t, t.default = t, t.coerce = f, t.disable = m, t.enable = n, t.enabled = o, t.humanize = se(), t.destroy = d, Object.keys(e).forEach((r) => {
+      t[r] = e[r];
     }), t.names = [], t.skips = [], t.formatters = {};
-    function x(n) {
+    function x(r) {
       let c = 0;
-      for (let u = 0; u < n.length; u++)
-        c = (c << 5) - c + n.charCodeAt(u), c |= 0;
+      for (let u = 0; u < r.length; u++)
+        c = (c << 5) - c + r.charCodeAt(u), c |= 0;
       return t.colors[Math.abs(c) % t.colors.length];
     }
     t.selectColor = x;
-    function t(n) {
+    function t(r) {
       let c, u = null, h, g;
       function k(...b) {
         if (!k.enabled)
@@ -6045,11 +6045,11 @@ function oe() {
         const l = k, p = Number(/* @__PURE__ */ new Date()), w = p - (c || p);
         l.diff = w, l.prev = c, l.curr = p, c = p, b[0] = t.coerce(b[0]), typeof b[0] != "string" && b.unshift("%O");
         let y = 0;
-        b[0] = b[0].replace(/%([a-zA-Z%])/g, (v, T) => {
+        b[0] = b[0].replace(/%([a-zA-Z%])/g, (v, A) => {
           if (v === "%%")
             return "%";
           y++;
-          const j = t.formatters[T];
+          const j = t.formatters[A];
           if (typeof j == "function") {
             const z = b[y];
             v = j.call(l, z), b.splice(y, 1), y--;
@@ -6057,29 +6057,29 @@ function oe() {
           return v;
         }), t.formatArgs.call(l, b), (l.log || t.log).apply(l, b);
       }
-      return k.namespace = n, k.useColors = t.useColors(), k.color = t.selectColor(n), k.extend = a, k.destroy = t.destroy, Object.defineProperty(k, "enabled", {
+      return k.namespace = r, k.useColors = t.useColors(), k.color = t.selectColor(r), k.extend = a, k.destroy = t.destroy, Object.defineProperty(k, "enabled", {
         enumerable: !0,
         configurable: !1,
-        get: () => u !== null ? u : (h !== t.namespaces && (h = t.namespaces, g = t.enabled(n)), g),
+        get: () => u !== null ? u : (h !== t.namespaces && (h = t.namespaces, g = t.enabled(r)), g),
         set: (b) => {
           u = b;
         }
       }), typeof t.init == "function" && t.init(k), k;
     }
-    function a(n, c) {
-      const u = t(this.namespace + (typeof c > "u" ? ":" : c) + n);
+    function a(r, c) {
+      const u = t(this.namespace + (typeof c > "u" ? ":" : c) + r);
       return u.log = this.log, u;
     }
-    function r(n) {
-      t.save(n), t.namespaces = n, t.names = [], t.skips = [];
-      const c = (typeof n == "string" ? n : "").trim().replace(/\s+/g, ",").split(",").filter(Boolean);
+    function n(r) {
+      t.save(r), t.namespaces = r, t.names = [], t.skips = [];
+      const c = (typeof r == "string" ? r : "").trim().replace(/\s+/g, ",").split(",").filter(Boolean);
       for (const u of c)
         u[0] === "-" ? t.skips.push(u.slice(1)) : t.names.push(u);
     }
-    function s(n, c) {
+    function s(r, c) {
       let u = 0, h = 0, g = -1, k = 0;
-      for (; u < n.length; )
-        if (h < c.length && (c[h] === n[u] || c[h] === "*"))
+      for (; u < r.length; )
+        if (h < c.length && (c[h] === r[u] || c[h] === "*"))
           c[h] === "*" ? (g = h, k = u, h++) : (u++, h++);
         else if (g !== -1)
           h = g + 1, k++, u = k;
@@ -6090,35 +6090,35 @@ function oe() {
       return h === c.length;
     }
     function m() {
-      const n = [
+      const r = [
         ...t.names,
         ...t.skips.map((c) => "-" + c)
       ].join(",");
-      return t.enable(""), n;
+      return t.enable(""), r;
     }
-    function o(n) {
+    function o(r) {
       for (const c of t.skips)
-        if (s(n, c))
+        if (s(r, c))
           return !1;
       for (const c of t.names)
-        if (s(n, c))
+        if (s(r, c))
           return !0;
       return !1;
     }
-    function f(n) {
-      return n instanceof Error ? n.stack || n.message : n;
+    function f(r) {
+      return r instanceof Error ? r.stack || r.message : r;
     }
     function d() {
       console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
     }
     return t.enable(t.load()), t;
   }
-  return Y = i, Y;
+  return X = i, X;
 }
-var y0;
+var k0;
 function fe() {
-  return y0 || (y0 = 1, (function(i, e) {
-    e.formatArgs = t, e.save = a, e.load = r, e.useColors = x, e.storage = s(), e.destroy = /* @__PURE__ */ (() => {
+  return k0 || (k0 = 1, (function(i, e) {
+    e.formatArgs = t, e.save = a, e.load = n, e.useColors = x, e.storage = s(), e.destroy = /* @__PURE__ */ (() => {
       let o = !1;
       return () => {
         o || (o = !0, console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`."));
@@ -6218,10 +6218,10 @@ function fe() {
         return;
       const f = "color: " + this.color;
       o.splice(1, 0, f, "color: inherit");
-      let d = 0, n = 0;
+      let d = 0, r = 0;
       o[0].replace(/%[a-zA-Z%]/g, (c) => {
-        c !== "%%" && (d++, c === "%c" && (n = d));
-      }), o.splice(n, 0, f);
+        c !== "%%" && (d++, c === "%c" && (r = d));
+      }), o.splice(r, 0, f);
     }
     e.log = console.debug || console.log || (() => {
     });
@@ -6231,7 +6231,7 @@ function fe() {
       } catch {
       }
     }
-    function r() {
+    function n() {
       let o;
       try {
         o = e.storage.getItem("debug") || e.storage.getItem("DEBUG");
@@ -6257,12 +6257,12 @@ function fe() {
   })(Z, Z.exports)), Z.exports;
 }
 var de = fe();
-const le = /* @__PURE__ */ F0(de), q = {
+const le = /* @__PURE__ */ S0(de), q = {
   LocalFileHeader: 67324752,
   DataDescriptor: 134695760,
   CentralFileHeader: 33639248,
   EndOfCentralDirectory: 101010256
-}, C0 = {
+}, y0 = {
   get(i) {
     return {
       signature: _.get(i, 0),
@@ -6273,16 +6273,16 @@ const le = /* @__PURE__ */ F0(de), q = {
   len: 16
 }, ue = {
   get(i) {
-    const e = F.get(i, 6);
+    const e = S.get(i, 6);
     return {
       signature: _.get(i, 0),
-      minVersion: F.get(i, 4),
+      minVersion: S.get(i, 4),
       dataDescriptor: !!(e & 8),
-      compressedMethod: F.get(i, 8),
+      compressedMethod: S.get(i, 8),
       compressedSize: _.get(i, 18),
       uncompressedSize: _.get(i, 22),
-      filenameLength: F.get(i, 26),
-      extraFieldLength: F.get(i, 28),
+      filenameLength: S.get(i, 26),
+      extraFieldLength: S.get(i, 28),
       filename: null
     };
   },
@@ -6291,29 +6291,29 @@ const le = /* @__PURE__ */ F0(de), q = {
   get(i) {
     return {
       signature: _.get(i, 0),
-      nrOfThisDisk: F.get(i, 4),
-      nrOfThisDiskWithTheStart: F.get(i, 6),
-      nrOfEntriesOnThisDisk: F.get(i, 8),
-      nrOfEntriesOfSize: F.get(i, 10),
+      nrOfThisDisk: S.get(i, 4),
+      nrOfThisDiskWithTheStart: S.get(i, 6),
+      nrOfEntriesOnThisDisk: S.get(i, 8),
+      nrOfEntriesOfSize: S.get(i, 10),
       sizeOfCd: _.get(i, 12),
       offsetOfStartOfCd: _.get(i, 16),
-      zipFileCommentLength: F.get(i, 20)
+      zipFileCommentLength: S.get(i, 20)
     };
   },
   len: 22
 }, pe = {
   get(i) {
-    const e = F.get(i, 8);
+    const e = S.get(i, 8);
     return {
       signature: _.get(i, 0),
-      minVersion: F.get(i, 6),
+      minVersion: S.get(i, 6),
       dataDescriptor: !!(e & 8),
-      compressedMethod: F.get(i, 10),
+      compressedMethod: S.get(i, 10),
       compressedSize: _.get(i, 20),
       uncompressedSize: _.get(i, 24),
-      filenameLength: F.get(i, 28),
-      extraFieldLength: F.get(i, 30),
-      fileCommentLength: F.get(i, 32),
+      filenameLength: S.get(i, 28),
+      extraFieldLength: S.get(i, 30),
+      fileCommentLength: S.get(i, 32),
       relativeOffsetOfLocalHeader: _.get(i, 42),
       filename: null
     };
@@ -6324,10 +6324,10 @@ function D0(i) {
   const e = new Uint8Array(_.len);
   return _.put(e, 0, i), e;
 }
-const A = le("tokenizer:inflate"), e0 = 256 * 1024, he = D0(q.DataDescriptor), $ = D0(q.EndOfCentralDirectory);
-class n0 {
+const T = le("tokenizer:inflate"), Y = 256 * 1024, he = D0(q.DataDescriptor), $ = D0(q.EndOfCentralDirectory);
+class a0 {
   constructor(e) {
-    this.tokenizer = e, this.syncBuffer = new Uint8Array(e0);
+    this.tokenizer = e, this.syncBuffer = new Uint8Array(Y);
   }
   async isZip() {
     return await this.peekSignature() === q.LocalFileHeader;
@@ -6345,20 +6345,20 @@ class n0 {
   }
   async readCentralDirectory() {
     if (!this.tokenizer.supportsRandomAccess()) {
-      A("Cannot reading central-directory without random-read support");
+      T("Cannot reading central-directory without random-read support");
       return;
     }
-    A("Reading central-directory...");
+    T("Reading central-directory...");
     const e = this.tokenizer.position, x = await this.findEndOfCentralDirectoryLocator();
     if (x > 0) {
-      A("Central-directory 32-bit signature found");
+      T("Central-directory 32-bit signature found");
       const t = await this.tokenizer.readToken(me, x), a = [];
       this.tokenizer.setPosition(t.offsetOfStartOfCd);
-      for (let r = 0; r < t.nrOfEntriesOfSize; ++r) {
+      for (let n = 0; n < t.nrOfEntriesOfSize; ++n) {
         const s = await this.tokenizer.readToken(pe);
         if (s.signature !== q.CentralFileHeader)
           throw new Error("Expected Central-File-Header signature");
-        s.filename = await this.tokenizer.readToken(new U(s.filenameLength, "utf-8")), await this.tokenizer.ignore(s.extraFieldLength), await this.tokenizer.ignore(s.fileCommentLength), a.push(s), A(`Add central-directory file-entry: n=${r + 1}/${a.length}: filename=${a[r].filename}`);
+        s.filename = await this.tokenizer.readToken(new U(s.filenameLength, "utf-8")), await this.tokenizer.ignore(s.extraFieldLength), await this.tokenizer.ignore(s.fileCommentLength), a.push(s), T(`Add central-directory file-entry: n=${n + 1}/${a.length}: filename=${a[n].filename}`);
       }
       return this.tokenizer.setPosition(e), a;
     }
@@ -6373,28 +6373,28 @@ class n0 {
       const a = await this.readLocalFileHeader();
       if (!a)
         break;
-      const r = e(a);
-      t = !!r.stop;
+      const n = e(a);
+      t = !!n.stop;
       let s;
       if (await this.tokenizer.ignore(a.extraFieldLength), a.dataDescriptor && a.compressedSize === 0) {
         const m = [];
-        let o = e0;
-        A("Compressed-file-size unknown, scanning for next data-descriptor-signature....");
+        let o = Y;
+        T("Compressed-file-size unknown, scanning for next data-descriptor-signature....");
         let f = -1;
-        for (; f < 0 && o === e0; ) {
+        for (; f < 0 && o === Y; ) {
           o = await this.tokenizer.peekBuffer(this.syncBuffer, { mayBeLess: !0 }), f = be(this.syncBuffer.subarray(0, o), he);
           const d = f >= 0 ? f : o;
-          if (r.handler) {
-            const n = new Uint8Array(d);
-            await this.tokenizer.readBuffer(n), m.push(n);
+          if (n.handler) {
+            const r = new Uint8Array(d);
+            await this.tokenizer.readBuffer(r), m.push(r);
           } else
             await this.tokenizer.ignore(d);
         }
-        A(`Found data-descriptor-signature at pos=${this.tokenizer.position}`), r.handler && await this.inflate(a, ge(m), r.handler);
+        T(`Found data-descriptor-signature at pos=${this.tokenizer.position}`), n.handler && await this.inflate(a, ge(m), n.handler);
       } else
-        r.handler ? (A(`Reading compressed-file-data: ${a.compressedSize} bytes`), s = new Uint8Array(a.compressedSize), await this.tokenizer.readBuffer(s), await this.inflate(a, s, r.handler)) : (A(`Ignoring compressed-file-data: ${a.compressedSize} bytes`), await this.tokenizer.ignore(a.compressedSize));
-      if (A(`Reading data-descriptor at pos=${this.tokenizer.position}`), a.dataDescriptor && (await this.tokenizer.readToken(C0)).signature !== 134695760)
-        throw new Error(`Expected data-descriptor-signature at position ${this.tokenizer.position - C0.len}`);
+        n.handler ? (T(`Reading compressed-file-data: ${a.compressedSize} bytes`), s = new Uint8Array(a.compressedSize), await this.tokenizer.readBuffer(s), await this.inflate(a, s, n.handler)) : (T(`Ignoring compressed-file-data: ${a.compressedSize} bytes`), await this.tokenizer.ignore(a.compressedSize));
+      if (T(`Reading data-descriptor at pos=${this.tokenizer.position}`), a.dataDescriptor && (await this.tokenizer.readToken(y0)).signature !== 134695760)
+        throw new Error(`Expected data-descriptor-signature at position ${this.tokenizer.position - y0.len}`);
     } while (!t);
   }
   async iterateOverCentralDirectory(e, x) {
@@ -6402,11 +6402,11 @@ class n0 {
       const a = x(t);
       if (a.handler) {
         this.tokenizer.setPosition(t.relativeOffsetOfLocalHeader);
-        const r = await this.readLocalFileHeader();
-        if (r) {
-          await this.tokenizer.ignore(r.extraFieldLength);
+        const n = await this.readLocalFileHeader();
+        if (n) {
+          await this.tokenizer.ignore(n.extraFieldLength);
           const s = new Uint8Array(t.compressedSize);
-          await this.tokenizer.readBuffer(s), await this.inflate(r, s, a.handler);
+          await this.tokenizer.readBuffer(s), await this.inflate(n, s, a.handler);
         }
       }
       if (a.stop)
@@ -6418,21 +6418,21 @@ class n0 {
       return t(x);
     if (e.compressedMethod !== 8)
       throw new Error(`Unsupported ZIP compression method: ${e.compressedMethod}`);
-    A(`Decompress filename=${e.filename}, compressed-size=${x.length}`);
-    const a = await n0.decompressDeflateRaw(x);
+    T(`Decompress filename=${e.filename}, compressed-size=${x.length}`);
+    const a = await a0.decompressDeflateRaw(x);
     return t(a);
   }
   static async decompressDeflateRaw(e) {
     const x = new ReadableStream({
-      start(r) {
-        r.enqueue(e), r.close();
+      start(n) {
+        n.enqueue(e), n.close();
       }
     }), t = new DecompressionStream("deflate-raw"), a = x.pipeThrough(t);
     try {
       const s = await new Response(a).arrayBuffer();
       return new Uint8Array(s);
-    } catch (r) {
-      const s = r instanceof Error ? `Failed to deflate ZIP entry: ${r.message}` : "Unknown decompression error in ZIP entry";
+    } catch (n) {
+      const s = n instanceof Error ? `Failed to deflate ZIP entry: ${n.message}` : "Unknown decompression error in ZIP entry";
       throw new TypeError(s);
     }
   }
@@ -6452,19 +6452,19 @@ function be(i, e) {
   if (t > x)
     return -1;
   for (let a = 0; a <= x - t; a++) {
-    let r = !0;
+    let n = !0;
     for (let s = 0; s < t; s++)
       if (i[a + s] !== e[s]) {
-        r = !1;
+        n = !1;
         break;
       }
-    if (r)
+    if (n)
       return a;
   }
   return -1;
 }
 function ge(i) {
-  const e = i.reduce((a, r) => a + r.length, 0), x = new Uint8Array(e);
+  const e = i.reduce((a, n) => a + n.length, 0), x = new Uint8Array(e);
   let t = 0;
   for (const a of i)
     x.set(a, t), t += a.length;
@@ -6491,7 +6491,7 @@ class we {
 new globalThis.TextDecoder("utf8");
 new globalThis.TextEncoder();
 Array.from({ length: 256 }, (i, e) => e.toString(16).padStart(2, "0"));
-function v0(i) {
+function C0(i) {
   const { byteLength: e } = i;
   if (e === 6)
     return i.getUint16(0) * 2 ** 32 + i.getUint32(2);
@@ -6720,7 +6720,7 @@ const Ce = {
   "tar.gz",
   "reg",
   "dat"
-], Se = [
+], Fe = [
   "image/jpeg",
   "image/png",
   "image/gif",
@@ -6903,11 +6903,11 @@ const Ce = {
   "application/x-ms-regedit",
   "application/x-ft-windows-registry-hive",
   "application/x-jmp-data"
-], x0 = 4100;
-async function Fe(i, e) {
+], e0 = 4100;
+async function Se(i, e) {
   return new _e(e).fromBuffer(i);
 }
-function t0(i) {
+function x0(i) {
   switch (i = i.toLowerCase(), i) {
     case "application/epub+zip":
       return {
@@ -7077,7 +7077,7 @@ class _e {
       throw new TypeError(`Expected the \`input\` argument to be of type \`Uint8Array\` or \`ArrayBuffer\`, got \`${typeof e}\``);
     const x = e instanceof Uint8Array ? e : new Uint8Array(e);
     if (x?.length > 1)
-      return this.fromTokenizer(re(x, this.tokenizerOptions));
+      return this.fromTokenizer(ne(x, this.tokenizerOptions));
   }
   async fromBlob(e) {
     const x = ce(e, this.tokenizerOptions);
@@ -7088,7 +7088,7 @@ class _e {
     }
   }
   async fromStream(e) {
-    const x = ne(e, this.tokenizerOptions);
+    const x = re(e, this.tokenizerOptions);
     try {
       return await this.fromTokenizer(x);
     } finally {
@@ -7096,26 +7096,26 @@ class _e {
     }
   }
   async toDetectionStream(e, x) {
-    const { sampleSize: t = x0 } = x;
-    let a, r;
+    const { sampleSize: t = e0 } = x;
+    let a, n;
     const s = e.getReader({ mode: "byob" });
     try {
       const { value: f, done: d } = await s.read(new Uint8Array(t));
-      if (r = f, !d && f)
+      if (n = f, !d && f)
         try {
           a = await this.fromBuffer(f.subarray(0, t));
-        } catch (n) {
-          if (!(n instanceof B))
-            throw n;
+        } catch (r) {
+          if (!(r instanceof B))
+            throw r;
           a = void 0;
         }
-      r = f;
+      n = f;
     } finally {
       s.releaseLock();
     }
     const m = new TransformStream({
       async start(f) {
-        f.enqueue(r);
+        f.enqueue(n);
       },
       transform(f, d) {
         d.enqueue(f);
@@ -7131,7 +7131,7 @@ class _e {
   }
   // Detections with a high degree of certainty in identifying the correct file type
   detectConfident = async (e) => {
-    if (this.buffer = new Uint8Array(x0), e.fileInfo.size === void 0 && (e.fileInfo.size = Number.MAX_SAFE_INTEGER), this.tokenizer = e, await e.peekBuffer(this.buffer, { length: 32, mayBeLess: !0 }), this.check([66, 77]))
+    if (this.buffer = new Uint8Array(e0), e.fileInfo.size === void 0 && (e.fileInfo.size = Number.MAX_SAFE_INTEGER), this.tokenizer = e, await e.peekBuffer(this.buffer, { length: 32, mayBeLess: !0 }), this.check([66, 77]))
       return {
         ext: "bmp",
         mime: "image/bmp"
@@ -7190,13 +7190,13 @@ class _e {
       const t = new we(e).inflate();
       let a = !0;
       try {
-        let r;
+        let n;
         try {
-          r = await this.fromStream(t);
+          n = await this.fromStream(t);
         } catch {
           a = !1;
         }
-        if (r && r.ext === "tar")
+        if (n && n.ext === "tar")
           return {
             ext: "tar.gz",
             mime: "application/gzip"
@@ -7272,7 +7272,7 @@ class _e {
       };
     if (this.check([80, 75, 3, 4])) {
       let x;
-      return await new n0(e).unzip((t) => {
+      return await new a0(e).unzip((t) => {
         switch (t.filename) {
           case "META-INF/mozilla.rsa":
             return x = {
@@ -7291,23 +7291,23 @@ class _e {
           case "mimetype":
             return {
               async handler(a) {
-                const r = new TextDecoder("utf-8").decode(a).trim();
-                x = t0(r);
+                const n = new TextDecoder("utf-8").decode(a).trim();
+                x = x0(n);
               },
               stop: !0
             };
           case "[Content_Types].xml":
             return {
               async handler(a) {
-                let r = new TextDecoder("utf-8").decode(a);
-                const s = r.indexOf('.main+xml"');
+                let n = new TextDecoder("utf-8").decode(a);
+                const s = n.indexOf('.main+xml"');
                 if (s === -1) {
                   const m = "application/vnd.ms-package.3dmanufacturing-3dmodel+xml";
-                  r.includes(`ContentType="${m}"`) && (x = t0(m));
+                  n.includes(`ContentType="${m}"`) && (x = x0(m));
                 } else {
-                  r = r.slice(0, Math.max(0, s));
-                  const m = r.lastIndexOf('"'), o = r.slice(Math.max(0, m + 1));
-                  x = t0(o);
+                  n = n.slice(0, Math.max(0, s));
+                  const m = n.lastIndexOf('"'), o = n.slice(Math.max(0, m + 1));
+                  x = x0(o);
                 }
               },
               stop: !0
@@ -7440,10 +7440,10 @@ class _e {
       async function t() {
         const m = await x(), o = await x();
         o[0] ^= 128 >> o.length - 1;
-        const f = Math.min(6, o.length), d = new DataView(m.buffer), n = new DataView(o.buffer, o.length - f, f);
+        const f = Math.min(6, o.length), d = new DataView(m.buffer), r = new DataView(o.buffer, o.length - f, f);
         return {
-          id: v0(d),
-          len: v0(n)
+          id: C0(d),
+          len: C0(r)
         };
       }
       async function a(m) {
@@ -7454,8 +7454,8 @@ class _e {
           await e.ignore(o.len), --m;
         }
       }
-      const r = await t();
-      switch (await a(r.len)) {
+      const n = await t();
+      switch (await a(n.len)) {
         case "webm":
           return {
             ext: "webm",
@@ -7813,13 +7813,13 @@ class _e {
         const t = await x();
         let a = t.size - 24;
         if (M(t.id, [145, 7, 220, 183, 183, 169, 207, 17, 142, 230, 0, 192, 12, 32, 83, 101])) {
-          const r = new Uint8Array(16);
-          if (a -= await e.readBuffer(r), M(r, [64, 158, 105, 248, 77, 91, 207, 17, 168, 253, 0, 128, 95, 92, 68, 43]))
+          const n = new Uint8Array(16);
+          if (a -= await e.readBuffer(n), M(n, [64, 158, 105, 248, 77, 91, 207, 17, 168, 253, 0, 128, 95, 92, 68, 43]))
             return {
               ext: "asf",
               mime: "audio/x-ms-asf"
             };
-          if (M(r, [192, 239, 25, 188, 77, 91, 207, 17, 168, 253, 0, 128, 95, 92, 68, 43]))
+          if (M(n, [192, 239, 25, 188, 77, 91, 207, 17, 168, 253, 0, 128, 95, 92, 68, 43]))
             return {
               ext: "asf",
               mime: "video/x-ms-asf"
@@ -8033,7 +8033,7 @@ class _e {
   };
   // Detections with limited supporting data, resulting in a higher likelihood of false positives
   detectImprecise = async (e) => {
-    if (this.buffer = new Uint8Array(x0), await e.peekBuffer(this.buffer, { length: Math.min(8, e.fileInfo.size), mayBeLess: !0 }), this.check([0, 0, 1, 186]) || this.check([0, 0, 1, 179]))
+    if (this.buffer = new Uint8Array(e0), await e.peekBuffer(this.buffer, { length: Math.min(8, e.fileInfo.size), mayBeLess: !0 }), this.check([0, 0, 1, 186]) || this.check([0, 0, 1, 179]))
       return {
         ext: "mpg",
         mime: "video/mpeg"
@@ -8061,7 +8061,7 @@ class _e {
       }
   };
   async readTiffTag(e) {
-    const x = await this.tokenizer.readToken(e ? W : F);
+    const x = await this.tokenizer.readToken(e ? W : S);
     switch (this.tokenizer.ignore(10), x) {
       case 50341:
         return {
@@ -8076,7 +8076,7 @@ class _e {
     }
   }
   async readTiffIFD(e) {
-    const x = await this.tokenizer.readToken(e ? W : F);
+    const x = await this.tokenizer.readToken(e ? W : S);
     for (let t = 0; t < x; ++t) {
       const a = await this.readTiffTag(e);
       if (a)
@@ -8084,7 +8084,7 @@ class _e {
     }
   }
   async readTiffHeader(e) {
-    const x = (e ? W : F).get(this.buffer, 2), t = (e ? J0 : _).get(this.buffer, 4);
+    const x = (e ? W : S).get(this.buffer, 2), t = (e ? J0 : _).get(this.buffer, 4);
     if (x === 42) {
       if (t >= 6) {
         if (this.checkString("CR", { offset: 8 }))
@@ -8093,8 +8093,8 @@ class _e {
             mime: "image/x-canon-cr2"
           };
         if (t >= 8) {
-          const r = (e ? W : F).get(this.buffer, 8), s = (e ? W : F).get(this.buffer, 10);
-          if (r === 28 && s === 254 || r === 31 && s === 11)
+          const n = (e ? W : S).get(this.buffer, 8), s = (e ? W : S).get(this.buffer, 10);
+          if (n === 28 && s === 254 || n === 31 && s === 11)
             return {
               ext: "nef",
               mime: "image/x-nikon-nef"
@@ -8147,7 +8147,7 @@ class _e {
   }
 }
 new Set(ve);
-new Set(Se);
+new Set(Fe);
 class De extends Error {
   locator;
   /** Logical source of the error. */
@@ -8157,22 +8157,22 @@ class De extends Error {
 }
 class Be extends De {
 }
-class Ie extends Be {
+let Ie = class extends Be {
   body;
   /** Sanitized HTTP response body. */
   constructor(e, x, t, a) {
     super(e, x, a), this.name = new.target.name, this.body = Le(t ?? void 0);
   }
-}
+};
 async function Oe(i, e, x) {
   const t = ` - ${i.statusText}`, a = `${e} Response status '${i.status}${i.statusText ? t : ""}' received.`;
-  let r;
+  let n;
   try {
-    r = await i.text();
+    n = await i.text();
   } catch (s) {
-    r = `<body unavailable: ${Ee(s).message}>`;
+    n = `<body unavailable: ${Ee(s).message}>`;
   }
-  return new Ie(a, x, r);
+  return new Ie(a, x, n);
 }
 function Ee(i) {
   if (i instanceof Error) return i;
@@ -8191,9 +8191,9 @@ function Le(i) {
   if (!(i == null || i === ""))
     return i.length > 2048 ? `${i.slice(0, 2048)}... [truncated]` : i;
 }
-const Te = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDecodable: !0 }, Ae = { id: "big5", groupLabel: "Chinese Traditional", label: "Chinese Traditional (big5)", isDetectable: !0, isDecodable: !0 }, Me = { id: "gb18030", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gb18030)", isDetectable: !0, isDecodable: !0 }, ze = { id: "gbk", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gbk)", isDetectable: !1, isDecodable: !0 }, Ue = { id: "ibm866", groupLabel: "Cyrillic", label: "Cyrillic (ibm866)", isDetectable: !1, isDecodable: !0 }, je = { id: "latin1", groupLabel: "Western", label: "Western (latin1)", isDetectable: !1, isDecodable: !0 }, Re = { id: "macintosh", groupLabel: "Western", label: "Western (macintosh)", isDetectable: !1, isDecodable: !0 }, Pe = { id: "shift_jis", groupLabel: "Japanese", label: "Japanese (shift_jis)", isDetectable: !0, isDecodable: !0 }, qe = { id: "utf16", groupLabel: "Unicode 16", label: "Unicode 16 (utf16)", isDetectable: !1, isDecodable: !0 }, Ne = { id: "utf16be", groupLabel: "Unicode 16", label: "Unicode 16 (utf16be)", isDetectable: !0, isDecodable: !0 }, Ve = { id: "utf16le", groupLabel: "Unicode 16", label: "Unicode 16 (utf16le)", isDetectable: !0, isDecodable: !0 }, He = { id: "utf32be", groupLabel: "Unicode 32", label: "Unicode 32 (utf32be)", isDetectable: !0, isDecodable: !1 }, We = { id: "utf32le", groupLabel: "Unicode 32", label: "Unicode 32 (utf32le)", isDetectable: !0, isDecodable: !1 }, Ge = { id: "utf8", groupLabel: "", label: "utf8", isDetectable: !0, isDecodable: !0 }, Q = {
-  ascii: Te,
-  big5: Ae,
+const Ae = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDecodable: !0 }, Te = { id: "big5", groupLabel: "Chinese Traditional", label: "Chinese Traditional (big5)", isDetectable: !0, isDecodable: !0 }, Me = { id: "gb18030", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gb18030)", isDetectable: !0, isDecodable: !0 }, ze = { id: "gbk", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gbk)", isDetectable: !1, isDecodable: !0 }, Ue = { id: "ibm866", groupLabel: "Cyrillic", label: "Cyrillic (ibm866)", isDetectable: !1, isDecodable: !0 }, je = { id: "latin1", groupLabel: "Western", label: "Western (latin1)", isDetectable: !1, isDecodable: !0 }, Re = { id: "macintosh", groupLabel: "Western", label: "Western (macintosh)", isDetectable: !1, isDecodable: !0 }, Pe = { id: "shift_jis", groupLabel: "Japanese", label: "Japanese (shift_jis)", isDetectable: !0, isDecodable: !0 }, qe = { id: "utf16", groupLabel: "Unicode 16", label: "Unicode 16 (utf16)", isDetectable: !1, isDecodable: !0 }, Ne = { id: "utf16be", groupLabel: "Unicode 16", label: "Unicode 16 (utf16be)", isDetectable: !0, isDecodable: !0 }, Ve = { id: "utf16le", groupLabel: "Unicode 16", label: "Unicode 16 (utf16le)", isDetectable: !0, isDecodable: !0 }, He = { id: "utf32be", groupLabel: "Unicode 32", label: "Unicode 32 (utf32be)", isDetectable: !0, isDecodable: !1 }, We = { id: "utf32le", groupLabel: "Unicode 32", label: "Unicode 32 (utf32le)", isDetectable: !0, isDecodable: !1 }, Ge = { id: "utf8", groupLabel: "", label: "utf8", isDetectable: !0, isDecodable: !0 }, Je = {
+  ascii: Ae,
+  big5: Te,
   "euc-jp": { id: "euc-jp", groupLabel: "Japanese", label: "Japanese (euc-jp)", isDetectable: !0, isDecodable: !0 },
   "euc-kr": { id: "euc-kr", groupLabel: "Korean", label: "Korean (euc-kr)", isDetectable: !0, isDecodable: !0 },
   gb18030: Me,
@@ -8241,67 +8241,49 @@ const Te = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDe
   "windows-874": { id: "windows-874", groupLabel: "Thai", label: "Thai (windows-874)", isDetectable: !1, isDecodable: !0 },
   "x-mac-cyrillic": { id: "x-mac-cyrillic", groupLabel: "Cyrillic", label: "Cyrillic (x-mac-cyrillic)", isDetectable: !1, isDecodable: !0 },
   "x-user-defined": { id: "x-user-defined", groupLabel: "Other", label: "Other (x-user-defined)", isDetectable: !1, isDecodable: !0 }
-}, Je = 4096;
-class Ye {
-  /**
-   * Get encoding configurations.
-   */
-  getEncodingConfigs(e = "en") {
-    const x = [];
-    for (const t in Q)
-      if (Object.prototype.hasOwnProperty.call(Q, t)) {
-        const a = Q[t];
-        if (a == null) continue;
-        x.push({ ...a, label: a.label || a.id });
-      }
-    return x.toSorted((t, a) => t.groupLabel.localeCompare(a.groupLabel) || t.label.localeCompare(a.label));
-  }
+}, Ke = 4096, v0 = { id: "utf8", confidenceLevel: void 0 };
+class xx {
   /**
    * Preview remote file.
    */
   async previewRemoteFile(e, x, t) {
-    const a = await fetch(encodeURI(e), { headers: { Range: `bytes=0-${t ?? Je - 1}` }, signal: x });
+    const a = await fetch(encodeURI(e), { headers: { Range: `bytes=0-${t ?? Ke - 1}` }, signal: x });
     if (!a.ok)
       throw await Oe(a, `Failed to fetch '${e}' file.`, "datapos-tool-file-operators.previewRemoteFile");
-    const r = new Uint8Array(await a.arrayBuffer()), s = await Fe(r);
-    if (s != null) throw new Error(`Files of type '${s.ext}' (mine '${s.mime}') not supported.`);
-    return Ke(r);
+    const n = new Uint8Array(await a.arrayBuffer()), s = await Se(n);
+    if (s && !s.mime.startsWith("text/"))
+      throw new Error(`Files of type '${s.ext}' (mine '${s.mime}') not supported.`);
+    return Ze(n);
   }
 }
-function Ke(i) {
-  const e = Ze(i), x = $e(i, e);
+function Ze(i) {
+  const e = $e(i), x = Qe(i, e);
   return {
-    asAt: Date.now(),
-    columnConfigs: [],
+    bytes: i,
     dataFormatId: "dtv",
-    duration: 0,
     encodingId: x.encoding.id,
     encodingConfidenceLevel: x.encoding.confidenceLevel,
-    hasHeaders: void 0,
-    records: [],
     size: i.length,
-    text: x.textData
+    text: x.text
   };
 }
-function Ze(i) {
+function $e(i) {
   if (i[0] === 239 && i[1] === 187 && i[2] === 191) return { confidenceLevel: 100, id: "utf8" };
   if (i[0] === 254 && i[1] === 255) return { confidenceLevel: 100, id: "utf-16be" };
   if (i[0] === 255 && i[1] === 254) return { confidenceLevel: 100, id: "utf-16le" };
-  const x = j0.analyse(i)[0] ?? { confidence: void 0, name: "utf8" }, t = Q[x.name.toLowerCase()], a = t == null ? "utf8" : t.id;
+  const x = j0.analyse(i)[0] ?? { confidence: void 0, name: "utf8" }, t = Je[x.name.toLowerCase()], a = t == null ? "utf8" : t.id;
   return { confidenceLevel: x.confidence, id: a };
 }
-function $e(i, e) {
+function Qe(i, e) {
   try {
-    const x = new TextDecoder(e.id).decode(S0(i));
-    return { encoding: e, textData: x };
-  } catch (x) {
-    const t = { id: "utf8", confidenceLevel: void 0 };
-    console.log(`Unsupported encoding '${e.id}' defaulted to '${t.id}'.`, x);
-    const a = new TextDecoder(t.id).decode(S0(i));
-    return { encoding: t, textData: a };
+    const x = new TextDecoder(e.id).decode(F0(i));
+    return { encoding: e, text: x };
+  } catch {
+    const x = new TextDecoder(v0.id, { fatal: !1 }).decode(F0(i));
+    return { encoding: v0, text: x };
   }
 }
-function S0(i) {
+function F0(i) {
   let e = i;
   const x = e.length;
   for (let t = x - 1; t >= 0; t--) {
@@ -8322,5 +8304,5 @@ function S0(i) {
   return e;
 }
 export {
-  Ye as Tool
+  xx as Tool
 };

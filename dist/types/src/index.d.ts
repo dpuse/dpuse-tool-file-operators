@@ -1,12 +1,16 @@
-import { DataViewPreviewConfig, EncodingConfig } from '@datapos/datapos-shared';
+import { DataFormatId } from '@datapos/datapos-shared';
+interface PreviewConfig {
+    bytes: Uint8Array;
+    dataFormatId: DataFormatId;
+    encodingId: string | undefined;
+    encodingConfidenceLevel: number | undefined;
+    size: number;
+    text: string;
+}
 declare class Tool {
-    /**
-     * Get encoding configurations.
-     */
-    getEncodingConfigs(localeId?: string): EncodingConfig[];
     /**
      * Preview remote file.
      */
-    previewRemoteFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<DataViewPreviewConfig>;
+    previewRemoteFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<PreviewConfig>;
 }
-export { Tool };
+export { type PreviewConfig, Tool };
