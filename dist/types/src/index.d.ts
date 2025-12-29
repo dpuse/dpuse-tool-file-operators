@@ -1,10 +1,9 @@
 import { DataFormatId } from '@datapos/datapos-shared';
 interface PreviewConfig {
     bytes: Uint8Array;
-    dataFormatId: DataFormatId;
+    dataFormatId: DataFormatId | undefined;
     encodingId: string | undefined;
     encodingConfidenceLevel: number | undefined;
-    size: number;
     text: string;
 }
 /**

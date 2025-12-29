@@ -17,14 +17,38 @@ import { encodingConfigMap } from '@datapos/datapos-shared/encoding';
 // Constants.
 const DEFAULT_PREVIEW_CHUNK_SIZE = 4096;
 const FALLBACK_ENCODING: EncodingConfig = { id: 'utf8', confidenceLevel: undefined };
+const FILE_TYPE_MAP: Record<string, { label: string; isAutoDetectable: boolean; isSupported: boolean; magicBytes?: number[]; notes: string }> = {
+    arrow: { label: 'Columnar format for tables of data.', isAutoDetectable: true, isSupported: false, notes: '' },
+    avro: { label: 'Object container file developed by Apache Avro.', isAutoDetectable: true, isSupported: false, notes: '' },
+    docx: { label: 'Microsoft Word document.', isAutoDetectable: true, isSupported: false, notes: '' },
+    ics: { label: 'iCalendar.', isAutoDetectable: true, isSupported: false, notes: '' },
+    jmp: { label: 'JMP data file format by SAS Institute.', isAutoDetectable: true, isSupported: false, notes: '' },
+    json: { label: 'JavaScript object notation.', isAutoDetectable: false, isSupported: false, notes: '' },
+    ods: { label: 'OpenDocument for spreadsheets.', isAutoDetectable: true, isSupported: false, notes: '' },
+    ots: { label: 'OpenDocument for word processing.', isAutoDetectable: true, isSupported: false, notes: '' },
+    parquet: { label: 'Apache Parquet.', isAutoDetectable: true, isSupported: false, notes: '' },
+    pcap: { label: 'Libpcap file format.', isAutoDetectable: true, isSupported: false, notes: '' },
+    pdf: { label: 'Portable document format.', isAutoDetectable: true, isSupported: false, notes: '' },
+    por: { label: 'SPSS portable file.', isAutoDetectable: false, isSupported: false, magicBytes: [0x53, 0x50, 0x53, 0x53, 0x50, 0x4f, 0x52, 0x54], notes: '' },
+    sav: { label: 'SPSS statistical data file.', isAutoDetectable: true, isSupported: false, magicBytes: [0x24, 0x46, 0x4c, 0x32], notes: '' },
+    shp: { label: 'Geospatial vector data format.', isAutoDetectable: true, isSupported: false, notes: '' },
+    sqlite: { label: 'SQLite file.', isAutoDetectable: true, isSupported: false, notes: '' },
+    vcf: { label: 'vCard.', isAutoDetectable: true, isSupported: false, notes: '' },
+    vtt: { label: 'WebVTT File (for video captions).', isAutoDetectable: true, isSupported: false, notes: '' },
+    xls: { label: 'Microsoft Excel legacy document.', isAutoDetectable: false, isSupported: false, magicBytes: [0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1], notes: '' },
+    xlsx: { label: 'Microsoft Excel document.', isAutoDetectable: true, isSupported: false, magicBytes: [0x50, 0x4b, 0x03, 0x04], notes: '' },
+    xlsm: { label: 'Microsoft Excel macro-enabled document.', isAutoDetectable: true, isSupported: false, notes: '' },
+    xltx: { label: 'Microsoft Excel template.', isAutoDetectable: true, isSupported: false, notes: '' },
+    xltm: { label: 'Microsoft Excel macro-enabled template.', isAutoDetectable: true, isSupported: false, notes: '' },
+    xml: { label: 'eXtensible markup language.', isAutoDetectable: true, isSupported: false, notes: '' }
+};
 
 // Preview configuration interface.
 interface PreviewConfig {
     bytes: Uint8Array;
-    dataFormatId: DataFormatId;
+    dataFormatId: DataFormatId | undefined;
     encodingId: string | undefined;
     encodingConfidenceLevel: number | undefined;
-    size: number;
     text: string;
 }
 
@@ -42,13 +66,7 @@ class Tool {
         }
         const fileBytes = new Uint8Array(await response.arrayBuffer());
 
-        const fileType = await fileTypeFromBuffer(fileBytes);
-        if (fileType && !fileType.mime.startsWith('text/')) {
-            throw new Error(`Files of type '${fileType.ext}' (mine '${fileType.mime}') not supported.`);
-        }
-
-        const dataViewPreviewConfig = previewFileBytes(fileBytes);
-        return dataViewPreviewConfig;
+        return await previewFileBytes(fileBytes);
     }
 }
 
@@ -56,18 +74,39 @@ class Tool {
 //#region: Helpers.
 
 /**
- * preview file bytes.
+ * Preview file bytes.
  */
-function previewFileBytes(fileBytes: Uint8Array): PreviewConfig {
+async function previewFileBytes(fileBytes: Uint8Array): Promise<PreviewConfig> {
+    let dataFormatId: DataFormatId | undefined;
+
+    const fileType = await fileTypeFromBuffer(fileBytes);
+    if (fileType == null) {
+        dataFormatId = 'dtv';
+    } else {
+        const recognisedFileType = FILE_TYPE_MAP[fileType.ext];
+        if (recognisedFileType == null) {
+            dataFormatId = fileType.mime.startsWith('text/') ? 'dtv' : undefined;
+        } else if (recognisedFileType.isSupported) {
+            dataFormatId = fileType.ext as DataFormatId;
+        } else {
+            dataFormatId = undefined;
+        }
+    }
+
     const fileEncoding = determineEncoding(fileBytes);
-    const fileDecoding = decodeFileBytes(fileBytes, fileEncoding);
+
+    const decodedResult = decodeFileBytes(fileBytes, fileEncoding);
+
+    if (dataFormatId == null && isLikelyJSONFormat(decodedResult.text)) {
+        dataFormatId = 'json';
+    }
+
     return {
         bytes: fileBytes,
-        dataFormatId: 'dtv',
-        encodingId: fileDecoding.encoding.id,
-        encodingConfidenceLevel: fileDecoding.encoding.confidenceLevel,
-        size: fileBytes.length,
-        text: fileDecoding.text
+        dataFormatId,
+        encodingId: decodedResult.encoding.id,
+        encodingConfidenceLevel: decodedResult.encoding.confidenceLevel,
+        text: decodedResult.text
     };
 }
 
@@ -96,6 +135,31 @@ function decodeFileBytes(fileBytes: Uint8Array, encoding: EncodingConfig): { enc
         const text = new TextDecoder(FALLBACK_ENCODING.id, { fatal: false }).decode(truncateData(fileBytes));
         return { encoding: FALLBACK_ENCODING, text };
     }
+}
+
+/**
+ * Is likely JSON format.
+ */
+function isLikelyJSONFormat(text: string): boolean {
+    const trimmedText = text.trimStart();
+    if (trimmedText.length > 2) {
+        const firstChar = trimmedText[0];
+        const isObjectStart = firstChar === '{'; // TODO: is JSON Object.
+        const isArrayStart = firstChar === '['; // TODO: is JSON array.
+        const hasKeyValue = /"\s*:\s*/.test(trimmedText); // "key": something
+        const hasJSONLiterals = /\b(true|false|null)\b/.test(trimmedText);
+        const hasQuotes = trimmedText.includes('"');
+        return (isObjectStart || isArrayStart) && (hasKeyValue || hasJSONLiterals || hasQuotes);
+    }
+    return false;
+}
+
+/**
+ * Is likely XML format.
+ */
+function isLikelyXMLFormat(textData: string): boolean {
+    const trimmedTextData = textData.trimStart();
+    return trimmedTextData.startsWith('<?xml') || /^<([a-zA-Z_][\w\-.:]*)[\s>]/.test(trimmedTextData);
 }
 
 /**

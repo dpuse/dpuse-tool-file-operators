@@ -1,7 +1,7 @@
-function S0(i) {
+function F0(i) {
   return i && i.__esModule && Object.prototype.hasOwnProperty.call(i, "default") ? i.default : i;
 }
-var E = {}, G = {}, n0;
+var O = {}, G = {}, n0;
 function B0() {
   return n0 || (n0 = 1, Object.defineProperty(G, "__esModule", { value: !0 }), G.default = () => {
     throw new Error("File system is not available");
@@ -41,7 +41,7 @@ function I0() {
   return R.default = x, R;
 }
 var P = {}, o0;
-function O0() {
+function A0() {
   if (o0) return P;
   o0 = 1;
   var i = P && P.__importDefault || function(t) {
@@ -102,14 +102,14 @@ function O0() {
   }
   return P.default = x, P;
 }
-var O = {}, f0;
-function E0() {
-  if (f0) return O;
+var A = {}, f0;
+function O0() {
+  if (f0) return A;
   f0 = 1;
-  var i = O && O.__importDefault || function(m) {
+  var i = A && A.__importDefault || function(m) {
     return m && m.__esModule ? m : { default: m };
   };
-  Object.defineProperty(O, "__esModule", { value: !0 }), O.UTF_32LE = O.UTF_32BE = O.UTF_16LE = O.UTF_16BE = void 0;
+  Object.defineProperty(A, "__esModule", { value: !0 }), A.UTF_32LE = A.UTF_32BE = A.UTF_16LE = A.UTF_16BE = void 0;
   const e = i(N());
   class x {
     name() {
@@ -120,7 +120,7 @@ function E0() {
       return f.length >= 2 && (f[0] & 255) == 254 && (f[1] & 255) == 255 ? (0, e.default)(o, this, 100) : null;
     }
   }
-  O.UTF_16BE = x;
+  A.UTF_16BE = x;
   class t {
     name() {
       return "UTF-16LE";
@@ -130,7 +130,7 @@ function E0() {
       return f.length >= 2 && (f[0] & 255) == 255 && (f[1] & 255) == 254 ? f.length >= 4 && f[2] == 0 && f[3] == 0 ? null : (0, e.default)(o, this, 100) : null;
     }
   }
-  O.UTF_16LE = t;
+  A.UTF_16LE = t;
   class a {
     name() {
       return "UTF-32";
@@ -159,7 +159,7 @@ function E0() {
       return (o[f + 0] & 255) << 24 | (o[f + 1] & 255) << 16 | (o[f + 2] & 255) << 8 | o[f + 3] & 255;
     }
   }
-  O.UTF_32BE = n;
+  A.UTF_32BE = n;
   class s extends a {
     name() {
       return "UTF-32LE";
@@ -168,16 +168,16 @@ function E0() {
       return (o[f + 3] & 255) << 24 | (o[f + 2] & 255) << 16 | (o[f + 1] & 255) << 8 | o[f + 0] & 255;
     }
   }
-  return O.UTF_32LE = s, O;
+  return A.UTF_32LE = s, A;
 }
-var D = {}, d0;
-function L0() {
-  if (d0) return D;
+var _ = {}, d0;
+function E0() {
+  if (d0) return _;
   d0 = 1;
-  var i = D && D.__importDefault || function(r) {
+  var i = _ && _.__importDefault || function(r) {
     return r && r.__esModule ? r : { default: r };
   };
-  Object.defineProperty(D, "__esModule", { value: !0 }), D.gb_18030 = D.euc_kr = D.euc_jp = D.big5 = D.sjis = void 0;
+  Object.defineProperty(_, "__esModule", { value: !0 }), _.gb_18030 = _.euc_kr = _.euc_jp = _.big5 = _.sjis = void 0;
   const e = i(N());
   function x(r, c) {
     const u = (h, g, k, b) => {
@@ -320,7 +320,7 @@ function L0() {
       return g < 0 ? !1 : (c.charValue = h << 8 | g, g >= 64 && g <= 127 || g >= 128 && g <= 255 || (c.error = !0), !0);
     }
   }
-  D.sjis = n;
+  _.sjis = n;
   class s extends a {
     constructor() {
       super(...arguments), this.commonChars = [
@@ -439,7 +439,7 @@ function L0() {
       return g < 0 ? !1 : (c.charValue = c.charValue << 8 | g, (g < 64 || g == 127 || g == 255) && (c.error = !0), !0);
     }
   }
-  D.big5 = s;
+  _.big5 = s;
   function m(r, c) {
     r.index = r.nextIndex, r.error = !1;
     let u = 0, h = 0, g = 0;
@@ -574,7 +574,7 @@ function L0() {
       return "ja";
     }
   }
-  D.euc_jp = o;
+  _.euc_jp = o;
   class f extends a {
     constructor() {
       super(...arguments), this.commonChars = [
@@ -687,7 +687,7 @@ function L0() {
       return "ko";
     }
   }
-  D.euc_kr = f;
+  _.euc_kr = f;
   class d extends a {
     constructor() {
       super(...arguments), this.commonChars = [
@@ -823,16 +823,16 @@ function L0() {
       return c.done == !1;
     }
   }
-  return D.gb_18030 = d, D;
+  return _.gb_18030 = d, _;
 }
-var F = {}, l0;
-function A0() {
-  if (l0) return F;
+var S = {}, l0;
+function L0() {
+  if (l0) return S;
   l0 = 1;
-  var i = F && F.__importDefault || function(b) {
+  var i = S && S.__importDefault || function(b) {
     return b && b.__esModule ? b : { default: b };
   };
-  Object.defineProperty(F, "__esModule", { value: !0 }), F.KOI8_R = F.windows_1256 = F.windows_1251 = F.ISO_8859_9 = F.ISO_8859_8 = F.ISO_8859_7 = F.ISO_8859_6 = F.ISO_8859_5 = F.ISO_8859_2 = F.ISO_8859_1 = void 0;
+  Object.defineProperty(S, "__esModule", { value: !0 }), S.KOI8_R = S.windows_1256 = S.windows_1251 = S.ISO_8859_9 = S.ISO_8859_8 = S.ISO_8859_7 = S.ISO_8859_6 = S.ISO_8859_5 = S.ISO_8859_2 = S.ISO_8859_1 = void 0;
   const e = i(N()), x = 16777215;
   class t {
     constructor(l, p) {
@@ -854,12 +854,12 @@ function A0() {
     parse(l, p) {
       let w, y = !1;
       for (this.spaceChar = p; (w = this.nextByte(l)) >= 0; ) {
-        const v = this.byteMap[w];
-        v != 0 && (v == this.spaceChar && y || this.addByte(v), y = v == this.spaceChar);
+        const C = this.byteMap[w];
+        C != 0 && (C == this.spaceChar && y || this.addByte(C), y = C == this.spaceChar);
       }
       this.addByte(this.spaceChar);
-      const C = this.hitCount / this.ngramCount;
-      return C > 0.33 ? 98 : Math.floor(C * 300);
+      const v = this.hitCount / this.ngramCount;
+      return v > 0.33 ? 98 : Math.floor(v * 300);
     }
   }
   class a {
@@ -888,13 +888,13 @@ function A0() {
       this.nGramLang = void 0;
       const p = this.ngrams();
       if (n(p)) {
-        const C = new t(p, this.byteMap()).parse(l, this.spaceChar);
-        return C <= 0 ? null : (0, e.default)(l, this, C);
+        const v = new t(p, this.byteMap()).parse(l, this.spaceChar);
+        return v <= 0 ? null : (0, e.default)(l, this, v);
       }
       let w = -1;
       for (let y = p.length - 1; y >= 0; y--) {
-        const C = p[y], A = new t(C.fNGrams, this.byteMap()).parse(l, this.spaceChar);
-        A > w && (w = A, this.nGramLang = C.fLang);
+        const v = p[y], L = new t(v.fNGrams, this.byteMap()).parse(l, this.spaceChar);
+        L > w && (w = L, this.nGramLang = v.fLang);
       }
       return w <= 0 ? null : (0, e.default)(l, this, w);
     }
@@ -1828,7 +1828,7 @@ function A0() {
       return l && l.c1Bytes ? "windows-1252" : "ISO-8859-1";
     }
   }
-  F.ISO_8859_1 = m;
+  S.ISO_8859_1 = m;
   class o extends s {
     byteMap() {
       return [
@@ -2362,7 +2362,7 @@ function A0() {
       return l && l.c1Bytes ? "windows-1250" : "ISO-8859-2";
     }
   }
-  F.ISO_8859_2 = o;
+  S.ISO_8859_2 = o;
   class f extends s {
     byteMap() {
       return [
@@ -2699,7 +2699,7 @@ function A0() {
       return "ru";
     }
   }
-  F.ISO_8859_5 = f;
+  S.ISO_8859_5 = f;
   class d extends s {
     byteMap() {
       return [
@@ -3036,7 +3036,7 @@ function A0() {
       return "ar";
     }
   }
-  F.ISO_8859_6 = d;
+  S.ISO_8859_6 = d;
   class r extends s {
     byteMap() {
       return [
@@ -3373,7 +3373,7 @@ function A0() {
       return "el";
     }
   }
-  F.ISO_8859_7 = r;
+  S.ISO_8859_7 = r;
   class c extends s {
     byteMap() {
       return [
@@ -3778,7 +3778,7 @@ function A0() {
       return "he";
     }
   }
-  F.ISO_8859_8 = c;
+  S.ISO_8859_8 = c;
   class u extends s {
     byteMap() {
       return [
@@ -4115,7 +4115,7 @@ function A0() {
       return "tr";
     }
   }
-  F.ISO_8859_9 = u;
+  S.ISO_8859_9 = u;
   class h extends s {
     byteMap() {
       return [
@@ -4452,7 +4452,7 @@ function A0() {
       return "ru";
     }
   }
-  F.windows_1251 = h;
+  S.windows_1251 = h;
   class g extends s {
     byteMap() {
       return [
@@ -4789,7 +4789,7 @@ function A0() {
       return "ar";
     }
   }
-  F.windows_1256 = g;
+  S.windows_1256 = g;
   class k extends s {
     byteMap() {
       return [
@@ -5126,16 +5126,16 @@ function A0() {
       return "ru";
     }
   }
-  return F.KOI8_R = k, F;
+  return S.KOI8_R = k, S;
 }
-var L = {}, u0;
+var E = {}, u0;
 function T0() {
-  if (u0) return L;
+  if (u0) return E;
   u0 = 1;
-  var i = L && L.__importDefault || function(s) {
+  var i = E && E.__importDefault || function(s) {
     return s && s.__esModule ? s : { default: s };
   };
-  Object.defineProperty(L, "__esModule", { value: !0 }), L.ISO_2022_CN = L.ISO_2022_KR = L.ISO_2022_JP = void 0;
+  Object.defineProperty(E, "__esModule", { value: !0 }), E.ISO_2022_CN = E.ISO_2022_KR = E.ISO_2022_JP = void 0;
   const e = i(N());
   class x {
     constructor() {
@@ -5190,7 +5190,7 @@ function T0() {
       return "ja";
     }
   }
-  L.ISO_2022_JP = t;
+  E.ISO_2022_JP = t;
   class a extends x {
     constructor() {
       super(...arguments), this.escapeSequences = [[27, 36, 41, 67]];
@@ -5202,7 +5202,7 @@ function T0() {
       return "kr";
     }
   }
-  L.ISO_2022_KR = a;
+  E.ISO_2022_KR = a;
   class n extends x {
     constructor() {
       super(...arguments), this.escapeSequences = [
@@ -5226,7 +5226,7 @@ function T0() {
       return "zh";
     }
   }
-  return L.ISO_2022_CN = n, L;
+  return E.ISO_2022_CN = n, E;
 }
 var H = {}, m0;
 function M0() {
@@ -5238,37 +5238,37 @@ function M0() {
 var p0;
 function z0() {
   return p0 || (p0 = 1, (function(i) {
-    var e = E && E.__createBinding || (Object.create ? (function(l, p, w, y) {
+    var e = O && O.__createBinding || (Object.create ? (function(l, p, w, y) {
       y === void 0 && (y = w);
-      var C = Object.getOwnPropertyDescriptor(p, w);
-      (!C || ("get" in C ? !p.__esModule : C.writable || C.configurable)) && (C = { enumerable: !0, get: function() {
+      var v = Object.getOwnPropertyDescriptor(p, w);
+      (!v || ("get" in v ? !p.__esModule : v.writable || v.configurable)) && (v = { enumerable: !0, get: function() {
         return p[w];
-      } }), Object.defineProperty(l, y, C);
+      } }), Object.defineProperty(l, y, v);
     }) : (function(l, p, w, y) {
       y === void 0 && (y = w), l[y] = p[w];
-    })), x = E && E.__setModuleDefault || (Object.create ? (function(l, p) {
+    })), x = O && O.__setModuleDefault || (Object.create ? (function(l, p) {
       Object.defineProperty(l, "default", { enumerable: !0, value: p });
     }) : function(l, p) {
       l.default = p;
-    }), t = E && E.__importStar || /* @__PURE__ */ (function() {
+    }), t = O && O.__importStar || /* @__PURE__ */ (function() {
       var l = function(p) {
         return l = Object.getOwnPropertyNames || function(w) {
           var y = [];
-          for (var C in w) Object.prototype.hasOwnProperty.call(w, C) && (y[y.length] = C);
+          for (var v in w) Object.prototype.hasOwnProperty.call(w, v) && (y[y.length] = v);
           return y;
         }, l(p);
       };
       return function(p) {
         if (p && p.__esModule) return p;
         var w = {};
-        if (p != null) for (var y = l(p), C = 0; C < y.length; C++) y[C] !== "default" && e(w, p, y[C]);
+        if (p != null) for (var y = l(p), v = 0; v < y.length; v++) y[v] !== "default" && e(w, p, y[v]);
         return x(w, p), w;
       };
-    })(), a = E && E.__importDefault || function(l) {
+    })(), a = O && O.__importDefault || function(l) {
       return l && l.__esModule ? l : { default: l };
     };
     Object.defineProperty(i, "__esModule", { value: !0 }), i.detectFileSync = i.detectFile = i.analyse = i.detect = void 0;
-    const n = a(B0()), s = a(I0()), m = a(O0()), o = t(E0()), f = t(L0()), d = t(A0()), r = t(T0()), c = M0(), u = [
+    const n = a(B0()), s = a(I0()), m = a(A0()), o = t(O0()), f = t(E0()), d = t(L0()), r = t(T0()), c = M0(), u = [
       new m.default(),
       new o.UTF_16BE(),
       new o.UTF_16LE(),
@@ -5302,13 +5302,13 @@ function z0() {
       if (!(0, c.isByteArray)(l))
         throw new Error("Input must be a byte array, e.g. Buffer or Uint8Array");
       const p = [];
-      for (let v = 0; v < 256; v++)
-        p[v] = 0;
-      for (let v = l.length - 1; v >= 0; v--)
-        p[l[v] & 255]++;
+      for (let C = 0; C < 256; C++)
+        p[C] = 0;
+      for (let C = l.length - 1; C >= 0; C--)
+        p[l[C] & 255]++;
       let w = !1;
-      for (let v = 128; v <= 159; v += 1)
-        if (p[v] !== 0) {
+      for (let C = 128; C <= 159; C += 1)
+        if (p[C] !== 0) {
           w = !0;
           break;
         }
@@ -5320,32 +5320,32 @@ function z0() {
         inputBytes: l,
         inputLen: l.length
       };
-      return u.map((v) => v.match(y)).filter((v) => !!v).sort((v, A) => A.confidence - v.confidence);
+      return u.map((C) => C.match(y)).filter((C) => !!C).sort((C, L) => L.confidence - C.confidence);
     };
     i.analyse = g;
     const k = (l, p = {}) => new Promise((w, y) => {
-      let C;
-      const v = (0, n.default)(), A = (z, V) => {
-        C && v.closeSync(C), z ? y(z) : V ? w((0, i.detect)(V)) : y(new Error("No error and no buffer received"));
+      let v;
+      const C = (0, n.default)(), L = (z, V) => {
+        v && C.closeSync(v), z ? y(z) : V ? w((0, i.detect)(V)) : y(new Error("No error and no buffer received"));
       }, j = p?.sampleSize || 0;
       if (j > 0) {
-        C = v.openSync(l, "r");
+        v = C.openSync(l, "r");
         let z = Buffer.allocUnsafe(j);
-        v.read(C, z, 0, j, p.offset, (V, r0) => {
-          V ? A(V, null) : (r0 < j && (z = z.subarray(0, r0)), A(null, z));
+        C.read(v, z, 0, j, p.offset, (V, r0) => {
+          V ? L(V, null) : (r0 < j && (z = z.subarray(0, r0)), L(null, z));
         });
         return;
       }
-      v.readFile(l, A);
+      C.readFile(l, L);
     });
     i.detectFile = k;
     const b = (l, p = {}) => {
       const w = (0, n.default)();
       if (p && p.sampleSize) {
         const y = w.openSync(l, "r");
-        let C = Buffer.allocUnsafe(p.sampleSize);
-        const v = w.readSync(y, C, 0, p.sampleSize, p.offset);
-        return v < p.sampleSize && (C = C.subarray(0, v)), w.closeSync(y), (0, i.detect)(C);
+        let v = Buffer.allocUnsafe(p.sampleSize);
+        const C = w.readSync(y, v, 0, p.sampleSize, p.offset);
+        return C < p.sampleSize && (v = v.subarray(0, C)), w.closeSync(y), (0, i.detect)(v);
       }
       return (0, i.detect)(w.readFileSync(l));
     };
@@ -5355,10 +5355,10 @@ function z0() {
       detectFileSync: i.detectFileSync,
       detectFile: i.detectFile
     };
-  })(E)), E;
+  })(O)), O;
 }
 var U0 = z0();
-const j0 = /* @__PURE__ */ S0(U0);
+const j0 = /* @__PURE__ */ F0(U0);
 var K = {};
 var h0;
 function R0() {
@@ -5484,7 +5484,7 @@ const G0 = {
   put(i, e, x) {
     return I(i).setUint8(e, x), e + 1;
   }
-}, S = {
+}, F = {
   len: 2,
   get(i, e) {
     return I(i).getUint16(e, !0);
@@ -5500,7 +5500,7 @@ const G0 = {
   put(i, e, x) {
     return I(i).setUint16(e, x), e + 2;
   }
-}, _ = {
+}, D = {
   len: 4,
   get(i, e) {
     return I(i).getUint32(e, !0);
@@ -5542,18 +5542,18 @@ class U {
     return P0(t, this.encoding);
   }
 }
-const $0 = "End-Of-Stream";
+const Q0 = "End-Of-Stream";
 class B extends Error {
   constructor() {
-    super($0), this.name = "EndOfStreamError";
+    super(Q0), this.name = "EndOfStreamError";
   }
 }
-class Q0 extends Error {
+class $0 extends Error {
   constructor(e = "The operation was aborted") {
     super(e), this.name = "AbortError";
   }
 }
-class _0 {
+class D0 {
   constructor() {
     this.endOfStream = !1, this.interrupted = !1, this.peekQueue = [];
   }
@@ -5589,7 +5589,7 @@ class _0 {
     let t = 0;
     for (; t < e.length && !this.endOfStream; ) {
       if (this.interrupted)
-        throw new Q0();
+        throw new $0();
       const a = await this.readFromStream(e.subarray(t), x);
       if (a === 0)
         break;
@@ -5600,7 +5600,7 @@ class _0 {
     return t;
   }
 }
-class X0 extends _0 {
+class X0 extends D0 {
   constructor(e) {
     super(), this.reader = e;
   }
@@ -5625,7 +5625,7 @@ class Y0 extends X0 {
     return t.done && (this.endOfStream = t.done), t.value ? (e.set(t.value), t.value.length) : 0;
   }
 }
-class b0 extends _0 {
+class b0 extends D0 {
   constructor(e) {
     super(), this.reader = e, this.buffer = null;
   }
@@ -5940,12 +5940,12 @@ function ne(i, e) {
 function ce(i, e) {
   return new ae(i, e);
 }
-var Z = { exports: {} }, Q, g0;
+var Z = { exports: {} }, $, g0;
 function se() {
-  if (g0) return Q;
+  if (g0) return $;
   g0 = 1;
   var i = 1e3, e = i * 60, x = e * 60, t = x * 24, a = t * 7, n = t * 365.25;
-  Q = function(d, r) {
+  $ = function(d, r) {
     r = r || {};
     var c = typeof d;
     if (c === "string" && d.length > 0)
@@ -6020,7 +6020,7 @@ function se() {
     var h = r >= c * 1.5;
     return Math.round(d / c) + " " + u + (h ? "s" : "");
   }
-  return Q;
+  return $;
 }
 var X, w0;
 function oe() {
@@ -6045,16 +6045,16 @@ function oe() {
         const l = k, p = Number(/* @__PURE__ */ new Date()), w = p - (c || p);
         l.diff = w, l.prev = c, l.curr = p, c = p, b[0] = t.coerce(b[0]), typeof b[0] != "string" && b.unshift("%O");
         let y = 0;
-        b[0] = b[0].replace(/%([a-zA-Z%])/g, (v, A) => {
-          if (v === "%%")
+        b[0] = b[0].replace(/%([a-zA-Z%])/g, (C, L) => {
+          if (C === "%%")
             return "%";
           y++;
-          const j = t.formatters[A];
+          const j = t.formatters[L];
           if (typeof j == "function") {
             const z = b[y];
-            v = j.call(l, z), b.splice(y, 1), y--;
+            C = j.call(l, z), b.splice(y, 1), y--;
           }
-          return v;
+          return C;
         }), t.formatArgs.call(l, b), (l.log || t.log).apply(l, b);
       }
       return k.namespace = r, k.useColors = t.useColors(), k.color = t.selectColor(r), k.extend = a, k.destroy = t.destroy, Object.defineProperty(k, "enabled", {
@@ -6257,7 +6257,7 @@ function fe() {
   })(Z, Z.exports)), Z.exports;
 }
 var de = fe();
-const le = /* @__PURE__ */ S0(de), q = {
+const le = /* @__PURE__ */ F0(de), q = {
   LocalFileHeader: 67324752,
   DataDescriptor: 134695760,
   CentralFileHeader: 33639248,
@@ -6265,24 +6265,24 @@ const le = /* @__PURE__ */ S0(de), q = {
 }, y0 = {
   get(i) {
     return {
-      signature: _.get(i, 0),
-      compressedSize: _.get(i, 8),
-      uncompressedSize: _.get(i, 12)
+      signature: D.get(i, 0),
+      compressedSize: D.get(i, 8),
+      uncompressedSize: D.get(i, 12)
     };
   },
   len: 16
 }, ue = {
   get(i) {
-    const e = S.get(i, 6);
+    const e = F.get(i, 6);
     return {
-      signature: _.get(i, 0),
-      minVersion: S.get(i, 4),
+      signature: D.get(i, 0),
+      minVersion: F.get(i, 4),
       dataDescriptor: !!(e & 8),
-      compressedMethod: S.get(i, 8),
-      compressedSize: _.get(i, 18),
-      uncompressedSize: _.get(i, 22),
-      filenameLength: S.get(i, 26),
-      extraFieldLength: S.get(i, 28),
+      compressedMethod: F.get(i, 8),
+      compressedSize: D.get(i, 18),
+      uncompressedSize: D.get(i, 22),
+      filenameLength: F.get(i, 26),
+      extraFieldLength: F.get(i, 28),
       filename: null
     };
   },
@@ -6290,41 +6290,41 @@ const le = /* @__PURE__ */ S0(de), q = {
 }, me = {
   get(i) {
     return {
-      signature: _.get(i, 0),
-      nrOfThisDisk: S.get(i, 4),
-      nrOfThisDiskWithTheStart: S.get(i, 6),
-      nrOfEntriesOnThisDisk: S.get(i, 8),
-      nrOfEntriesOfSize: S.get(i, 10),
-      sizeOfCd: _.get(i, 12),
-      offsetOfStartOfCd: _.get(i, 16),
-      zipFileCommentLength: S.get(i, 20)
+      signature: D.get(i, 0),
+      nrOfThisDisk: F.get(i, 4),
+      nrOfThisDiskWithTheStart: F.get(i, 6),
+      nrOfEntriesOnThisDisk: F.get(i, 8),
+      nrOfEntriesOfSize: F.get(i, 10),
+      sizeOfCd: D.get(i, 12),
+      offsetOfStartOfCd: D.get(i, 16),
+      zipFileCommentLength: F.get(i, 20)
     };
   },
   len: 22
 }, pe = {
   get(i) {
-    const e = S.get(i, 8);
+    const e = F.get(i, 8);
     return {
-      signature: _.get(i, 0),
-      minVersion: S.get(i, 6),
+      signature: D.get(i, 0),
+      minVersion: F.get(i, 6),
       dataDescriptor: !!(e & 8),
-      compressedMethod: S.get(i, 10),
-      compressedSize: _.get(i, 20),
-      uncompressedSize: _.get(i, 24),
-      filenameLength: S.get(i, 28),
-      extraFieldLength: S.get(i, 30),
-      fileCommentLength: S.get(i, 32),
-      relativeOffsetOfLocalHeader: _.get(i, 42),
+      compressedMethod: F.get(i, 10),
+      compressedSize: D.get(i, 20),
+      uncompressedSize: D.get(i, 24),
+      filenameLength: F.get(i, 28),
+      extraFieldLength: F.get(i, 30),
+      fileCommentLength: F.get(i, 32),
+      relativeOffsetOfLocalHeader: D.get(i, 42),
       filename: null
     };
   },
   len: 46
 };
-function D0(i) {
-  const e = new Uint8Array(_.len);
-  return _.put(e, 0, i), e;
+function _0(i) {
+  const e = new Uint8Array(D.len);
+  return D.put(e, 0, i), e;
 }
-const T = le("tokenizer:inflate"), Y = 256 * 1024, he = D0(q.DataDescriptor), $ = D0(q.EndOfCentralDirectory);
+const T = le("tokenizer:inflate"), Y = 256 * 1024, he = _0(q.DataDescriptor), Q = _0(q.EndOfCentralDirectory);
 class a0 {
   constructor(e) {
     this.tokenizer = e, this.syncBuffer = new Uint8Array(Y);
@@ -6333,13 +6333,13 @@ class a0 {
     return await this.peekSignature() === q.LocalFileHeader;
   }
   peekSignature() {
-    return this.tokenizer.peekToken(_);
+    return this.tokenizer.peekToken(D);
   }
   async findEndOfCentralDirectoryLocator() {
     const e = this.tokenizer, x = Math.min(16 * 1024, e.fileInfo.size), t = this.syncBuffer.subarray(0, x);
     await this.tokenizer.readBuffer(t, { position: e.fileInfo.size - x });
     for (let a = t.length - 4; a >= 0; a--)
-      if (t[a] === $[0] && t[a + 1] === $[1] && t[a + 2] === $[2] && t[a + 3] === $[3])
+      if (t[a] === Q[0] && t[a + 1] === Q[1] && t[a + 2] === Q[2] && t[a + 3] === Q[3])
         return e.fileInfo.size - x + a;
     return -1;
   }
@@ -6437,7 +6437,7 @@ class a0 {
     }
   }
   async readLocalFileHeader() {
-    const e = await this.tokenizer.peekToken(_);
+    const e = await this.tokenizer.peekToken(D);
     if (e === q.LocalFileHeader) {
       const x = await this.tokenizer.readToken(ue);
       return x.filename = await this.tokenizer.readToken(new U(x.filenameLength, "utf-8")), x;
@@ -6491,7 +6491,7 @@ class we {
 new globalThis.TextDecoder("utf8");
 new globalThis.TextEncoder();
 Array.from({ length: 256 }, (i, e) => e.toString(16).padStart(2, "0"));
-function C0(i) {
+function v0(i) {
   const { byteLength: e } = i;
   if (e === 6)
     return i.getUint16(0) * 2 ** 32 + i.getUint32(2);
@@ -6536,10 +6536,10 @@ function ye(i, e = 0) {
     t += i[a];
   return x === t;
 }
-const Ce = {
+const ve = {
   get: (i, e) => i[e + 3] & 127 | i[e + 2] << 7 | i[e + 1] << 14 | i[e] << 21,
   len: 4
-}, ve = [
+}, Ce = [
   "jpg",
   "png",
   "apng",
@@ -6720,7 +6720,7 @@ const Ce = {
   "tar.gz",
   "reg",
   "dat"
-], Fe = [
+], Se = [
   "image/jpeg",
   "image/png",
   "image/gif",
@@ -6904,8 +6904,8 @@ const Ce = {
   "application/x-ft-windows-registry-hive",
   "application/x-jmp-data"
 ], e0 = 4100;
-async function Se(i, e) {
-  return new _e(e).fromBuffer(i);
+async function Fe(i, e) {
+  return new De(e).fromBuffer(i);
 }
 function x0(i) {
   switch (i = i.toLowerCase(), i) {
@@ -7049,7 +7049,7 @@ function M(i, e, x) {
       return !1;
   return !0;
 }
-class _e {
+class De {
   constructor(e) {
     this.options = {
       mpegOffsetTolerance: 0,
@@ -7216,7 +7216,7 @@ class _e {
       };
     if (this.checkString("ID3")) {
       await e.ignore(6);
-      const x = await e.readToken(Ce);
+      const x = await e.readToken(ve);
       return e.position + x > e.fileInfo.size ? {
         ext: "mp3",
         mime: "audio/mpeg"
@@ -7442,8 +7442,8 @@ class _e {
         o[0] ^= 128 >> o.length - 1;
         const f = Math.min(6, o.length), d = new DataView(m.buffer), r = new DataView(o.buffer, o.length - f, f);
         return {
-          id: C0(d),
-          len: C0(r)
+          id: v0(d),
+          len: v0(r)
         };
       }
       async function a(m) {
@@ -8061,7 +8061,7 @@ class _e {
       }
   };
   async readTiffTag(e) {
-    const x = await this.tokenizer.readToken(e ? W : S);
+    const x = await this.tokenizer.readToken(e ? W : F);
     switch (this.tokenizer.ignore(10), x) {
       case 50341:
         return {
@@ -8076,7 +8076,7 @@ class _e {
     }
   }
   async readTiffIFD(e) {
-    const x = await this.tokenizer.readToken(e ? W : S);
+    const x = await this.tokenizer.readToken(e ? W : F);
     for (let t = 0; t < x; ++t) {
       const a = await this.readTiffTag(e);
       if (a)
@@ -8084,7 +8084,7 @@ class _e {
     }
   }
   async readTiffHeader(e) {
-    const x = (e ? W : S).get(this.buffer, 2), t = (e ? J0 : _).get(this.buffer, 4);
+    const x = (e ? W : F).get(this.buffer, 2), t = (e ? J0 : D).get(this.buffer, 4);
     if (x === 42) {
       if (t >= 6) {
         if (this.checkString("CR", { offset: 8 }))
@@ -8093,7 +8093,7 @@ class _e {
             mime: "image/x-canon-cr2"
           };
         if (t >= 8) {
-          const n = (e ? W : S).get(this.buffer, 8), s = (e ? W : S).get(this.buffer, 10);
+          const n = (e ? W : F).get(this.buffer, 8), s = (e ? W : F).get(this.buffer, 10);
           if (n === 28 && s === 254 || n === 31 && s === 11)
             return {
               ext: "nef",
@@ -8146,34 +8146,34 @@ class _e {
     }
   }
 }
-new Set(ve);
-new Set(Fe);
-class De extends Error {
+new Set(Ce);
+new Set(Se);
+class _e extends Error {
   locator;
   /** Logical source of the error. */
   constructor(e, x, t) {
     super(e, t), this.name = new.target.name, this.locator = x;
   }
 }
-let Be = class extends De {
+let Be = class extends _e {
 }, Ie = class extends Be {
   body;
   /** Sanitized HTTP response body. */
   constructor(e, x, t, a) {
-    super(e, x, a), this.name = new.target.name, this.body = Le(t ?? void 0);
+    super(e, x, a), this.name = new.target.name, this.body = Ee(t ?? void 0);
   }
 };
-async function Oe(i, e, x) {
+async function Ae(i, e, x) {
   const t = ` - ${i.statusText}`, a = `${e} Response status '${i.status}${i.statusText ? t : ""}' received.`;
   let n;
   try {
     n = await i.text();
   } catch (s) {
-    n = `<body unavailable: ${Ee(s).message}>`;
+    n = `<body unavailable: ${Oe(s).message}>`;
   }
   return new Ie(a, x, n);
 }
-function Ee(i) {
+function Oe(i) {
   if (i instanceof Error) return i;
   if (typeof i == "string") return new Error(i);
   if (typeof i == "number" || typeof i == "boolean" || typeof i == "bigint") return new Error(String(i));
@@ -8186,12 +8186,12 @@ function Ee(i) {
     }
   return new Error("Unknown error");
 }
-function Le(i) {
+function Ee(i) {
   if (!(i == null || i === ""))
     return i.length > 2048 ? `${i.slice(0, 2048)}... [truncated]` : i;
 }
-const Ae = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDecodable: !0 }, Te = { id: "big5", groupLabel: "Chinese Traditional", label: "Chinese Traditional (big5)", isDetectable: !0, isDecodable: !0 }, Me = { id: "gb18030", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gb18030)", isDetectable: !0, isDecodable: !0 }, ze = { id: "gbk", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gbk)", isDetectable: !1, isDecodable: !0 }, Ue = { id: "ibm866", groupLabel: "Cyrillic", label: "Cyrillic (ibm866)", isDetectable: !1, isDecodable: !0 }, je = { id: "latin1", groupLabel: "Western", label: "Western (latin1)", isDetectable: !1, isDecodable: !0 }, Re = { id: "macintosh", groupLabel: "Western", label: "Western (macintosh)", isDetectable: !1, isDecodable: !0 }, Pe = { id: "shift_jis", groupLabel: "Japanese", label: "Japanese (shift_jis)", isDetectable: !0, isDecodable: !0 }, qe = { id: "utf16", groupLabel: "Unicode 16", label: "Unicode 16 (utf16)", isDetectable: !1, isDecodable: !0 }, Ne = { id: "utf16be", groupLabel: "Unicode 16", label: "Unicode 16 (utf16be)", isDetectable: !0, isDecodable: !0 }, Ve = { id: "utf16le", groupLabel: "Unicode 16", label: "Unicode 16 (utf16le)", isDetectable: !0, isDecodable: !0 }, He = { id: "utf32be", groupLabel: "Unicode 32", label: "Unicode 32 (utf32be)", isDetectable: !0, isDecodable: !1 }, We = { id: "utf32le", groupLabel: "Unicode 32", label: "Unicode 32 (utf32le)", isDetectable: !0, isDecodable: !1 }, Ge = { id: "utf8", groupLabel: "", label: "utf8", isDetectable: !0, isDecodable: !0 }, Je = {
-  ascii: Ae,
+const Le = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDecodable: !0 }, Te = { id: "big5", groupLabel: "Chinese Traditional", label: "Chinese Traditional (big5)", isDetectable: !0, isDecodable: !0 }, Me = { id: "gb18030", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gb18030)", isDetectable: !0, isDecodable: !0 }, ze = { id: "gbk", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gbk)", isDetectable: !1, isDecodable: !0 }, Ue = { id: "ibm866", groupLabel: "Cyrillic", label: "Cyrillic (ibm866)", isDetectable: !1, isDecodable: !0 }, je = { id: "latin1", groupLabel: "Western", label: "Western (latin1)", isDetectable: !1, isDecodable: !0 }, Re = { id: "macintosh", groupLabel: "Western", label: "Western (macintosh)", isDetectable: !1, isDecodable: !0 }, Pe = { id: "shift_jis", groupLabel: "Japanese", label: "Japanese (shift_jis)", isDetectable: !0, isDecodable: !0 }, qe = { id: "utf16", groupLabel: "Unicode 16", label: "Unicode 16 (utf16)", isDetectable: !1, isDecodable: !0 }, Ne = { id: "utf16be", groupLabel: "Unicode 16", label: "Unicode 16 (utf16be)", isDetectable: !0, isDecodable: !0 }, Ve = { id: "utf16le", groupLabel: "Unicode 16", label: "Unicode 16 (utf16le)", isDetectable: !0, isDecodable: !0 }, He = { id: "utf32be", groupLabel: "Unicode 32", label: "Unicode 32 (utf32be)", isDetectable: !0, isDecodable: !1 }, We = { id: "utf32le", groupLabel: "Unicode 32", label: "Unicode 32 (utf32le)", isDetectable: !0, isDecodable: !1 }, Ge = { id: "utf8", groupLabel: "", label: "utf8", isDetectable: !0, isDecodable: !0 }, Je = {
+  ascii: Le,
   big5: Te,
   "euc-jp": { id: "euc-jp", groupLabel: "Japanese", label: "Japanese (euc-jp)", isDetectable: !0, isDecodable: !0 },
   "euc-kr": { id: "euc-kr", groupLabel: "Korean", label: "Korean (euc-kr)", isDetectable: !0, isDecodable: !0 },
@@ -8240,49 +8240,86 @@ const Ae = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDe
   "windows-874": { id: "windows-874", groupLabel: "Thai", label: "Thai (windows-874)", isDetectable: !1, isDecodable: !0 },
   "x-mac-cyrillic": { id: "x-mac-cyrillic", groupLabel: "Cyrillic", label: "Cyrillic (x-mac-cyrillic)", isDetectable: !1, isDecodable: !0 },
   "x-user-defined": { id: "x-user-defined", groupLabel: "Other", label: "Other (x-user-defined)", isDetectable: !1, isDecodable: !0 }
-}, Ke = Je, Ze = 4096, v0 = { id: "utf8", confidenceLevel: void 0 };
-class ix {
+}, Ke = Je, Ze = 4096, C0 = { id: "utf8", confidenceLevel: void 0 }, Qe = {
+  arrow: { label: "Columnar format for tables of data.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  avro: { label: "Object container file developed by Apache Avro.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  docx: { label: "Microsoft Word document.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  ics: { label: "iCalendar.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  jmp: { label: "JMP data file format by SAS Institute.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  json: { label: "JavaScript object notation.", isAutoDetectable: !1, isSupported: !1, notes: "" },
+  ods: { label: "OpenDocument for spreadsheets.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  ots: { label: "OpenDocument for word processing.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  parquet: { label: "Apache Parquet.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  pcap: { label: "Libpcap file format.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  pdf: { label: "Portable document format.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  por: { label: "SPSS portable file.", isAutoDetectable: !1, isSupported: !1, magicBytes: [83, 80, 83, 83, 80, 79, 82, 84], notes: "" },
+  sav: { label: "SPSS statistical data file.", isAutoDetectable: !0, isSupported: !1, magicBytes: [36, 70, 76, 50], notes: "" },
+  shp: { label: "Geospatial vector data format.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  sqlite: { label: "SQLite file.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  vcf: { label: "vCard.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  vtt: { label: "WebVTT File (for video captions).", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  xls: { label: "Microsoft Excel legacy document.", isAutoDetectable: !1, isSupported: !1, magicBytes: [208, 207, 17, 224, 161, 177, 26, 225], notes: "" },
+  xlsx: { label: "Microsoft Excel document.", isAutoDetectable: !0, isSupported: !1, magicBytes: [80, 75, 3, 4], notes: "" },
+  xlsm: { label: "Microsoft Excel macro-enabled document.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  xltx: { label: "Microsoft Excel template.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  xltm: { label: "Microsoft Excel macro-enabled template.", isAutoDetectable: !0, isSupported: !1, notes: "" },
+  xml: { label: "eXtensible markup language.", isAutoDetectable: !0, isSupported: !1, notes: "" }
+};
+class rx {
   /**
    * Preview file.
    */
   async previewFile(e, x, t) {
     const a = await fetch(encodeURI(e), { headers: { Range: `bytes=0-${t ?? Ze - 1}` }, signal: x });
     if (!a.ok)
-      throw await Oe(a, `Failed to fetch '${e}' file.`, "datapos-tool-file-operators.previewRemoteFile");
-    const n = new Uint8Array(await a.arrayBuffer()), s = await Se(n);
-    if (s && !s.mime.startsWith("text/"))
-      throw new Error(`Files of type '${s.ext}' (mine '${s.mime}') not supported.`);
-    return $e(n);
+      throw await Ae(a, `Failed to fetch '${e}' file.`, "datapos-tool-file-operators.previewRemoteFile");
+    const n = new Uint8Array(await a.arrayBuffer());
+    return await $e(n);
   }
 }
-function $e(i) {
-  const e = Qe(i), x = Xe(i, e);
-  return {
+async function $e(i) {
+  let e;
+  const x = await Fe(i);
+  if (x == null)
+    e = "dtv";
+  else {
+    const n = Qe[x.ext];
+    n == null ? e = x.mime.startsWith("text/") ? "dtv" : void 0 : n.isSupported ? e = x.ext : e = void 0;
+  }
+  const t = Xe(i), a = Ye(i, t);
+  return e == null && ex(a.text) && (e = "json"), {
     bytes: i,
-    dataFormatId: "dtv",
-    encodingId: x.encoding.id,
-    encodingConfidenceLevel: x.encoding.confidenceLevel,
-    size: i.length,
-    text: x.text
+    dataFormatId: e,
+    encodingId: a.encoding.id,
+    encodingConfidenceLevel: a.encoding.confidenceLevel,
+    text: a.text
   };
 }
-function Qe(i) {
+function Xe(i) {
   if (i[0] === 239 && i[1] === 187 && i[2] === 191) return { confidenceLevel: 100, id: "utf8" };
   if (i[0] === 254 && i[1] === 255) return { confidenceLevel: 100, id: "utf-16be" };
   if (i[0] === 255 && i[1] === 254) return { confidenceLevel: 100, id: "utf-16le" };
   const x = j0.analyse(i)[0] ?? { confidence: void 0, name: "utf8" }, t = Ke[x.name.toLowerCase()], a = t == null ? "utf8" : t.id;
   return { confidenceLevel: x.confidence, id: a };
 }
-function Xe(i, e) {
+function Ye(i, e) {
   try {
-    const x = new TextDecoder(e.id).decode(F0(i));
+    const x = new TextDecoder(e.id).decode(S0(i));
     return { encoding: e, text: x };
   } catch {
-    const x = new TextDecoder(v0.id, { fatal: !1 }).decode(F0(i));
-    return { encoding: v0, text: x };
+    const x = new TextDecoder(C0.id, { fatal: !1 }).decode(S0(i));
+    return { encoding: C0, text: x };
   }
 }
-function F0(i) {
+function ex(i) {
+  const e = i.trimStart();
+  if (e.length > 2) {
+    const x = e[0], t = x === "{", a = x === "[", n = /"\s*:\s*/.test(e), s = /\b(true|false|null)\b/.test(e), m = e.includes('"');
+    return (t || a) && (n || s || m);
+  }
+  return !1;
+}
+function S0(i) {
   let e = i;
   const x = e.length;
   for (let t = x - 1; t >= 0; t--) {
@@ -8303,5 +8340,5 @@ function F0(i) {
   return e;
 }
 export {
-  ix as Tool
+  rx as Tool
 };
