@@ -105,11 +105,11 @@ async function previewFileBytes(fileBytes: Uint8Array): Promise<PreviewConfig> {
     }
 
     const lookupFileTypeConfig = FILE_TYPE_MAP[fileTypeConfig.ext];
-    if (lookupFileTypeConfig?.isSupported ?? false) {
-        // We have a type that is supported.
+    if (lookupFileTypeConfig == null) {
+        // We have a type.
         return {
             bytes: fileBytes,
-            dataFormatId: fileTypeConfig.ext as DataFormatId,
+            dataFormatId: undefined,
             encodingId: undefined,
             encodingConfidenceLevel: undefined,
             fileTypeConfig,
@@ -117,16 +117,13 @@ async function previewFileBytes(fileBytes: Uint8Array): Promise<PreviewConfig> {
         };
     }
 
-    // We have an unsupported type.
-    const fileEncoding = determineEncoding(fileBytes);
-    const decodedResult = decodeFileBytes(fileBytes, fileEncoding);
     return {
         bytes: fileBytes,
-        dataFormatId: fileTypeConfig.mime.startsWith('application/json') ? 'json' : 'dtv',
-        encodingId: decodedResult.encoding.id,
-        encodingConfidenceLevel: decodedResult.encoding.confidenceLevel,
+        dataFormatId: lookupFileTypeConfig.isSupported ? (fileTypeConfig.ext as DataFormatId) : undefined,
+        encodingId: undefined,
+        encodingConfidenceLevel: undefined,
         fileTypeConfig,
-        text: decodedResult.text
+        text: undefined
     };
 }
 

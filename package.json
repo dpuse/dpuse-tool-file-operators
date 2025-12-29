@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-tool-file-operators",
-    "version": "0.0.12",
+    "version": "0.0.13",
     "description": "",
     "license": "MIT",
     "private": false,
@@ -29,8 +29,8 @@
         "@datapos/datapos-development": "^0.3.438",
         "@datapos/eslint-config-datapos": "^1.0.35",
         "@types/node": "^25.0.3",
-        "@typescript-eslint/eslint-plugin": "^8.50.1",
-        "@typescript-eslint/parser": "^8.50.1",
+        "@typescript-eslint/eslint-plugin": "^8.51.0",
+        "@typescript-eslint/parser": "^8.51.0",
         "eslint": "^9.39.2",
         "eslint-import-resolver-typescript": "^4.4.4",
         "eslint-plugin-import": "^2.32.0",
@@ -65,7 +65,7 @@
         "update": "node -e \"import('@datapos/datapos-development').then(m => m.updateDataPosDependencies(['development']))\""
     },
     "dependencies": {
-        "@datapos/datapos-shared": "^0.3.434",
+        "@datapos/datapos-shared": "^0.3.436",
         "chardet": "^2.1.1",
         "file-type": "^21.2.0"
     }
