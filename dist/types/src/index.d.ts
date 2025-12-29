@@ -7,10 +7,13 @@ interface PreviewConfig {
     size: number;
     text: string;
 }
+/**
+ * Tool.
+ */
 declare class Tool {
     /**
-     * Preview remote file.
+     * Preview file.
      */
-    previewRemoteFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<PreviewConfig>;
+    previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<PreviewConfig>;
 }
 export { type PreviewConfig, Tool };

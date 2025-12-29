@@ -8155,9 +8155,8 @@ class De extends Error {
     super(e, t), this.name = new.target.name, this.locator = x;
   }
 }
-class Be extends De {
-}
-let Ie = class extends Be {
+let Be = class extends De {
+}, Ie = class extends Be {
   body;
   /** Sanitized HTTP response body. */
   constructor(e, x, t, a) {
@@ -8241,23 +8240,23 @@ const Ae = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDe
   "windows-874": { id: "windows-874", groupLabel: "Thai", label: "Thai (windows-874)", isDetectable: !1, isDecodable: !0 },
   "x-mac-cyrillic": { id: "x-mac-cyrillic", groupLabel: "Cyrillic", label: "Cyrillic (x-mac-cyrillic)", isDetectable: !1, isDecodable: !0 },
   "x-user-defined": { id: "x-user-defined", groupLabel: "Other", label: "Other (x-user-defined)", isDetectable: !1, isDecodable: !0 }
-}, Ke = 4096, v0 = { id: "utf8", confidenceLevel: void 0 };
-class xx {
+}, Ke = Je, Ze = 4096, v0 = { id: "utf8", confidenceLevel: void 0 };
+class ix {
   /**
-   * Preview remote file.
+   * Preview file.
    */
-  async previewRemoteFile(e, x, t) {
-    const a = await fetch(encodeURI(e), { headers: { Range: `bytes=0-${t ?? Ke - 1}` }, signal: x });
+  async previewFile(e, x, t) {
+    const a = await fetch(encodeURI(e), { headers: { Range: `bytes=0-${t ?? Ze - 1}` }, signal: x });
     if (!a.ok)
       throw await Oe(a, `Failed to fetch '${e}' file.`, "datapos-tool-file-operators.previewRemoteFile");
     const n = new Uint8Array(await a.arrayBuffer()), s = await Se(n);
     if (s && !s.mime.startsWith("text/"))
       throw new Error(`Files of type '${s.ext}' (mine '${s.mime}') not supported.`);
-    return Ze(n);
+    return $e(n);
   }
 }
-function Ze(i) {
-  const e = $e(i), x = Qe(i, e);
+function $e(i) {
+  const e = Qe(i), x = Xe(i, e);
   return {
     bytes: i,
     dataFormatId: "dtv",
@@ -8267,14 +8266,14 @@ function Ze(i) {
     text: x.text
   };
 }
-function $e(i) {
+function Qe(i) {
   if (i[0] === 239 && i[1] === 187 && i[2] === 191) return { confidenceLevel: 100, id: "utf8" };
   if (i[0] === 254 && i[1] === 255) return { confidenceLevel: 100, id: "utf-16be" };
   if (i[0] === 255 && i[1] === 254) return { confidenceLevel: 100, id: "utf-16le" };
-  const x = j0.analyse(i)[0] ?? { confidence: void 0, name: "utf8" }, t = Je[x.name.toLowerCase()], a = t == null ? "utf8" : t.id;
+  const x = j0.analyse(i)[0] ?? { confidence: void 0, name: "utf8" }, t = Ke[x.name.toLowerCase()], a = t == null ? "utf8" : t.id;
   return { confidenceLevel: x.confidence, id: a };
 }
-function Qe(i, e) {
+function Xe(i, e) {
   try {
     const x = new TextDecoder(e.id).decode(F0(i));
     return { encoding: e, text: x };
@@ -8304,5 +8303,5 @@ function F0(i) {
   return e;
 }
 export {
-  xx as Tool
+  ix as Tool
 };

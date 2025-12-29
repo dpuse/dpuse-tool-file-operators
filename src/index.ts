@@ -9,14 +9,14 @@ import { fileTypeFromBuffer } from 'file-type';
 // Framework dependencies.
 import { buildFetchError } from '@datapos/datapos-shared/errors';
 import type { DataFormatId } from '@datapos/datapos-shared';
-import type { Encoding, EncodingTypeConfig } from '@datapos/datapos-shared/encoding';
+import type { EncodingConfig } from '@datapos/datapos-shared/encoding';
 
 // Data dependencies.
-import { encodingConfigData } from '@datapos/datapos-shared/encoding';
+import { encodingConfigMap } from '@datapos/datapos-shared/encoding';
 
 // Constants.
 const DEFAULT_PREVIEW_CHUNK_SIZE = 4096;
-const FALLBACK_ENCODING = { id: 'utf8', confidenceLevel: undefined };
+const FALLBACK_ENCODING: EncodingConfig = { id: 'utf8', confidenceLevel: undefined };
 
 // Preview configuration interface.
 interface PreviewConfig {
@@ -28,12 +28,14 @@ interface PreviewConfig {
     text: string;
 }
 
-// Tool.
+/**
+ * Tool.
+ */
 class Tool {
     /**
-     * Preview remote file.
+     * Preview file.
      */
-    async previewRemoteFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<PreviewConfig> {
+    async previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<PreviewConfig> {
         const response = await fetch(encodeURI(url), { headers: { Range: `bytes=0-${chunkSize ?? DEFAULT_PREVIEW_CHUNK_SIZE - 1}` }, signal });
         if (!response.ok) {
             throw await buildFetchError(response, `Failed to fetch '${url}' file.`, 'datapos-tool-file-operators.previewRemoteFile');
@@ -72,13 +74,13 @@ function previewFileBytes(fileBytes: Uint8Array): PreviewConfig {
 /**
  * Determine encoding from file bytes.
  */
-function determineEncoding(fileBytes: Uint8Array): Encoding {
+function determineEncoding(fileBytes: Uint8Array): EncodingConfig {
     if (fileBytes[0] === 239 && fileBytes[1] === 187 && fileBytes[2] === 191) return { confidenceLevel: 100, id: 'utf8' };
     if (fileBytes[0] === 254 && fileBytes[1] === 255) return { confidenceLevel: 100, id: 'utf-16be' };
     if (fileBytes[0] === 255 && fileBytes[1] === 254) return { confidenceLevel: 100, id: 'utf-16le' };
     const detectedEncodings = chardet.analyse(fileBytes);
     const detectedEncoding = detectedEncodings[0] ?? { confidence: undefined, name: 'utf8' };
-    const encoding = (encodingConfigData as Record<string, EncodingTypeConfig>)[detectedEncoding.name.toLowerCase()];
+    const encoding = encodingConfigMap[detectedEncoding.name.toLowerCase()];
     const encodingId = encoding == null ? 'utf8' : encoding.id;
     return { confidenceLevel: detectedEncoding.confidence, id: encodingId };
 }
@@ -86,7 +88,7 @@ function determineEncoding(fileBytes: Uint8Array): Encoding {
 /**
  * Decode file bytes to text.
  */
-function decodeFileBytes(fileBytes: Uint8Array, encoding: Encoding): { encoding: Encoding; text: string } {
+function decodeFileBytes(fileBytes: Uint8Array, encoding: EncodingConfig): { encoding: EncodingConfig; text: string } {
     try {
         const text = new TextDecoder(encoding.id).decode(truncateData(fileBytes));
         return { encoding, text };
