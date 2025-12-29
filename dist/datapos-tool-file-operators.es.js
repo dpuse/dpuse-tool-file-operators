@@ -8278,6 +8278,8 @@ class rx {
   }
 }
 async function $e(i) {
+  if (i.length === 0)
+    return { bytes: i, dataFormatId: void 0, encodingId: void 0, encodingConfidenceLevel: void 0, fileTypeConfig: void 0, text: void 0 };
   let e;
   const x = await Fe(i);
   if (x == null)
@@ -8292,6 +8294,7 @@ async function $e(i) {
     dataFormatId: e,
     encodingId: a.encoding.id,
     encodingConfidenceLevel: a.encoding.confidenceLevel,
+    fileTypeConfig: x,
     text: a.text
   };
 }

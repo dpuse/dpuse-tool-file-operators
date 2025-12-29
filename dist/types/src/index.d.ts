@@ -1,10 +1,12 @@
+import { FileTypeResult } from 'file-type';
 import { DataFormatId } from '@datapos/datapos-shared';
 interface PreviewConfig {
     bytes: Uint8Array;
     dataFormatId: DataFormatId | undefined;
     encodingId: string | undefined;
     encodingConfidenceLevel: number | undefined;
-    text: string;
+    fileTypeConfig: FileTypeResult | undefined;
+    text: string | undefined;
 }
 /**
  * Tool.

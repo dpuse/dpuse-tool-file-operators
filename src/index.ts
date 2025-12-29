@@ -4,7 +4,7 @@
 
 // Vendor dependencies.
 import chardet from 'chardet';
-import { fileTypeFromBuffer } from 'file-type';
+import { fileTypeFromBuffer, type FileTypeResult } from 'file-type';
 
 // Framework dependencies.
 import { buildFetchError } from '@datapos/datapos-shared/errors';
@@ -49,7 +49,8 @@ interface PreviewConfig {
     dataFormatId: DataFormatId | undefined;
     encodingId: string | undefined;
     encodingConfidenceLevel: number | undefined;
-    text: string;
+    fileTypeConfig: FileTypeResult | undefined;
+    text: string | undefined;
 }
 
 /**
@@ -77,17 +78,21 @@ class Tool {
  * Preview file bytes.
  */
 async function previewFileBytes(fileBytes: Uint8Array): Promise<PreviewConfig> {
+    if (fileBytes.length === 0) {
+        return { bytes: fileBytes, dataFormatId: undefined, encodingId: undefined, encodingConfidenceLevel: undefined, fileTypeConfig: undefined, text: undefined };
+    }
+
     let dataFormatId: DataFormatId | undefined;
 
-    const fileType = await fileTypeFromBuffer(fileBytes);
-    if (fileType == null) {
+    const fileTypeConfig = await fileTypeFromBuffer(fileBytes);
+    if (fileTypeConfig == null) {
         dataFormatId = 'dtv';
     } else {
-        const recognisedFileType = FILE_TYPE_MAP[fileType.ext];
+        const recognisedFileType = FILE_TYPE_MAP[fileTypeConfig.ext];
         if (recognisedFileType == null) {
-            dataFormatId = fileType.mime.startsWith('text/') ? 'dtv' : undefined;
+            dataFormatId = fileTypeConfig.mime.startsWith('text/') ? 'dtv' : undefined;
         } else if (recognisedFileType.isSupported) {
-            dataFormatId = fileType.ext as DataFormatId;
+            dataFormatId = fileTypeConfig.ext as DataFormatId;
         } else {
             dataFormatId = undefined;
         }
@@ -106,6 +111,7 @@ async function previewFileBytes(fileBytes: Uint8Array): Promise<PreviewConfig> {
         dataFormatId,
         encodingId: decodedResult.encoding.id,
         encodingConfidenceLevel: decodedResult.encoding.confidenceLevel,
+        fileTypeConfig,
         text: decodedResult.text
     };
 }
@@ -144,8 +150,8 @@ function isLikelyJSONFormat(text: string): boolean {
     const trimmedText = text.trimStart();
     if (trimmedText.length > 2) {
         const firstChar = trimmedText[0];
-        const isObjectStart = firstChar === '{'; // TODO: is JSON Object.
-        const isArrayStart = firstChar === '['; // TODO: is JSON array.
+        const isObjectStart = firstChar === '{';
+        const isArrayStart = firstChar === '[';
         const hasKeyValue = /"\s*:\s*/.test(trimmedText); // "key": something
         const hasJSONLiterals = /\b(true|false|null)\b/.test(trimmedText);
         const hasQuotes = trimmedText.includes('"');
@@ -157,9 +163,9 @@ function isLikelyJSONFormat(text: string): boolean {
 /**
  * Is likely XML format. This is an alternative xml file identifier if 'file-type' xml identification proves unsatisfactory.
  */
-function isLikelyXMLFormat(textData: string): boolean {
-    const trimmedTextData = textData.trimStart();
-    return trimmedTextData.startsWith('<?xml') || /^<([a-zA-Z_][\w\-.:]*)[\s>]/.test(trimmedTextData);
+function isLikelyXMLFormat(text: string): boolean {
+    const trimmedText = text.trimStart();
+    return trimmedText.startsWith('<?xml') || /^<([a-zA-Z_][\w\-.:]*)[\s>]/.test(trimmedText);
 }
 
 /**
