@@ -1,8 +1,8 @@
-function F0(i) {
+function _0(i) {
   return i && i.__esModule && Object.prototype.hasOwnProperty.call(i, "default") ? i.default : i;
 }
 var O = {}, G = {}, n0;
-function B0() {
+function A0() {
   return n0 || (n0 = 1, Object.defineProperty(G, "__esModule", { value: !0 }), G.default = () => {
     throw new Error("File system is not available");
   }), G;
@@ -16,7 +16,7 @@ function N() {
   })), J;
 }
 var s0;
-function I0() {
+function O0() {
   if (s0) return R;
   s0 = 1;
   var i = R && R.__importDefault || function(t) {
@@ -41,7 +41,7 @@ function I0() {
   return R.default = x, R;
 }
 var P = {}, o0;
-function A0() {
+function E0() {
   if (o0) return P;
   o0 = 1;
   var i = P && P.__importDefault || function(t) {
@@ -103,7 +103,7 @@ function A0() {
   return P.default = x, P;
 }
 var A = {}, f0;
-function O0() {
+function L0() {
   if (f0) return A;
   f0 = 1;
   var i = A && A.__importDefault || function(m) {
@@ -171,7 +171,7 @@ function O0() {
   return A.UTF_32LE = s, A;
 }
 var _ = {}, d0;
-function E0() {
+function T0() {
   if (d0) return _;
   d0 = 1;
   var i = _ && _.__importDefault || function(r) {
@@ -826,7 +826,7 @@ function E0() {
   return _.gb_18030 = d, _;
 }
 var S = {}, l0;
-function L0() {
+function M0() {
   if (l0) return S;
   l0 = 1;
   var i = S && S.__importDefault || function(b) {
@@ -5129,7 +5129,7 @@ function L0() {
   return S.KOI8_R = k, S;
 }
 var E = {}, u0;
-function T0() {
+function z0() {
   if (u0) return E;
   u0 = 1;
   var i = E && E.__importDefault || function(s) {
@@ -5229,14 +5229,14 @@ function T0() {
   return E.ISO_2022_CN = n, E;
 }
 var H = {}, m0;
-function M0() {
+function U0() {
   if (m0) return H;
   m0 = 1, Object.defineProperty(H, "__esModule", { value: !0 }), H.isByteArray = void 0;
   const i = (e) => e == null || typeof e != "object" ? !1 : isFinite(e.length) && e.length >= 0;
   return H.isByteArray = i, H;
 }
 var p0;
-function z0() {
+function j0() {
   return p0 || (p0 = 1, (function(i) {
     var e = O && O.__createBinding || (Object.create ? (function(l, p, w, y) {
       y === void 0 && (y = w);
@@ -5268,7 +5268,7 @@ function z0() {
       return l && l.__esModule ? l : { default: l };
     };
     Object.defineProperty(i, "__esModule", { value: !0 }), i.detectFileSync = i.detectFile = i.analyse = i.detect = void 0;
-    const n = a(B0()), s = a(I0()), m = a(A0()), o = t(O0()), f = t(E0()), d = t(L0()), r = t(T0()), c = M0(), u = [
+    const n = a(A0()), s = a(O0()), m = a(E0()), o = t(L0()), f = t(T0()), d = t(M0()), r = t(z0()), c = U0(), u = [
       new m.default(),
       new o.UTF_16BE(),
       new o.UTF_16LE(),
@@ -5357,11 +5357,11 @@ function z0() {
     };
   })(O)), O;
 }
-var U0 = z0();
-const j0 = /* @__PURE__ */ F0(U0);
+var R0 = j0();
+const P0 = /* @__PURE__ */ _0(R0);
 var K = {};
 var h0;
-function R0() {
+function q0() {
   return h0 || (h0 = 1, K.read = function(i, e, x, t, a) {
     var n, s, m = a * 8 - t - 1, o = (1 << m) - 1, f = o >> 1, d = -7, r = x ? a - 1 : 0, c = x ? -1 : 1, u = i[e + r];
     for (r += c, n = u & (1 << -d) - 1, u >>= -d, d += m; d > 0; n = n * 256 + i[e + r], r += c, d -= 8)
@@ -5385,7 +5385,7 @@ function R0() {
     i[x + u - h] |= g * 128;
   }), K;
 }
-R0();
+q0();
 const t0 = {
   128: "€",
   130: "‚",
@@ -5417,25 +5417,25 @@ const t0 = {
 };
 for (const [i, e] of Object.entries(t0))
   ;
-function P0(i, e = "utf-8") {
+function N0(i, e = "utf-8") {
   switch (e.toLowerCase()) {
     case "utf-8":
     case "utf8":
-      return typeof globalThis.TextDecoder < "u" ? new globalThis.TextDecoder("utf-8").decode(i) : q0(i);
+      return typeof globalThis.TextDecoder < "u" ? new globalThis.TextDecoder("utf-8").decode(i) : V0(i);
     case "utf-16le":
-      return N0(i);
+      return H0(i);
     case "ascii":
-      return V0(i);
+      return W0(i);
     case "latin1":
     case "iso-8859-1":
-      return H0(i);
+      return G0(i);
     case "windows-1252":
-      return W0(i);
+      return J0(i);
     default:
       throw new RangeError(`Encoding '${e}' not supported`);
   }
 }
-function q0(i) {
+function V0(i) {
   let e = "", x = 0;
   for (; x < i.length; ) {
     const t = i[x++];
@@ -5455,19 +5455,19 @@ function q0(i) {
   }
   return e;
 }
-function N0(i) {
+function H0(i) {
   let e = "";
   for (let x = 0; x < i.length; x += 2)
     e += String.fromCharCode(i[x] | i[x + 1] << 8);
   return e;
 }
-function V0(i) {
+function W0(i) {
   return String.fromCharCode(...i.map((e) => e & 127));
 }
-function H0(i) {
+function G0(i) {
   return String.fromCharCode(...i);
 }
-function W0(i) {
+function J0(i) {
   let e = "";
   for (const x of i)
     x >= 128 && x <= 159 && t0[x] ? e += t0[x] : e += String.fromCharCode(x);
@@ -5476,7 +5476,7 @@ function W0(i) {
 function I(i) {
   return new DataView(i.buffer, i.byteOffset);
 }
-const G0 = {
+const K0 = {
   len: 1,
   get(i, e) {
     return I(i).getUint8(e);
@@ -5508,7 +5508,7 @@ const G0 = {
   put(i, e, x) {
     return I(i).setUint32(e, x, !0), e + 4;
   }
-}, J0 = {
+}, Z0 = {
   len: 4,
   get(i, e) {
     return I(i).getUint32(e);
@@ -5516,7 +5516,7 @@ const G0 = {
   put(i, e, x) {
     return I(i).setUint32(e, x), e + 4;
   }
-}, K0 = {
+}, Q0 = {
   len: 4,
   get(i, e) {
     return I(i).getInt32(e);
@@ -5524,7 +5524,7 @@ const G0 = {
   put(i, e, x) {
     return I(i).setInt32(e, x), e + 4;
   }
-}, Z0 = {
+}, $0 = {
   len: 8,
   get(i, e) {
     return I(i).getBigUint64(e, !0);
@@ -5539,21 +5539,21 @@ class U {
   }
   get(e, x = 0) {
     const t = e.subarray(x, x + this.len);
-    return P0(t, this.encoding);
+    return N0(t, this.encoding);
   }
 }
-const Q0 = "End-Of-Stream";
+const X0 = "End-Of-Stream";
 class B extends Error {
   constructor() {
-    super(Q0), this.name = "EndOfStreamError";
+    super(X0), this.name = "EndOfStreamError";
   }
 }
-class $0 extends Error {
+class Y0 extends Error {
   constructor(e = "The operation was aborted") {
     super(e), this.name = "AbortError";
   }
 }
-class D0 {
+class B0 {
   constructor() {
     this.endOfStream = !1, this.interrupted = !1, this.peekQueue = [];
   }
@@ -5589,7 +5589,7 @@ class D0 {
     let t = 0;
     for (; t < e.length && !this.endOfStream; ) {
       if (this.interrupted)
-        throw new $0();
+        throw new Y0();
       const a = await this.readFromStream(e.subarray(t), x);
       if (a === 0)
         break;
@@ -5600,7 +5600,7 @@ class D0 {
     return t;
   }
 }
-class X0 extends D0 {
+class ee extends B0 {
   constructor(e) {
     super(), this.reader = e;
   }
@@ -5611,7 +5611,7 @@ class X0 extends D0 {
     this.reader.releaseLock();
   }
 }
-class Y0 extends X0 {
+class xe extends ee {
   /**
    * Read from stream
    * @param buffer - Target Uint8Array (or Buffer) to store data read from stream in
@@ -5625,7 +5625,7 @@ class Y0 extends X0 {
     return t.done && (this.endOfStream = t.done), t.value ? (e.set(t.value), t.value.length) : 0;
   }
 }
-class b0 extends D0 {
+class b0 extends B0 {
   constructor(e) {
     super(), this.reader = e, this.buffer = null;
   }
@@ -5665,10 +5665,10 @@ class b0 extends D0 {
     await this.abort(), this.reader.releaseLock();
   }
 }
-function ee(i) {
+function te(i) {
   try {
     const e = i.getReader({ mode: "byob" });
-    return e instanceof ReadableStreamDefaultReader ? new b0(e) : new Y0(e);
+    return e instanceof ReadableStreamDefaultReader ? new b0(e) : new xe(e);
   } catch (e) {
     if (e instanceof TypeError)
       return new b0(i.getReader());
@@ -5761,8 +5761,8 @@ class i0 {
     return Promise.resolve();
   }
 }
-const xe = 256e3;
-class te extends i0 {
+const ie = 256e3;
+class ae extends i0 {
   /**
    * Constructor
    * @param streamReader stream-reader to read from
@@ -5822,7 +5822,7 @@ class te extends i0 {
     return a;
   }
   async ignore(e) {
-    const x = Math.min(xe, e), t = new Uint8Array(x);
+    const x = Math.min(ie, e), t = new Uint8Array(x);
     let a = 0;
     for (; a < e; ) {
       const n = e - a, s = await this.readBuffer(t, { length: Math.min(x, n) });
@@ -5842,7 +5842,7 @@ class te extends i0 {
     return !1;
   }
 }
-class ie extends i0 {
+class re extends i0 {
   /**
    * Construct BufferTokenizer
    * @param uint8Array - Uint8Array to tokenize
@@ -5884,7 +5884,7 @@ class ie extends i0 {
     this.position = e;
   }
 }
-class ae extends i0 {
+class ne extends i0 {
   /**
    * Construct BufferTokenizer
    * @param blob - Uint8Array to tokenize
@@ -5927,21 +5927,21 @@ class ae extends i0 {
     this.position = e;
   }
 }
-function re(i, e) {
-  const x = ee(i), t = e ?? {}, a = t.onClose;
+function ce(i, e) {
+  const x = te(i), t = e ?? {}, a = t.onClose;
   return t.onClose = async () => {
     if (await x.close(), a)
       return a();
-  }, new te(x, t);
+  }, new ae(x, t);
 }
-function ne(i, e) {
-  return new ie(i, e);
+function se(i, e) {
+  return new re(i, e);
 }
-function ce(i, e) {
-  return new ae(i, e);
+function oe(i, e) {
+  return new ne(i, e);
 }
 var Z = { exports: {} }, $, g0;
-function se() {
+function fe() {
   if (g0) return $;
   g0 = 1;
   var i = 1e3, e = i * 60, x = e * 60, t = x * 24, a = t * 7, n = t * 365.25;
@@ -6023,11 +6023,11 @@ function se() {
   return $;
 }
 var X, w0;
-function oe() {
+function de() {
   if (w0) return X;
   w0 = 1;
   function i(e) {
-    t.debug = t, t.default = t, t.coerce = f, t.disable = m, t.enable = n, t.enabled = o, t.humanize = se(), t.destroy = d, Object.keys(e).forEach((r) => {
+    t.debug = t, t.default = t, t.coerce = f, t.disable = m, t.enable = n, t.enabled = o, t.humanize = fe(), t.destroy = d, Object.keys(e).forEach((r) => {
       t[r] = e[r];
     }), t.names = [], t.skips = [], t.formatters = {};
     function x(r) {
@@ -6116,7 +6116,7 @@ function oe() {
   return X = i, X;
 }
 var k0;
-function fe() {
+function le() {
   return k0 || (k0 = 1, (function(i, e) {
     e.formatArgs = t, e.save = a, e.load = n, e.useColors = x, e.storage = s(), e.destroy = /* @__PURE__ */ (() => {
       let o = !1;
@@ -6245,7 +6245,7 @@ function fe() {
       } catch {
       }
     }
-    i.exports = oe()(e);
+    i.exports = de()(e);
     const { formatters: m } = i.exports;
     m.j = function(o) {
       try {
@@ -6256,8 +6256,8 @@ function fe() {
     };
   })(Z, Z.exports)), Z.exports;
 }
-var de = fe();
-const le = /* @__PURE__ */ F0(de), q = {
+var ue = le();
+const me = /* @__PURE__ */ _0(ue), q = {
   LocalFileHeader: 67324752,
   DataDescriptor: 134695760,
   CentralFileHeader: 33639248,
@@ -6271,7 +6271,7 @@ const le = /* @__PURE__ */ F0(de), q = {
     };
   },
   len: 16
-}, ue = {
+}, pe = {
   get(i) {
     const e = F.get(i, 6);
     return {
@@ -6287,7 +6287,7 @@ const le = /* @__PURE__ */ F0(de), q = {
     };
   },
   len: 30
-}, me = {
+}, he = {
   get(i) {
     return {
       signature: D.get(i, 0),
@@ -6301,7 +6301,7 @@ const le = /* @__PURE__ */ F0(de), q = {
     };
   },
   len: 22
-}, pe = {
+}, be = {
   get(i) {
     const e = F.get(i, 8);
     return {
@@ -6320,11 +6320,11 @@ const le = /* @__PURE__ */ F0(de), q = {
   },
   len: 46
 };
-function _0(i) {
+function I0(i) {
   const e = new Uint8Array(D.len);
   return D.put(e, 0, i), e;
 }
-const T = le("tokenizer:inflate"), Y = 256 * 1024, he = _0(q.DataDescriptor), Q = _0(q.EndOfCentralDirectory);
+const T = me("tokenizer:inflate"), Y = 256 * 1024, ge = I0(q.DataDescriptor), Q = I0(q.EndOfCentralDirectory);
 class a0 {
   constructor(e) {
     this.tokenizer = e, this.syncBuffer = new Uint8Array(Y);
@@ -6352,10 +6352,10 @@ class a0 {
     const e = this.tokenizer.position, x = await this.findEndOfCentralDirectoryLocator();
     if (x > 0) {
       T("Central-directory 32-bit signature found");
-      const t = await this.tokenizer.readToken(me, x), a = [];
+      const t = await this.tokenizer.readToken(he, x), a = [];
       this.tokenizer.setPosition(t.offsetOfStartOfCd);
       for (let n = 0; n < t.nrOfEntriesOfSize; ++n) {
-        const s = await this.tokenizer.readToken(pe);
+        const s = await this.tokenizer.readToken(be);
         if (s.signature !== q.CentralFileHeader)
           throw new Error("Expected Central-File-Header signature");
         s.filename = await this.tokenizer.readToken(new U(s.filenameLength, "utf-8")), await this.tokenizer.ignore(s.extraFieldLength), await this.tokenizer.ignore(s.fileCommentLength), a.push(s), T(`Add central-directory file-entry: n=${n + 1}/${a.length}: filename=${a[n].filename}`);
@@ -6382,7 +6382,7 @@ class a0 {
         T("Compressed-file-size unknown, scanning for next data-descriptor-signature....");
         let f = -1;
         for (; f < 0 && o === Y; ) {
-          o = await this.tokenizer.peekBuffer(this.syncBuffer, { mayBeLess: !0 }), f = be(this.syncBuffer.subarray(0, o), he);
+          o = await this.tokenizer.peekBuffer(this.syncBuffer, { mayBeLess: !0 }), f = we(this.syncBuffer.subarray(0, o), ge);
           const d = f >= 0 ? f : o;
           if (n.handler) {
             const r = new Uint8Array(d);
@@ -6390,7 +6390,7 @@ class a0 {
           } else
             await this.tokenizer.ignore(d);
         }
-        T(`Found data-descriptor-signature at pos=${this.tokenizer.position}`), n.handler && await this.inflate(a, ge(m), n.handler);
+        T(`Found data-descriptor-signature at pos=${this.tokenizer.position}`), n.handler && await this.inflate(a, ke(m), n.handler);
       } else
         n.handler ? (T(`Reading compressed-file-data: ${a.compressedSize} bytes`), s = new Uint8Array(a.compressedSize), await this.tokenizer.readBuffer(s), await this.inflate(a, s, n.handler)) : (T(`Ignoring compressed-file-data: ${a.compressedSize} bytes`), await this.tokenizer.ignore(a.compressedSize));
       if (T(`Reading data-descriptor at pos=${this.tokenizer.position}`), a.dataDescriptor && (await this.tokenizer.readToken(y0)).signature !== 134695760)
@@ -6439,7 +6439,7 @@ class a0 {
   async readLocalFileHeader() {
     const e = await this.tokenizer.peekToken(D);
     if (e === q.LocalFileHeader) {
-      const x = await this.tokenizer.readToken(ue);
+      const x = await this.tokenizer.readToken(pe);
       return x.filename = await this.tokenizer.readToken(new U(x.filenameLength, "utf-8")), x;
     }
     if (e === q.CentralFileHeader)
@@ -6447,7 +6447,7 @@ class a0 {
     throw e === 3759263696 ? new Error("Encrypted ZIP") : new Error("Unexpected signature");
   }
 }
-function be(i, e) {
+function we(i, e) {
   const x = i.length, t = e.length;
   if (t > x)
     return -1;
@@ -6463,14 +6463,14 @@ function be(i, e) {
   }
   return -1;
 }
-function ge(i) {
+function ke(i) {
   const e = i.reduce((a, n) => a + n.length, 0), x = new Uint8Array(e);
   let t = 0;
   for (const a of i)
     x.set(a, t), t += a.length;
   return x;
 }
-class we {
+class ye {
   constructor(e) {
     this.tokenizer = e;
   }
@@ -6506,7 +6506,7 @@ function v0(i) {
   if (e === 1)
     return i.getUint8(0);
 }
-function ke(i, e) {
+function ve(i, e) {
   if (e === "utf-16le") {
     const x = [];
     for (let t = 0; t < i.length; t++) {
@@ -6525,7 +6525,7 @@ function ke(i, e) {
   }
   return [...i].map((x) => x.charCodeAt(0));
 }
-function ye(i, e = 0) {
+function Ce(i, e = 0) {
   const x = Number.parseInt(new U(6).get(i, 148).replace(/\0.*$/, "").trim(), 8);
   if (Number.isNaN(x))
     return !1;
@@ -6536,10 +6536,10 @@ function ye(i, e = 0) {
     t += i[a];
   return x === t;
 }
-const ve = {
+const Se = {
   get: (i, e) => i[e + 3] & 127 | i[e + 2] << 7 | i[e + 1] << 14 | i[e] << 21,
   len: 4
-}, Ce = [
+}, Fe = [
   "jpg",
   "png",
   "apng",
@@ -6720,7 +6720,7 @@ const ve = {
   "tar.gz",
   "reg",
   "dat"
-], Se = [
+], De = [
   "image/jpeg",
   "image/png",
   "image/gif",
@@ -6904,8 +6904,8 @@ const ve = {
   "application/x-ft-windows-registry-hive",
   "application/x-jmp-data"
 ], e0 = 4100;
-async function Fe(i, e) {
-  return new De(e).fromBuffer(i);
+async function _e(i, e) {
+  return new Be(e).fromBuffer(i);
 }
 function x0(i) {
   switch (i = i.toLowerCase(), i) {
@@ -7049,7 +7049,7 @@ function M(i, e, x) {
       return !1;
   return !0;
 }
-class De {
+class Be {
   constructor(e) {
     this.options = {
       mpegOffsetTolerance: 0,
@@ -7077,10 +7077,10 @@ class De {
       throw new TypeError(`Expected the \`input\` argument to be of type \`Uint8Array\` or \`ArrayBuffer\`, got \`${typeof e}\``);
     const x = e instanceof Uint8Array ? e : new Uint8Array(e);
     if (x?.length > 1)
-      return this.fromTokenizer(ne(x, this.tokenizerOptions));
+      return this.fromTokenizer(se(x, this.tokenizerOptions));
   }
   async fromBlob(e) {
-    const x = ce(e, this.tokenizerOptions);
+    const x = oe(e, this.tokenizerOptions);
     try {
       return await this.fromTokenizer(x);
     } finally {
@@ -7088,7 +7088,7 @@ class De {
     }
   }
   async fromStream(e) {
-    const x = re(e, this.tokenizerOptions);
+    const x = ce(e, this.tokenizerOptions);
     try {
       return await this.fromTokenizer(x);
     } finally {
@@ -7127,7 +7127,7 @@ class De {
     return M(this.buffer, e, x);
   }
   checkString(e, x) {
-    return this.check(ke(e, x?.encoding), x);
+    return this.check(ve(e, x?.encoding), x);
   }
   // Detections with a high degree of certainty in identifying the correct file type
   detectConfident = async (e) => {
@@ -7187,7 +7187,7 @@ class De {
         mime: "image/vnd.ms-photo"
       };
     if (this.check([31, 139, 8])) {
-      const t = new we(e).inflate();
+      const t = new ye(e).inflate();
       let a = !0;
       try {
         let n;
@@ -7216,7 +7216,7 @@ class De {
       };
     if (this.checkString("ID3")) {
       await e.ignore(6);
-      const x = await e.readToken(ve);
+      const x = await e.readToken(Se);
       return e.position + x > e.fileInfo.size ? {
         ext: "mp3",
         mime: "audio/mpeg"
@@ -7430,7 +7430,7 @@ class De {
       };
     if (this.check([26, 69, 223, 163])) {
       async function x() {
-        const m = await e.peekNumber(G0);
+        const m = await e.peekNumber(K0);
         let o = 128, f = 0;
         for (; (m & o) === 0 && o !== 0; )
           ++f, o >>= 1;
@@ -7673,7 +7673,7 @@ class De {
       await e.ignore(8);
       async function x() {
         return {
-          length: await e.readToken(K0),
+          length: await e.readToken(Q0),
           type: await e.readToken(new U(4, "latin1"))
         };
       }
@@ -7806,7 +7806,7 @@ class De {
         const t = new Uint8Array(16);
         return await e.readBuffer(t), {
           id: t,
-          size: Number(await e.readToken(Z0))
+          size: Number(await e.readToken($0))
         };
       }
       for (await e.ignore(30); e.position + 24 < e.fileInfo.size; ) {
@@ -8006,7 +8006,7 @@ class De {
         ext: "jmp",
         mime: "application/x-jmp-data"
       };
-    if (await e.peekBuffer(this.buffer, { length: Math.min(512, e.fileInfo.size), mayBeLess: !0 }), this.checkString("ustar", { offset: 257 }) && (this.checkString("\0", { offset: 262 }) || this.checkString(" ", { offset: 262 })) || this.check([0, 0, 0, 0, 0, 0], { offset: 257 }) && ye(this.buffer))
+    if (await e.peekBuffer(this.buffer, { length: Math.min(512, e.fileInfo.size), mayBeLess: !0 }), this.checkString("ustar", { offset: 257 }) && (this.checkString("\0", { offset: 262 }) || this.checkString(" ", { offset: 262 })) || this.check([0, 0, 0, 0, 0, 0], { offset: 257 }) && Ce(this.buffer))
       return {
         ext: "tar",
         mime: "application/x-tar"
@@ -8084,7 +8084,7 @@ class De {
     }
   }
   async readTiffHeader(e) {
-    const x = (e ? W : F).get(this.buffer, 2), t = (e ? J0 : D).get(this.buffer, 4);
+    const x = (e ? W : F).get(this.buffer, 2), t = (e ? Z0 : D).get(this.buffer, 4);
     if (x === 42) {
       if (t >= 6) {
         if (this.checkString("CR", { offset: 8 }))
@@ -8146,34 +8146,34 @@ class De {
     }
   }
 }
-new Set(Ce);
-new Set(Se);
-class _e extends Error {
+new Set(Fe);
+new Set(De);
+class Ie extends Error {
   locator;
   /** Logical source of the error. */
   constructor(e, x, t) {
     super(e, t), this.name = new.target.name, this.locator = x;
   }
 }
-let Be = class extends _e {
-}, Ie = class extends Be {
+let Ae = class extends Ie {
+}, Oe = class extends Ae {
   body;
   /** Sanitized HTTP response body. */
   constructor(e, x, t, a) {
-    super(e, x, a), this.name = new.target.name, this.body = Ee(t ?? void 0);
+    super(e, x, a), this.name = new.target.name, this.body = Te(t ?? void 0);
   }
 };
-async function Ae(i, e, x) {
+async function Ee(i, e, x) {
   const t = ` - ${i.statusText}`, a = `${e} Response status '${i.status}${i.statusText ? t : ""}' received.`;
   let n;
   try {
     n = await i.text();
   } catch (s) {
-    n = `<body unavailable: ${Oe(s).message}>`;
+    n = `<body unavailable: ${Le(s).message}>`;
   }
-  return new Ie(a, x, n);
+  return new Oe(a, x, n);
 }
-function Oe(i) {
+function Le(i) {
   if (i instanceof Error) return i;
   if (typeof i == "string") return new Error(i);
   if (typeof i == "number" || typeof i == "boolean" || typeof i == "bigint") return new Error(String(i));
@@ -8186,18 +8186,18 @@ function Oe(i) {
     }
   return new Error("Unknown error");
 }
-function Ee(i) {
+function Te(i) {
   if (!(i == null || i === ""))
     return i.length > 2048 ? `${i.slice(0, 2048)}... [truncated]` : i;
 }
-const Le = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDecodable: !0 }, Te = { id: "big5", groupLabel: "Chinese Traditional", label: "Chinese Traditional (big5)", isDetectable: !0, isDecodable: !0 }, Me = { id: "gb18030", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gb18030)", isDetectable: !0, isDecodable: !0 }, ze = { id: "gbk", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gbk)", isDetectable: !1, isDecodable: !0 }, Ue = { id: "ibm866", groupLabel: "Cyrillic", label: "Cyrillic (ibm866)", isDetectable: !1, isDecodable: !0 }, je = { id: "latin1", groupLabel: "Western", label: "Western (latin1)", isDetectable: !1, isDecodable: !0 }, Re = { id: "macintosh", groupLabel: "Western", label: "Western (macintosh)", isDetectable: !1, isDecodable: !0 }, Pe = { id: "shift_jis", groupLabel: "Japanese", label: "Japanese (shift_jis)", isDetectable: !0, isDecodable: !0 }, qe = { id: "utf16", groupLabel: "Unicode 16", label: "Unicode 16 (utf16)", isDetectable: !1, isDecodable: !0 }, Ne = { id: "utf16be", groupLabel: "Unicode 16", label: "Unicode 16 (utf16be)", isDetectable: !0, isDecodable: !0 }, Ve = { id: "utf16le", groupLabel: "Unicode 16", label: "Unicode 16 (utf16le)", isDetectable: !0, isDecodable: !0 }, He = { id: "utf32be", groupLabel: "Unicode 32", label: "Unicode 32 (utf32be)", isDetectable: !0, isDecodable: !1 }, We = { id: "utf32le", groupLabel: "Unicode 32", label: "Unicode 32 (utf32le)", isDetectable: !0, isDecodable: !1 }, Ge = { id: "utf8", groupLabel: "", label: "utf8", isDetectable: !0, isDecodable: !0 }, Je = {
-  ascii: Le,
-  big5: Te,
+const Me = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDecodable: !0 }, ze = { id: "big5", groupLabel: "Chinese Traditional", label: "Chinese Traditional (big5)", isDetectable: !0, isDecodable: !0 }, Ue = { id: "gb18030", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gb18030)", isDetectable: !0, isDecodable: !0 }, je = { id: "gbk", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gbk)", isDetectable: !1, isDecodable: !0 }, Re = { id: "ibm866", groupLabel: "Cyrillic", label: "Cyrillic (ibm866)", isDetectable: !1, isDecodable: !0 }, Pe = { id: "latin1", groupLabel: "Western", label: "Western (latin1)", isDetectable: !1, isDecodable: !0 }, qe = { id: "macintosh", groupLabel: "Western", label: "Western (macintosh)", isDetectable: !1, isDecodable: !0 }, Ne = { id: "shift_jis", groupLabel: "Japanese", label: "Japanese (shift_jis)", isDetectable: !0, isDecodable: !0 }, Ve = { id: "utf16", groupLabel: "Unicode 16", label: "Unicode 16 (utf16)", isDetectable: !1, isDecodable: !0 }, He = { id: "utf16be", groupLabel: "Unicode 16", label: "Unicode 16 (utf16be)", isDetectable: !0, isDecodable: !0 }, We = { id: "utf16le", groupLabel: "Unicode 16", label: "Unicode 16 (utf16le)", isDetectable: !0, isDecodable: !0 }, Ge = { id: "utf32be", groupLabel: "Unicode 32", label: "Unicode 32 (utf32be)", isDetectable: !0, isDecodable: !1 }, Je = { id: "utf32le", groupLabel: "Unicode 32", label: "Unicode 32 (utf32le)", isDetectable: !0, isDecodable: !1 }, Ke = { id: "utf8", groupLabel: "", label: "utf8", isDetectable: !0, isDecodable: !0 }, Ze = {
+  ascii: Me,
+  big5: ze,
   "euc-jp": { id: "euc-jp", groupLabel: "Japanese", label: "Japanese (euc-jp)", isDetectable: !0, isDecodable: !0 },
   "euc-kr": { id: "euc-kr", groupLabel: "Korean", label: "Korean (euc-kr)", isDetectable: !0, isDecodable: !0 },
-  gb18030: Me,
-  gbk: ze,
-  ibm866: Ue,
+  gb18030: Ue,
+  gbk: je,
+  ibm866: Re,
   "iso-2022-cn": { id: "iso-2022-cn", groupLabel: "Japanese", label: "Japanese (iso-2022-cn)", isDetectable: !0, isDecodable: !1 },
   "iso-2022-jp": { id: "iso-2022-jp", groupLabel: "Japanese", label: "Japanese (iso-2022-jp)", isDetectable: !0, isDecodable: !0 },
   "iso-2022-kr": { id: "iso-2022-kr", groupLabel: "Korean", label: "Korean (iso-2022-kr)", isDetectable: !0, isDecodable: !1 },
@@ -8218,16 +8218,16 @@ const Le = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDe
   "iso-8859-16": { id: "iso-8859-16", groupLabel: "Romanian", label: "Romanian (iso-8859-16)", isDetectable: !1, isDecodable: !0 },
   "kOi8-r": { id: "koi8-r", groupLabel: "Cyrillic", label: "Cyrillic (koi8-r)", isDetectable: !0, isDecodable: !0 },
   "kOi8-u": { id: "koi8-u", groupLabel: "Cyrillic", label: "Cyrillic (koi8-u)", isDetectable: !1, isDecodable: !0 },
-  latin1: je,
-  macintosh: Re,
-  shift_jis: Pe,
+  latin1: Pe,
+  macintosh: qe,
+  shift_jis: Ne,
   "tis-620": { id: "tis-620", groupLabel: "Thai", label: "Thai (tis-620)", isDetectable: !1, isDecodable: !0 },
-  utf16: qe,
-  utf16be: Ne,
-  utf16le: Ve,
-  utf32be: He,
-  utf32le: We,
-  utf8: Ge,
+  utf16: Ve,
+  utf16be: He,
+  utf16le: We,
+  utf32be: Ge,
+  utf32le: Je,
+  utf8: Ke,
   "windows-1250": { id: "windows-1250", groupLabel: "Central European", label: "Central European (windows-1250)", isDetectable: !0, isDecodable: !0 },
   "windows-1251": { id: "windows-1251", groupLabel: "Cyrillic", label: "Cyrillic (windows-1251)", isDetectable: !0, isDecodable: !0 },
   "windows-1252": { id: "windows-1252", groupLabel: "Western", label: "Western (windows-1252)", isDetectable: !0, isDecodable: !0 },
@@ -8240,13 +8240,12 @@ const Le = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDe
   "windows-874": { id: "windows-874", groupLabel: "Thai", label: "Thai (windows-874)", isDetectable: !1, isDecodable: !0 },
   "x-mac-cyrillic": { id: "x-mac-cyrillic", groupLabel: "Cyrillic", label: "Cyrillic (x-mac-cyrillic)", isDetectable: !1, isDecodable: !0 },
   "x-user-defined": { id: "x-user-defined", groupLabel: "Other", label: "Other (x-user-defined)", isDetectable: !1, isDecodable: !0 }
-}, Ke = Je, Ze = 4096, C0 = { id: "utf8", confidenceLevel: void 0 }, Qe = {
+}, Qe = Ze, $e = 4096, C0 = { id: "utf8", confidenceLevel: void 0 }, Xe = {
   arrow: { label: "Columnar format for tables of data.", isAutoDetectable: !0, isSupported: !1, notes: "" },
   avro: { label: "Object container file developed by Apache Avro.", isAutoDetectable: !0, isSupported: !1, notes: "" },
   docx: { label: "Microsoft Word document.", isAutoDetectable: !0, isSupported: !1, notes: "" },
   ics: { label: "iCalendar.", isAutoDetectable: !0, isSupported: !1, notes: "" },
   jmp: { label: "JMP data file format by SAS Institute.", isAutoDetectable: !0, isSupported: !1, notes: "" },
-  json: { label: "JavaScript object notation.", isAutoDetectable: !1, isSupported: !1, notes: "" },
   ods: { label: "OpenDocument for spreadsheets.", isAutoDetectable: !0, isSupported: !1, notes: "" },
   ots: { label: "OpenDocument for word processing.", isAutoDetectable: !0, isSupported: !1, notes: "" },
   parquet: { label: "Apache Parquet.", isAutoDetectable: !0, isSupported: !1, notes: "" },
@@ -8270,46 +8269,67 @@ class rx {
    * Preview file.
    */
   async previewFile(e, x, t) {
-    const a = await fetch(encodeURI(e), { headers: { Range: `bytes=0-${t ?? Ze - 1}` }, signal: x });
+    const a = await fetch(encodeURI(e), { headers: { Range: `bytes=0-${t ?? $e - 1}` }, signal: x });
     if (!a.ok)
-      throw await Ae(a, `Failed to fetch '${e}' file.`, "datapos-tool-file-operators.previewRemoteFile");
+      throw await Ee(a, `Failed to fetch '${e}' file.`, "datapos-tool-file-operators.previewRemoteFile");
     const n = new Uint8Array(await a.arrayBuffer());
-    return await $e(n);
+    return await Ye(n);
   }
 }
-async function $e(i) {
+async function Ye(i) {
   if (i.length === 0)
-    return { bytes: i, dataFormatId: void 0, encodingId: void 0, encodingConfidenceLevel: void 0, fileTypeConfig: void 0, text: void 0 };
-  let e, x = await Fe(i);
-  if (x == null)
-    e = "dtv", x = { ext: "dtv", mime: "text/plain" };
-  else {
-    const n = Qe[x.ext];
-    n == null ? e = x.mime.startsWith("text/") ? "dtv" : void 0 : n.isSupported ? e = x.ext : e = void 0;
+    return {
+      bytes: i,
+      dataFormatId: void 0,
+      encodingId: void 0,
+      encodingConfidenceLevel: void 0,
+      fileTypeConfig: void 0,
+      text: void 0
+    };
+  const e = await _e(i);
+  if (e == null) {
+    const n = S0(i), s = F0(i, n);
+    return {
+      bytes: i,
+      dataFormatId: ex(s.text) ? "json" : "dtv",
+      encodingId: s.encoding.id,
+      encodingConfidenceLevel: s.encoding.confidenceLevel,
+      fileTypeConfig: e,
+      text: s.text
+    };
   }
-  const t = Xe(i), a = Ye(i, t);
-  return e == null && ex(a.text) && (e = "json"), {
+  if (Xe[e.ext]?.isSupported ?? !1)
+    return {
+      bytes: i,
+      dataFormatId: e.ext,
+      encodingId: void 0,
+      encodingConfidenceLevel: void 0,
+      fileTypeConfig: e,
+      text: void 0
+    };
+  const t = S0(i), a = F0(i, t);
+  return {
     bytes: i,
-    dataFormatId: e,
+    dataFormatId: e.mime.startsWith("application/json") ? "json" : "dtv",
     encodingId: a.encoding.id,
     encodingConfidenceLevel: a.encoding.confidenceLevel,
-    fileTypeConfig: x,
+    fileTypeConfig: e,
     text: a.text
   };
 }
-function Xe(i) {
+function S0(i) {
   if (i[0] === 239 && i[1] === 187 && i[2] === 191) return { confidenceLevel: 100, id: "utf8" };
   if (i[0] === 254 && i[1] === 255) return { confidenceLevel: 100, id: "utf-16be" };
   if (i[0] === 255 && i[1] === 254) return { confidenceLevel: 100, id: "utf-16le" };
-  const x = j0.analyse(i)[0] ?? { confidence: void 0, name: "utf8" }, t = Ke[x.name.toLowerCase()], a = t == null ? "utf8" : t.id;
+  const x = P0.analyse(i)[0] ?? { confidence: void 0, name: "utf8" }, t = Qe[x.name.toLowerCase()], a = t == null ? "utf8" : t.id;
   return { confidenceLevel: x.confidence, id: a };
 }
-function Ye(i, e) {
+function F0(i, e) {
   try {
-    const x = new TextDecoder(e.id).decode(S0(i));
+    const x = new TextDecoder(e.id).decode(D0(i));
     return { encoding: e, text: x };
   } catch {
-    const x = new TextDecoder(C0.id, { fatal: !1 }).decode(S0(i));
+    const x = new TextDecoder(C0.id, { fatal: !1 }).decode(D0(i));
     return { encoding: C0, text: x };
   }
 }
@@ -8321,7 +8341,7 @@ function ex(i) {
   }
   return !1;
 }
-function S0(i) {
+function D0(i) {
   let e = i;
   const x = e.length;
   for (let t = x - 1; t >= 0; t--) {

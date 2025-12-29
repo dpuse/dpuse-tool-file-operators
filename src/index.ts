@@ -23,7 +23,6 @@ const FILE_TYPE_MAP: Record<string, { label: string; isAutoDetectable: boolean; 
     docx: { label: 'Microsoft Word document.', isAutoDetectable: true, isSupported: false, notes: '' },
     ics: { label: 'iCalendar.', isAutoDetectable: true, isSupported: false, notes: '' },
     jmp: { label: 'JMP data file format by SAS Institute.', isAutoDetectable: true, isSupported: false, notes: '' },
-    json: { label: 'JavaScript object notation.', isAutoDetectable: false, isSupported: false, notes: '' },
     ods: { label: 'OpenDocument for spreadsheets.', isAutoDetectable: true, isSupported: false, notes: '' },
     ots: { label: 'OpenDocument for word processing.', isAutoDetectable: true, isSupported: false, notes: '' },
     parquet: { label: 'Apache Parquet.', isAutoDetectable: true, isSupported: false, notes: '' },
@@ -79,36 +78,51 @@ class Tool {
  */
 async function previewFileBytes(fileBytes: Uint8Array): Promise<PreviewConfig> {
     if (fileBytes.length === 0) {
-        return { bytes: fileBytes, dataFormatId: undefined, encodingId: undefined, encodingConfidenceLevel: undefined, fileTypeConfig: undefined, text: undefined };
+        return {
+            bytes: fileBytes,
+            dataFormatId: undefined,
+            encodingId: undefined,
+            encodingConfidenceLevel: undefined,
+            fileTypeConfig: undefined,
+            text: undefined
+        };
     }
 
-    let dataFormatId: DataFormatId | undefined;
-    let fileTypeConfig = await fileTypeFromBuffer(fileBytes);
+    const fileTypeConfig = await fileTypeFromBuffer(fileBytes);
+
     if (fileTypeConfig == null) {
-        dataFormatId = 'dtv';
-        fileTypeConfig = { ext: 'dtv', mime: 'text/plain' };
-    } else {
-        const recognisedFileType = FILE_TYPE_MAP[fileTypeConfig.ext];
-        if (recognisedFileType == null) {
-            dataFormatId = fileTypeConfig.mime.startsWith('text/') ? 'dtv' : undefined;
-        } else if (recognisedFileType.isSupported) {
-            dataFormatId = fileTypeConfig.ext as DataFormatId;
-        } else {
-            dataFormatId = undefined;
-        }
+        // We were not able to determine a type by analysing the file content.
+        const fileEncoding = determineEncoding(fileBytes);
+        const decodedResult = decodeFileBytes(fileBytes, fileEncoding);
+        return {
+            bytes: fileBytes,
+            dataFormatId: isLikelyJSONFormat(decodedResult.text) ? 'json' : 'dtv',
+            encodingId: decodedResult.encoding.id,
+            encodingConfidenceLevel: decodedResult.encoding.confidenceLevel,
+            fileTypeConfig,
+            text: decodedResult.text
+        };
     }
 
+    const lookupFileTypeConfig = FILE_TYPE_MAP[fileTypeConfig.ext];
+    if (lookupFileTypeConfig?.isSupported ?? false) {
+        // We have a type that is supported.
+        return {
+            bytes: fileBytes,
+            dataFormatId: fileTypeConfig.ext as DataFormatId,
+            encodingId: undefined,
+            encodingConfidenceLevel: undefined,
+            fileTypeConfig,
+            text: undefined
+        };
+    }
+
+    // We have an unsupported type.
     const fileEncoding = determineEncoding(fileBytes);
-
     const decodedResult = decodeFileBytes(fileBytes, fileEncoding);
-
-    if (dataFormatId == null && isLikelyJSONFormat(decodedResult.text)) {
-        dataFormatId = 'json';
-    }
-
     return {
         bytes: fileBytes,
-        dataFormatId,
+        dataFormatId: fileTypeConfig.mime.startsWith('application/json') ? 'json' : 'dtv',
         encodingId: decodedResult.encoding.id,
         encodingConfidenceLevel: decodedResult.encoding.confidenceLevel,
         fileTypeConfig,
