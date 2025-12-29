@@ -155,7 +155,7 @@ function isLikelyJSONFormat(text: string): boolean {
 }
 
 /**
- * Is likely XML format.
+ * Is likely XML format. This is an alternative xml file identifier if 'file-type' xml identification proves unsatisfactory.
  */
 function isLikelyXMLFormat(textData: string): boolean {
     const trimmedTextData = textData.trimStart();
