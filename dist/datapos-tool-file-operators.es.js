@@ -8280,10 +8280,9 @@ class rx {
 async function $e(i) {
   if (i.length === 0)
     return { bytes: i, dataFormatId: void 0, encodingId: void 0, encodingConfidenceLevel: void 0, fileTypeConfig: void 0, text: void 0 };
-  let e;
-  const x = await Fe(i);
+  let e, x = await Fe(i);
   if (x == null)
-    e = "dtv";
+    e = "dtv", x = { ext: "dtv", mime: "text/plain" };
   else {
     const n = Qe[x.ext];
     n == null ? e = x.mime.startsWith("text/") ? "dtv" : void 0 : n.isSupported ? e = x.ext : e = void 0;

@@ -83,10 +83,10 @@ async function previewFileBytes(fileBytes: Uint8Array): Promise<PreviewConfig> {
     }
 
     let dataFormatId: DataFormatId | undefined;
-
-    const fileTypeConfig = await fileTypeFromBuffer(fileBytes);
+    let fileTypeConfig = await fileTypeFromBuffer(fileBytes);
     if (fileTypeConfig == null) {
         dataFormatId = 'dtv';
+        fileTypeConfig = { ext: 'dtv', mime: 'text/plain' };
     } else {
         const recognisedFileType = FILE_TYPE_MAP[fileTypeConfig.ext];
         if (recognisedFileType == null) {
