@@ -8,7 +8,7 @@ import { fileTypeFromBuffer, type FileTypeResult } from 'file-type';
 
 // Framework dependencies.
 import { buildFetchError } from '@datapos/datapos-shared/errors';
-import type { DataFormatId } from '@datapos/datapos-shared';
+import type { DataFormatId } from '@datapos/datapos-shared/component/dataView';
 import type { EncodingConfig } from '@datapos/datapos-shared/encoding';
 
 // Data dependencies.
@@ -92,6 +92,7 @@ async function previewFileBytes(fileBytes: Uint8Array): Promise<PreviewConfig> {
 
     if (fileTypeConfig == null) {
         // We were not able to determine a type by analysing the file content.
+        // Assume it is a text file testing for 'json' and defaulting to 'dtv'.
         const fileEncoding = determineEncoding(fileBytes);
         const decodedResult = decodeFileBytes(fileBytes, fileEncoding);
         return {
@@ -105,11 +106,11 @@ async function previewFileBytes(fileBytes: Uint8Array): Promise<PreviewConfig> {
     }
 
     const lookupFileTypeConfig = FILE_TYPE_MAP[fileTypeConfig.ext];
-    if (lookupFileTypeConfig == null) {
+    if (lookupFileTypeConfig != null) {
         // We have a type.
         return {
             bytes: fileBytes,
-            dataFormatId: undefined,
+            dataFormatId: lookupFileTypeConfig.isSupported ? (fileTypeConfig.ext as DataFormatId) : undefined,
             encodingId: undefined,
             encodingConfidenceLevel: undefined,
             fileTypeConfig,
@@ -119,7 +120,7 @@ async function previewFileBytes(fileBytes: Uint8Array): Promise<PreviewConfig> {
 
     return {
         bytes: fileBytes,
-        dataFormatId: lookupFileTypeConfig.isSupported ? (fileTypeConfig.ext as DataFormatId) : undefined,
+        dataFormatId: undefined,
         encodingId: undefined,
         encodingConfidenceLevel: undefined,
         fileTypeConfig,

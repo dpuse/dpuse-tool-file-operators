@@ -8299,16 +8299,16 @@ async function $e(i) {
     };
   }
   const x = Qe[e.ext];
-  return x == null ? {
+  return x != null ? {
     bytes: i,
-    dataFormatId: void 0,
+    dataFormatId: x.isSupported ? e.ext : void 0,
     encodingId: void 0,
     encodingConfidenceLevel: void 0,
     fileTypeConfig: e,
     text: void 0
   } : {
     bytes: i,
-    dataFormatId: x.isSupported ? e.ext : void 0,
+    dataFormatId: void 0,
     encodingId: void 0,
     encodingConfidenceLevel: void 0,
     fileTypeConfig: e,

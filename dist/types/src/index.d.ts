@@ -1,5 +1,5 @@
 import { FileTypeResult } from 'file-type';
-import { DataFormatId } from '@datapos/datapos-shared';
+import { DataFormatId } from '@datapos/datapos-shared/component/dataView';
 interface PreviewConfig {
     bytes: Uint8Array;
     dataFormatId: DataFormatId | undefined;
