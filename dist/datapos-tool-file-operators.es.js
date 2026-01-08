@@ -8270,8 +8270,7 @@ class rx {
    */
   async previewFile(e, x, t) {
     const a = await fetch(encodeURI(e), { headers: { Range: `bytes=0-${t ?? Ze - 1}` }, signal: x });
-    if (!a.ok)
-      throw await Ae(a, `Failed to fetch '${e}' file.`, "datapos-tool-file-operators.previewRemoteFile");
+    if (!a.ok) throw await Ae(a, `Failed to fetch '${e}' file.`, "datapos-tool-file-operators.previewRemoteFile");
     const n = new Uint8Array(await a.arrayBuffer());
     return await $e(n);
   }

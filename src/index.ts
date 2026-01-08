@@ -42,8 +42,10 @@ const FILE_TYPE_MAP: Record<string, { label: string; isAutoDetectable: boolean; 
     xml: { label: 'eXtensible markup language.', isAutoDetectable: true, isSupported: false, notes: '' }
 };
 
-// Preview configuration interface.
-interface PreviewConfig {
+/**
+ * File preview configuration.
+ */
+interface FilePreviewConfig {
     bytes: Uint8Array;
     dataFormatId: DataFormatId | undefined;
     encodingId: string | undefined;
@@ -59,24 +61,23 @@ class Tool {
     /**
      * Preview file.
      */
-    async previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<PreviewConfig> {
+    async previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<FilePreviewConfig> {
         const response = await fetch(encodeURI(url), { headers: { Range: `bytes=0-${chunkSize ?? DEFAULT_PREVIEW_CHUNK_SIZE - 1}` }, signal });
-        if (!response.ok) {
-            throw await buildFetchError(response, `Failed to fetch '${url}' file.`, 'datapos-tool-file-operators.previewRemoteFile');
-        }
-        const fileBytes = new Uint8Array(await response.arrayBuffer());
+        if (!response.ok) throw await buildFetchError(response, `Failed to fetch '${url}' file.`, 'datapos-tool-file-operators.previewRemoteFile');
 
+        const fileBytes = new Uint8Array(await response.arrayBuffer());
         return await previewFileBytes(fileBytes);
     }
 }
 
-//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region: Helpers.
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 /**
  * Preview file bytes.
  */
-async function previewFileBytes(fileBytes: Uint8Array): Promise<PreviewConfig> {
+async function previewFileBytes(fileBytes: Uint8Array): Promise<FilePreviewConfig> {
     if (fileBytes.length === 0) {
         return {
             bytes: fileBytes,
@@ -207,7 +208,7 @@ function truncateData(fileBytes: Uint8Array): Uint8Array {
     return transformedData;
 }
 
-//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 // Exports.
-export { type PreviewConfig, Tool };
+export { type FilePreviewConfig, Tool };

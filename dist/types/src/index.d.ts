@@ -1,6 +1,9 @@
 import { FileTypeResult } from 'file-type';
 import { DataFormatId } from '@datapos/datapos-shared/component/dataView';
-interface PreviewConfig {
+/**
+ * File preview configuration.
+ */
+interface FilePreviewConfig {
     bytes: Uint8Array;
     dataFormatId: DataFormatId | undefined;
     encodingId: string | undefined;
@@ -15,6 +18,6 @@ declare class Tool {
     /**
      * Preview file.
      */
-    previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<PreviewConfig>;
+    previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<FilePreviewConfig>;
 }
-export { type PreviewConfig, Tool };
+export { type FilePreviewConfig, Tool };
