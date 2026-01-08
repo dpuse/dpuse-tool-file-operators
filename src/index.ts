@@ -14,9 +14,31 @@ import type { EncodingConfig } from '@datapos/datapos-shared/encoding';
 // Data dependencies.
 import { encodingConfigMap } from '@datapos/datapos-shared/encoding';
 
-// Constants.
+/**
+ * File preview result.
+ */
+interface FilePreviewResult {
+    bytes: Uint8Array;
+    dataFormatId: DataFormatId | undefined;
+    encodingId: string | undefined;
+    encodingConfidenceLevel: number | undefined;
+    fileTypeConfig: FileTypeResult | undefined;
+    text: string | undefined;
+}
+
+/**
+ *
+ */
 const DEFAULT_PREVIEW_CHUNK_SIZE = 4096;
+
+/**
+ *
+ */
 const FALLBACK_ENCODING: EncodingConfig = { id: 'utf8', confidenceLevel: undefined };
+
+/**
+ *
+ */
 const FILE_TYPE_MAP: Record<string, { label: string; isAutoDetectable: boolean; isSupported: boolean; magicBytes?: number[]; notes: string }> = {
     arrow: { label: 'Columnar format for tables of data.', isAutoDetectable: true, isSupported: false, notes: '' },
     avro: { label: 'Object container file developed by Apache Avro.', isAutoDetectable: true, isSupported: false, notes: '' },
@@ -43,25 +65,13 @@ const FILE_TYPE_MAP: Record<string, { label: string; isAutoDetectable: boolean; 
 };
 
 /**
- * File preview configuration.
- */
-interface FilePreviewConfig {
-    bytes: Uint8Array;
-    dataFormatId: DataFormatId | undefined;
-    encodingId: string | undefined;
-    encodingConfidenceLevel: number | undefined;
-    fileTypeConfig: FileTypeResult | undefined;
-    text: string | undefined;
-}
-
-/**
  * Tool.
  */
 class Tool {
     /**
      * Preview file.
      */
-    async previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<FilePreviewConfig> {
+    async previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<FilePreviewResult> {
         const response = await fetch(encodeURI(url), { headers: { Range: `bytes=0-${chunkSize ?? DEFAULT_PREVIEW_CHUNK_SIZE - 1}` }, signal });
         if (!response.ok) throw await buildFetchError(response, `Failed to fetch '${url}' file.`, 'datapos-tool-file-operators.previewRemoteFile');
 
@@ -77,7 +87,7 @@ class Tool {
 /**
  * Preview file bytes.
  */
-async function previewFileBytes(fileBytes: Uint8Array): Promise<FilePreviewConfig> {
+async function previewFileBytes(fileBytes: Uint8Array): Promise<FilePreviewResult> {
     if (fileBytes.length === 0) {
         return {
             bytes: fileBytes,
@@ -211,4 +221,4 @@ function truncateData(fileBytes: Uint8Array): Uint8Array {
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 // Exports.
-export { type FilePreviewConfig, Tool };
+export { type FilePreviewResult, Tool };
