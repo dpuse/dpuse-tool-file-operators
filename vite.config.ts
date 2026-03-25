@@ -21,7 +21,7 @@ export default defineConfig({
             formats: ['es'] // Only emit native ES modules.
         },
         rollupOptions: {
-            external: [/^https:\/\/engine-eu\.datapos\.app\//],
+            external: [/^https:\/\/engine-eu\.dpuse\.app\//],
             plugins: [
                 Sonda({
                     filename: 'index', // Output file name.

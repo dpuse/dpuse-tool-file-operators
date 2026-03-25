@@ -7,12 +7,12 @@ import chardet from 'chardet';
 import { fileTypeFromBuffer, type FileTypeResult } from 'file-type';
 
 // Framework dependencies.
-import { buildFetchError } from '@datapos/datapos-shared/errors';
-import type { DataFormatId } from '@datapos/datapos-shared/component/dataView';
-import type { EncodingConfig } from '@datapos/datapos-shared/encoding';
+import { buildFetchError } from '@dpuse/dpuse-shared/errors';
+import type { DataFormatId } from '@dpuse/dpuse-shared/component/dataView';
+import type { EncodingConfig } from '@dpuse/dpuse-shared/encoding';
 
 // Data dependencies.
-import { encodingConfigMap } from '@datapos/datapos-shared/encoding';
+import { encodingConfigMap } from '@dpuse/dpuse-shared/encoding';
 
 /**
  * File preview result.
@@ -73,7 +73,7 @@ class Tool {
      */
     async previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<FilePreviewResult> {
         const response = await fetch(encodeURI(url), { headers: { Range: `bytes=0-${chunkSize ?? DEFAULT_PREVIEW_CHUNK_SIZE - 1}` }, signal });
-        if (!response.ok) throw await buildFetchError(response, `Failed to fetch '${url}' file.`, 'datapos-tool-file-operators.previewRemoteFile');
+        if (!response.ok) throw await buildFetchError(response, `Failed to fetch '${url}' file.`, 'dpuse-tool-file-operators.previewRemoteFile');
 
         const fileBytes = new Uint8Array(await response.arrayBuffer());
         return await previewFileBytes(fileBytes);

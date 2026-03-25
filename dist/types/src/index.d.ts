@@ -1,5 +1,5 @@
 import { FileTypeResult } from 'file-type';
-import { DataFormatId } from '@datapos/datapos-shared/component/dataView';
+import { DataFormatId } from '@dpuse/dpuse-shared/component/dataView';
 /**
  * File preview result.
  */

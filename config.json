@@ -1,5 +1,5 @@
 {
-    "id": "datapos-tool-file-operators",
+    "id": "dpuse-tool-file-operators",
     "label": {
         "en-gb": "File Operators"
     },
@@ -8,5 +8,5 @@
     },
     "statusId": "alpha",
     "typeId": "tool",
-    "version": "0.0.16"
+    "version": "0.0.17"
 }
