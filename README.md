@@ -3,7 +3,8 @@
 [![npm version](https://img.shields.io/npm/v/@dpuse/dpuse-tool-file-operators.svg)](https://www.npmjs.com/package/@dpuse/dpuse-tool-file-operators)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 <span><!-- OWASP_BADGES_START -->
-[![OWASP](https://img.shields.io/badge/OWASP-passed-4CAF50)](https://dpuse.github.io/dpuse-tool-file-operators/dependency-check-reports/dependency-check-report.html)<!-- OWASP_BADGES_END --></span>
+[![OWASP](https://img.shields.io/badge/OWASP-passed-4CAF50)](https://dpuse.github.io/dpuse-tool-file-operators/dependency-check-reports/dependency-check-report.html)
+<!-- OWASP_BADGES_END --></span>
 
 <!-- DEPENDENCY_LICENSES_START -->
 |Name|Type|Installed|Latest|Latest Released|Deps|Document|
