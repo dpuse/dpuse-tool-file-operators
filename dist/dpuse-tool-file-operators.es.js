@@ -9029,13 +9029,12 @@ var en = {
 	}
 }, an = class {
 	async previewFile(e, t, n) {
-		console.log(4444, e);
 		let r = await fetch(encodeURI(e), {
 			headers: { Range: `bytes=0-${n ?? tn - 1}` },
 			signal: t
 		});
-		if (console.log(5555), !r.ok) throw await Zt(r, `Failed to fetch '${e}' file.`, "dpuse-tool-file-operators.previewRemoteFile");
-		return console.log(7777), await on(new Uint8Array(await r.arrayBuffer()));
+		if (!r.ok) throw await Zt(r, `Failed to fetch '${e}' file.`, "dpuse-tool-file-operators.previewRemoteFile");
+		return await on(new Uint8Array(await r.arrayBuffer()));
 	}
 };
 async function on(e) {
