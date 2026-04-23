@@ -9035,7 +9035,7 @@ var en = {
 			signal: t
 		});
 		if (console.log(5555), !r.ok) throw await Zt(r, `Failed to fetch '${e}' file.`, "dpuse-tool-file-operators.previewRemoteFile");
-		return console.log(6666), await on(new Uint8Array(await r.arrayBuffer()));
+		return console.log(7777), await on(new Uint8Array(await r.arrayBuffer()));
 	}
 };
 async function on(e) {

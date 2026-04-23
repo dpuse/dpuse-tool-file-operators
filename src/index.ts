@@ -76,7 +76,7 @@ class Tool {
         const response = await fetch(encodeURI(url), { headers: { Range: `bytes=0-${chunkSize ?? DEFAULT_PREVIEW_CHUNK_SIZE - 1}` }, signal });
         console.log(5555);
         if (!response.ok) throw await buildFetchError(response, `Failed to fetch '${url}' file.`, 'dpuse-tool-file-operators.previewRemoteFile');
-        console.log(6666);
+        console.log(7777);
 
         const fileBytes = new Uint8Array(await response.arrayBuffer());
         return await previewFileBytes(fileBytes);
