@@ -1,9 +1,6 @@
 import { FileTypeResult } from 'file-type';
 import { DataFormatId } from '@dpuse/dpuse-shared/component/dataView';
-/**
- * File preview result.
- */
-interface FilePreviewResult {
+export interface FilePreviewResult {
     bytes: Uint8Array;
     dataFormatId: DataFormatId | undefined;
     encodingId: string | undefined;
@@ -11,13 +8,6 @@ interface FilePreviewResult {
     fileTypeConfig: FileTypeResult | undefined;
     text: string | undefined;
 }
-/**
- * Tool.
- */
-declare class Tool {
-    /**
-     * Preview file.
-     */
+export declare class Tool {
     previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<FilePreviewResult>;
 }
-export { type FilePreviewResult, Tool };

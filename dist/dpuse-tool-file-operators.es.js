@@ -772,7 +772,7 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 	var t = e && e.__importDefault || function(e) {
 		return e && e.__esModule ? e : { default: e };
 	};
-	Object.defineProperty(e, "__esModule", { value: !0 }), e.KOI8_R = e.windows_1256 = e.windows_1251 = e.ISO_8859_9 = e.ISO_8859_8 = e.ISO_8859_7 = e.ISO_8859_6 = e.ISO_8859_5 = e.ISO_8859_2 = e.ISO_8859_1 = void 0;
+	Object.defineProperty(e, "__esModule", { value: !0 }), e.KOI8_R = e.windows_874 = e.windows_1258 = e.windows_1257 = e.windows_1256 = e.windows_1251 = e.ISO_8859_9 = e.ISO_8859_8 = e.ISO_8859_7 = e.ISO_8859_6 = e.ISO_8859_5 = e.ISO_8859_2 = e.ISO_8859_1 = void 0;
 	var n = t(u()), r = 16777215, i = class {
 		constructor(e, t) {
 			this.byteIndex = 0, this.ngram = 0, this.ngramCount = 0, this.hitCount = 0, this.spaceChar = 32, this.ngramList = e, this.byteMap = t;
@@ -4705,6 +4705,407 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 		language() {
 			return "ar";
 		}
+	}, e.windows_1257 = class extends s {
+		match(e) {
+			return e.inputBytes.some((e) => e >= 128) ? super.match(e) : null;
+		}
+		byteMap() {
+			let e = Array(256).fill(32);
+			e[39] = 0;
+			for (let t = 65; t <= 90; t++) e[t] = t + 32;
+			for (let t = 97; t <= 122; t++) e[t] = t;
+			e[142] = 142, e[168] = e[184] = 184, e[170] = e[186] = 186, e[175] = e[191] = 191, e[181] = 181;
+			for (let t = 192; t <= 214; t++) e[t] = t + 32;
+			for (let t = 216; t <= 222; t++) e[t] = t + 32;
+			e[223] = 223;
+			for (let t = 224; t <= 246; t++) e[t] = t;
+			for (let t = 248; t <= 254; t++) e[t] = t;
+			return e;
+		}
+		ngrams() {
+			return [
+				new a("et", [
+					2122090,
+					2122098,
+					2123109,
+					2124135,
+					2124385,
+					2124641,
+					2124645,
+					2124649,
+					2124655,
+					2124661,
+					2124897,
+					2125417,
+					2125678,
+					2126441,
+					2126693,
+					2126949,
+					6365281,
+					6365290,
+					6365291,
+					6365292,
+					6382112,
+					6382624,
+					6384499,
+					6386549,
+					6386785,
+					6387297,
+					6561908,
+					6578464,
+					6583667,
+					6627435,
+					6627443,
+					6645100,
+					6645107,
+					6646816,
+					6646885,
+					6646900,
+					6648608,
+					6648692,
+					6889579,
+					6906912,
+					6910570,
+					6910752,
+					6971680,
+					7037299,
+					7038309,
+					7039346,
+					7040879,
+					7041893,
+					7041908,
+					7104875,
+					7107616,
+					7544929,
+					7544939,
+					7562528,
+					7562604,
+					7566437,
+					7566441,
+					7566708,
+					7627115,
+					7627124,
+					7629088,
+					7697184,
+					7697253,
+					7697505
+				]),
+				new a("lv", [
+					2122098,
+					2122601,
+					2122849,
+					2124146,
+					2124154,
+					2124897,
+					2125282,
+					2125921,
+					2125938,
+					2126433,
+					2126689,
+					2126699,
+					2126949,
+					2127214,
+					2127457,
+					6365289,
+					6365301,
+					6365302,
+					6382185,
+					6383904,
+					6384499,
+					6384751,
+					6385778,
+					6386293,
+					6386464,
+					6386806,
+					6449509,
+					6452512,
+					6515052,
+					6515060,
+					6578464,
+					6578546,
+					6583584,
+					6584864,
+					6644850,
+					6646123,
+					6646643,
+					6647393,
+					6648608,
+					6680693,
+					6889577,
+					6907236,
+					6907376,
+					6908642,
+					6909046,
+					7041908,
+					7102836,
+					7106404,
+					7233824,
+					7300193,
+					7496043,
+					7501166,
+					7544947,
+					7544949,
+					7544950,
+					7566453,
+					7566574,
+					7632160,
+					7632489,
+					7676022,
+					7695904,
+					7697184,
+					7758188,
+					14840608
+				]),
+				new a("lt", [
+					2122089,
+					2122341,
+					2124146,
+					2124641,
+					2124905,
+					2125167,
+					2126433,
+					2126689,
+					2126699,
+					2126709,
+					2126945,
+					2126949,
+					2126965,
+					2127457,
+					2127465,
+					6365300,
+					6365424,
+					6383904,
+					6383988,
+					6384112,
+					6384738,
+					6384993,
+					6385268,
+					6386274,
+					6386292,
+					6386976,
+					6387050,
+					6418553,
+					6447392,
+					6448489,
+					6448494,
+					6647401,
+					6648949,
+					6889569,
+					6889577,
+					6889579,
+					6889581,
+					6906217,
+					6907246,
+					6907252,
+					6909543,
+					6910496,
+					6910752,
+					6942827,
+					6971757,
+					6972704,
+					7037289,
+					7037292,
+					7103073,
+					7104869,
+					7170419,
+					7171947,
+					7269152,
+					7301733,
+					7302009,
+					7303968,
+					7496176,
+					7544937,
+					7544939,
+					7544950,
+					7564129,
+					7629088,
+					7632246,
+					7957356
+				])
+			];
+		}
+		name() {
+			return "windows-1257";
+		}
+	}, e.windows_1258 = class extends s {
+		match(e) {
+			return e.inputBytes.some((e) => e >= 128) ? super.match(e) : null;
+		}
+		byteMap() {
+			let e = Array(256).fill(32);
+			e[39] = 0;
+			for (let t = 65; t <= 90; t++) e[t] = t + 32;
+			for (let t = 97; t <= 122; t++) e[t] = t;
+			e[131] = 131, e[136] = 136, e[140] = e[156] = 156, e[159] = 255, e[170] = 170, e[181] = 181, e[186] = 186;
+			for (let t = 192; t <= 203; t++) e[t] = t + 32;
+			e[204] = 204;
+			for (let t = 205; t <= 209; t++) e[t] = t + 32;
+			e[210] = 210;
+			for (let t = 211; t <= 214; t++) e[t] = t + 32;
+			for (let t = 216; t <= 221; t++) e[t] = t + 32;
+			e[222] = 222, e[223] = 223;
+			for (let t = 224; t <= 246; t++) e[t] = t;
+			for (let t = 248; t <= 253; t++) e[t] = t;
+			return e[255] = 255, e;
+		}
+		ngrams() {
+			return [
+				2122600,
+				2122721,
+				2123625,
+				2123887,
+				2125415,
+				2125928,
+				2126952,
+				2126953,
+				2126962,
+				2127465,
+				2127584,
+				6419060,
+				6496355,
+				6496374,
+				6514720,
+				6514925,
+				6545763,
+				6758504,
+				6758510,
+				6758516,
+				6758518,
+				6812782,
+				6815198,
+				6815221,
+				6824052,
+				6844402,
+				6876526,
+				6889582,
+				6889588,
+				6941394,
+				6941420,
+				6941426,
+				7217251,
+				7217262,
+				7217268,
+				7235360,
+				7235572,
+				7235581,
+				7235616,
+				7302759,
+				7336547,
+				7610483,
+				7629053,
+				7629290,
+				7631471,
+				7676020,
+				7760362,
+				7790624,
+				13396256,
+				13397607,
+				14557288,
+				14771048,
+				15395950,
+				15397492,
+				15494759,
+				15496224,
+				15560296,
+				15885088,
+				15886624,
+				15887904,
+				15889440,
+				16018976,
+				16108649,
+				16643532
+			];
+		}
+		name() {
+			return "windows-1258";
+		}
+		language() {
+			return "vi";
+		}
+	}, e.windows_874 = class extends s {
+		byteMap() {
+			let e = Array(256).fill(32);
+			e[39] = 0;
+			for (let t = 65; t <= 90; t++) e[t] = t + 32;
+			for (let t = 97; t <= 122; t++) e[t] = t;
+			for (let t = 161; t <= 218; t++) e[t] = t;
+			for (let t = 223; t <= 251; t++) e[t] = t;
+			return e;
+		}
+		ngrams() {
+			return [
+				2138578,
+				2138856,
+				2146514,
+				2148291,
+				2154949,
+				10604985,
+				10605251,
+				10669479,
+				10671554,
+				10799058,
+				11064263,
+				11195847,
+				11200960,
+				11200995,
+				11910083,
+				12042976,
+				12042979,
+				12047848,
+				12132544,
+				12165586,
+				12173522,
+				12305360,
+				12314553,
+				12636873,
+				12828960,
+				12829619,
+				12829633,
+				12832936,
+				12832994,
+				12837026,
+				13091779,
+				13095353,
+				13095617,
+				13096117,
+				13226679,
+				13226724,
+				13293544,
+				13477063,
+				13674707,
+				13689538,
+				13744416,
+				13805473,
+				13812171,
+				13812452,
+				13812512,
+				13812704,
+				13814226,
+				13821111,
+				13879249,
+				13940155,
+				14009017,
+				14010324,
+				14149837,
+				14721749,
+				14728167,
+				14796240,
+				14860964,
+				14920425,
+				14924193,
+				14989250,
+				15258279,
+				15262634,
+				15319250,
+				15328185
+			];
+		}
+		name() {
+			return "windows-874";
+		}
+		language() {
+			return "th";
+		}
 	}, e.KOI8_R = class extends s {
 		byteMap() {
 			return [
@@ -5289,6 +5690,9 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 		new f.ISO_8859_9(),
 		new f.windows_1251(),
 		new f.windows_1256(),
+		new f.windows_1257(),
+		new f.windows_1258(),
+		new f.windows_874(),
 		new f.KOI8_R(),
 		new o.default()
 	];
@@ -5671,7 +6075,7 @@ function we(e) {
 //#region node_modules/strtok3/lib/AbstractTokenizer.js
 var E = class {
 	constructor(e) {
-		this.numBuffer = new Uint8Array(8), this.position = 0, this.onClose = e?.onClose, e?.abortSignal && e.abortSignal.addEventListener("abort", () => {
+		this.numBuffer = /* @__PURE__ */ new Uint8Array(8), this.position = 0, this.onClose = e?.onClose, e?.abortSignal && e.abortSignal.addEventListener("abort", () => {
 			this.abort();
 		});
 	}
@@ -6227,7 +6631,7 @@ var He = class {
 	inflate() {
 		let e = this.tokenizer;
 		return new ReadableStream({ async pull(t) {
-			let n = new Uint8Array(1024), r = await e.readBuffer(n, { mayBeLess: !0 });
+			let n = /* @__PURE__ */ new Uint8Array(1024), r = await e.readBuffer(n, { mayBeLess: !0 });
 			if (r === 0) {
 				t.close();
 				return;
@@ -6246,7 +6650,7 @@ function qe(e) {
 	if (!Ke(e)) throw TypeError(`Expected \`Uint8Array\`, got \`${typeof e}\``);
 }
 function Je(e, t) {
-	if (e.length === 0) return new Uint8Array();
+	if (e.length === 0) return /* @__PURE__ */ new Uint8Array();
 	t ??= e.reduce((e, t) => e + t.length, 0);
 	let n = new Uint8Array(t), r = 0;
 	for (let t of e) qe(t), n.set(t, r), r += t.length;
@@ -6329,7 +6733,7 @@ function V(e, t, n) {
 }
 //#endregion
 //#region node_modules/file-type/source/detectors/zip.js
-var H = 1024 * 1024, U = 1024, et = 2 ** 31 - 1, W = H, tt = new Set([
+var H = 1024 * 1024, U = 1024, et = 2 ** 31 - 1, W = H, tt = /* @__PURE__ */ new Set([
 	"Unexpected signature",
 	"Encrypted ZIP",
 	"Expected Central-File-Header signature"
@@ -6339,7 +6743,7 @@ var H = 1024 * 1024, U = 1024, et = 2 ** 31 - 1, W = H, tt = new Set([
 	"ZIP entry compressed data exceeds ",
 	"ZIP entry decompressed data exceeds ",
 	"Expected data-descriptor-signature at position "
-], rt = new Set([
+], rt = /* @__PURE__ */ new Set([
 	"Z_BUF_ERROR",
 	"Z_DATA_ERROR",
 	"ERR_INVALID_STATE"
@@ -6756,7 +7160,7 @@ async function Dt(e) {
 				if (i && l.length > Tt) return s && Et(l.type) ? t : void 0;
 				try {
 					await L(e, l.length + 4, {
-						maximumLength: i ? Tt + 4 : e.fileInfo.size,
+						maximumLength: i ? 1048580 : e.fileInfo.size,
 						reason: "PNG chunk payload"
 					});
 				} catch (e) {
@@ -6775,7 +7179,7 @@ async function At(e) {
 	let t = !1;
 	try {
 		async function n() {
-			let t = new Uint8Array(16);
+			let t = /* @__PURE__ */ new Uint8Array(16);
 			return await R(e, t, void 0, {
 				maximumLength: t.length,
 				reason: "ASF header GUID"
@@ -6813,7 +7217,7 @@ async function At(e) {
 				83,
 				101
 			])) {
-				let t = new Uint8Array(16);
+				let t = /* @__PURE__ */ new Uint8Array(16);
 				if (o -= await R(e, t, void 0, {
 					maximumLength: t.length,
 					reason: "ASF stream type GUID"
@@ -7254,7 +7658,7 @@ var qt = class e {
 		])) return vt(e);
 		if (this.checkString("OggS")) {
 			await e.ignore(28);
-			let t = new Uint8Array(8);
+			let t = /* @__PURE__ */ new Uint8Array(8);
 			return await e.readBuffer(t), z(t, [
 				79,
 				112,
@@ -8490,7 +8894,7 @@ var Jt = 2048, Yt = class extends Error {
 	}
 };
 async function Zt(e, t, n) {
-	let r = ` - ${e.statusText}`, i = `${t} Response status '${e.status}${e.statusText ? r : ""}' received.`, a;
+	let r = ` - ${e.statusText}`, i = `${t} Response status '${String(e.status)}${e.statusText ? r : ""}' received.`, a;
 	try {
 		a = await e.text();
 	} catch (e) {

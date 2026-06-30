@@ -1,6 +1,6 @@
 {
     "name": "@dpuse/dpuse-tool-file-operators",
-    "version": "0.0.25",
+    "version": "0.0.26",
     "private": false,
     "description": "",
     "license": "MIT",
@@ -50,7 +50,7 @@
         "file-type": "^22.0.1"
     },
     "devDependencies": {
-        "@dpuse/dpuse-development": "^0.3.602",
+        "@dpuse/dpuse-development": "^0.3.603",
         "@eslint-community/eslint-plugin-eslint-comments": "^4.7.2",
         "@types/eslint-plugin-security": "^3.0.1",
         "@types/node": "^26.0.1",
