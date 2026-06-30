@@ -1,23 +1,18 @@
-/**
- * File operations tool.
- */
-
-// Vendor dependencies.
+// ── External Dependencies & Registrations
 import chardet from 'chardet';
 import { fileTypeFromBuffer, type FileTypeResult } from 'file-type';
 
-// Framework dependencies.
+// ── DPUse Framework
 import { buildFetchError } from '@dpuse/dpuse-shared/errors';
 import type { DataFormatId } from '@dpuse/dpuse-shared/component/dataView';
 import type { EncodingConfig } from '@dpuse/dpuse-shared/encoding';
 
-// Data dependencies.
+// ── Data
 import { encodingConfigMap } from '@dpuse/dpuse-shared/encoding';
 
-/**
- * File preview result.
- */
-interface FilePreviewResult {
+// ── Types ────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+export interface FilePreviewResult {
     bytes: Uint8Array;
     dataFormatId: DataFormatId | undefined;
     encodingId: string | undefined;
@@ -26,19 +21,12 @@ interface FilePreviewResult {
     text: string | undefined;
 }
 
-/**
- *
- */
+// ── Constants ────────────────────────────────────────────────────────────────────────────────────────────────────────
+
 const DEFAULT_PREVIEW_CHUNK_SIZE = 4096;
 
-/**
- *
- */
 const FALLBACK_ENCODING: EncodingConfig = { id: 'utf8', confidenceLevel: undefined };
 
-/**
- *
- */
 const FILE_TYPE_MAP: Record<string, { label: string; isAutoDetectable: boolean; isSupported: boolean; magicBytes?: number[]; notes: string }> = {
     arrow: { label: 'Columnar format for tables of data.', isAutoDetectable: true, isSupported: false, notes: '' },
     avro: { label: 'Object container file developed by Apache Avro.', isAutoDetectable: true, isSupported: false, notes: '' },
@@ -64,13 +52,9 @@ const FILE_TYPE_MAP: Record<string, { label: string; isAutoDetectable: boolean; 
     xml: { label: 'eXtensible markup language.', isAutoDetectable: true, isSupported: false, notes: '' }
 };
 
-/**
- * Tool.
- */
-class Tool {
-    /**
-     * Preview file.
-     */
+// ── Tools ────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+export class Tool {
     async previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<FilePreviewResult> {
         const response = await fetch(encodeURI(url), { headers: { Range: `bytes=0-${chunkSize ?? DEFAULT_PREVIEW_CHUNK_SIZE - 1}` }, signal });
         if (!response.ok) throw await buildFetchError(response, `Failed to fetch '${url}' file.`, 'dpuse-tool-file-operators.previewRemoteFile');
@@ -80,13 +64,8 @@ class Tool {
     }
 }
 
-//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//#region: Helpers.
-//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ── Helpers ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-/**
- * Preview file bytes.
- */
 async function previewFileBytes(fileBytes: Uint8Array): Promise<FilePreviewResult> {
     if (fileBytes.length === 0) {
         return {
@@ -166,9 +145,6 @@ function decodeFileBytes(fileBytes: Uint8Array, encoding: EncodingConfig): { enc
     }
 }
 
-/**
- * Is likely JSON format.
- */
 function isLikelyJSONFormat(text: string): boolean {
     const trimmedText = text.trimStart();
     if (trimmedText.length > 2) {
@@ -217,8 +193,3 @@ function truncateData(fileBytes: Uint8Array): Uint8Array {
     }
     return transformedData;
 }
-
-//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-// Exports.
-export { type FilePreviewResult, Tool };
