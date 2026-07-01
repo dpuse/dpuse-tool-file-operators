@@ -8,6 +8,7 @@
         "moduleResolution": "bundler", // Resolve modules like a bundler (needed for aliases and imports such as 'sonda/vite').
         "noUncheckedIndexedAccess": true, // Enforce checks when indexing into objects or arrays.
         "noImplicitAny": true, // Disallow implicit any types to keep everything typed.
+        "noPropertyAccessFromIndexSignature": true,
         "outDir": "dist", // Place compiler output in dist/.
         "paths": {
             // Configure import aliases used across the project.

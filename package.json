@@ -1,6 +1,6 @@
 {
     "name": "@dpuse/dpuse-tool-file-operators",
-    "version": "0.0.33",
+    "version": "0.0.34",
     "private": false,
     "description": "",
     "license": "MIT",
@@ -48,15 +48,15 @@
         "test": "node -e \"import('@dpuse/dpuse-development').then(m => m.testProject())\""
     },
     "dependencies": {
-        "@dpuse/dpuse-shared": "^0.3.723",
+        "@dpuse/dpuse-shared": "^0.3.727",
         "chardet": "^2.2.0",
         "file-type": "^22.0.1"
     },
     "devDependencies": {
-        "@dpuse/dpuse-development": "^0.3.617",
+        "@dpuse/dpuse-development": "^0.3.624",
         "@eslint-community/eslint-plugin-eslint-comments": "^4.7.2",
         "@types/eslint-plugin-security": "^3.0.1",
-        "@types/node": "^26.0.1",
+        "@types/node": "^26.1.0",
         "eslint": "^10.6.0",
         "eslint-config-prettier": "^10.1.8",
         "eslint-import-resolver-typescript": "^4.4.5",
