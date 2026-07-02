@@ -45,7 +45,7 @@
 
 |Chunk/Module/File|Composition|
 |:------ |:-----------|
-| dist/dpuse-tool-file-operators.es.js | 163.6 kB · gz 36.3 kB · br 28.9 kB |
+| dist/dpuse-tool-file-operators.es.js | 163.6 kB · brotli 28.9 kB |
 | &nbsp;&nbsp;&nbsp;&nbsp;chardet | `██████░░░░░░░░░░░░░░` 29.5% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/encoding/sbcs.js | `████░░░░░░░░░░░░░░░░` 20.2% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/encoding/mbcs.js | `█░░░░░░░░░░░░░░░░░░░` 4.3% |
