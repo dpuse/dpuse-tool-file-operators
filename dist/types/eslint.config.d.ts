@@ -1,2 +1,3 @@
-declare const _default: import('eslint/config').Config[];
-export default _default;
+import { Linter } from 'eslint';
+declare const config: Linter.Config[];
+export default config;
