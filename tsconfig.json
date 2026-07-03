@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "allowJs": true,
         "declaration": true, // Emit .d.ts files so consumers get typings.
         "esModuleInterop": true, // Allow default-import syntax for CommonJS packages.
         "isolatedModules": true, // Treat each file as a separate module; keeps Vite happy.
