@@ -1,17 +1,19 @@
 {
     "name": "@dpuse/dpuse-tool-file-operators",
-    "version": "0.0.45",
+    "version": "0.0.46",
     "private": false,
     "description": "",
     "license": "MIT",
+    "author": "Jonathan Terrell <terrell.jm@gmail.com>",
     "type": "module",
+    "sideEffects": false,
     "homepage": "https://www.dpuse.app",
     "bugs": {
         "url": "https://github.com/dpuse/dpuse-tool-file-operators/issues"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/dpuse/dpuse-tool-file-operators.git"
+        "url": "git+https://github.com/dpuse/dpuse-tool-file-operators.git"
     },
     "module": "./dist/dpuse-tool-file-operators.es.js",
     "types": "./dist/types/src/index.d.ts",
