@@ -47,9 +47,13 @@ The dependency tree below lists every package in this project — direct and tra
 
 <!-- BUNDLE_START -->
 
+The Bundle Analysis Report is generated automatically on each release using [Sonda](https://sonda.dev/), which analyses final source maps to reveal the actual effects of tree-shaking and minification rather than relying on pre-build estimates.
+
+_Note: Sonda's Vite reports currently exclude CSS files, since Vite does not generate source maps for CSS._
+
 |Chunk/Module/File|Composition|
 |:------ |:-----------|
-| dist/dpuse-tool-file-operators.es.js | 163.6 kB · brotli 28.9 kB |
+| dist/dpuse-tool-file-operators.es.js | 163.6 kB · brotli 29.0 kB |
 | &nbsp;&nbsp;&nbsp;&nbsp;chardet | `██████░░░░░░░░░░░░░░` 29.5% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/encoding/sbcs.js | `████░░░░░░░░░░░░░░░░` 20.2% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/encoding/mbcs.js | `█░░░░░░░░░░░░░░░░░░░` 4.3% |
@@ -70,7 +74,7 @@ The dependency tree below lists every package in this project — direct and tra
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source/detectors/png.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source/parser.js | `░░░░░░░░░░░░░░░░░░░░` 0.5% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source/tokens.js | `░░░░░░░░░░░░░░░░░░░░` 0.4% |
-| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `█████░░░░░░░░░░░░░░░` 23.0% |
+| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `████░░░░░░░░░░░░░░░░` 20.4% |
 | &nbsp;&nbsp;&nbsp;&nbsp;strtok3 | `█░░░░░░░░░░░░░░░░░░░` 4.3% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/ReadStreamTokenizer.js | `░░░░░░░░░░░░░░░░░░░░` 0.9% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/AbstractTokenizer.js | `░░░░░░░░░░░░░░░░░░░░` 0.9% |
@@ -86,17 +90,17 @@ The dependency tree below lists every package in this project — direct and tra
 | &nbsp;&nbsp;&nbsp;&nbsp;@dpuse/dpuse-shared | `█░░░░░░░░░░░░░░░░░░░` 4.3% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dist/dpuse-shared-encoding.es.js | `█░░░░░░░░░░░░░░░░░░░` 3.6% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dist/dpuse-shared-errors.es.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
-| &nbsp;&nbsp;&nbsp;&nbsp;@tokenizer/inflate | `█░░░░░░░░░░░░░░░░░░░` 3.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;@tokenizer/inflate | `█░░░░░░░░░░░░░░░░░░░` 4.0% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/ZipHandler.js | `█░░░░░░░░░░░░░░░░░░░` 3.0% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/ZipToken.js | `░░░░░░░░░░░░░░░░░░░░` 0.7% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/GzipHandler.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/ZipToken.js | `░░░░░░░░░░░░░░░░░░░░` 0.0% |
 | &nbsp;&nbsp;&nbsp;&nbsp;debug | `█░░░░░░░░░░░░░░░░░░░` 3.1% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src/browser.js | `░░░░░░░░░░░░░░░░░░░░` 1.6% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src/common.js | `░░░░░░░░░░░░░░░░░░░░` 1.5% |
 | &nbsp;&nbsp;&nbsp;&nbsp;src → index.ts | `█░░░░░░░░░░░░░░░░░░░` 2.7% |
+| &nbsp;&nbsp;&nbsp;&nbsp;@borewit/text-codec → lib/index.js | `░░░░░░░░░░░░░░░░░░░░` 2.1% |
 | &nbsp;&nbsp;&nbsp;&nbsp;ms → index.js | `░░░░░░░░░░░░░░░░░░░░` 1.0% |
 | &nbsp;&nbsp;&nbsp;&nbsp;token-types → lib/index.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
 | &nbsp;&nbsp;&nbsp;&nbsp;uint8array-extras → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
-| &nbsp;&nbsp;&nbsp;&nbsp;@borewit/text-codec → lib/index.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
 
 <!-- BUNDLE_END -->

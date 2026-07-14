@@ -1,12 +1,12 @@
 {
     "id": "dpuse-tool-file-operators",
     "label": {
-        "en-gb": "File Operators"
+        "en": "File Operators"
     },
     "description": {
-        "en-gb": "..."
+        "en": "..."
     },
     "statusId": "alpha",
     "typeId": "tool",
-    "version": "0.0.48"
+    "version": "0.0.49"
 }
