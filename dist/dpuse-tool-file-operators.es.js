@@ -6641,7 +6641,7 @@ var He = class {
 	}
 }, Ue = Object.prototype.toString, We = "[object Uint8Array]";
 function Ge(e, t, n) {
-	return e ? e.constructor === t ? !0 : Ue.call(e) === n : !1;
+	return e ? e.constructor === t || Ue.call(e) === n : !1;
 }
 function Ke(e) {
 	return Ge(e, Uint8Array, We);
