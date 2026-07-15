@@ -9434,7 +9434,7 @@ var en = {
 }, an = class {
 	async previewFile(e, t, n) {
 		let r = await fetch(encodeURI(e), {
-			headers: { Range: `bytes=0-${n ?? tn - 1}` },
+			headers: { Range: `bytes=0-${String(n ?? tn - 1)}` },
 			signal: t
 		});
 		if (!r.ok) throw await Zt(r, `Failed to fetch '${e}' file.`, "dpuse-tool-file-operators.previewRemoteFile");
@@ -9517,7 +9517,7 @@ function cn(e, t) {
 function ln(e) {
 	let t = e.trimStart();
 	if (t.length > 2) {
-		let e = t[0], n = e === "{", r = e === "[", i = /"\s*:\s*/.test(t), a = /\b(true|false|null)\b/.test(t), o = t.includes("\"");
+		let e = t[0], n = e === "{", r = e === "[", i = /"\s*:\s*/.test(t), a = /\b(?:true|false|null)\b/.test(t), o = t.includes("\"");
 		return (n || r) && (i || a || o);
 	}
 	return !1;
@@ -9526,14 +9526,11 @@ function un(e) {
 	let t = e, n = t.length;
 	for (let e = n - 1; e >= 0; e--) {
 		let n = t[e];
-		if (n === 10) if (e > 0 && t[e - 1] === 13) {
+		if (n === 10 && e > 0 && t[e - 1] === 13) {
 			t = t.slice(0, e - 1);
 			break;
-		} else {
-			t = t.slice(0, e);
-			break;
 		}
-		else if (n === 13) {
+		if (n === 10 || n === 13) {
 			t = t.slice(0, e);
 			break;
 		}

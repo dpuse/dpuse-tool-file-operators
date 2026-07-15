@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "0.14.0",
-    "generatedAt": "2026-07-14T15:40:30.738Z",
+    "generatedAt": "2026-07-15T13:57:17.450Z",
     "integration": "vite",
     "sources": false,
     "gzip": false,
@@ -21,18 +21,18 @@
       "name": "[unassigned]",
       "type": "other",
       "format": "other",
-      "uncompressed": 34219,
+      "uncompressed": 34206,
       "gzip": 0,
-      "brotli": 684,
+      "brotli": 682,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
       "kind": "asset",
       "name": "dist/dpuse-tool-file-operators.es.js",
       "type": "script",
-      "uncompressed": 167563,
+      "uncompressed": 167535,
       "gzip": 0,
-      "brotli": 29680
+      "brotli": 29653
     },
     {
       "kind": "filesystem",
@@ -48,7 +48,7 @@
       "format": "esm",
       "uncompressed": 3457,
       "gzip": 0,
-      "brotli": 878,
+      "brotli": 877,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -82,7 +82,7 @@
       "format": "esm",
       "uncompressed": 1085,
       "gzip": 0,
-      "brotli": 386,
+      "brotli": 385,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -123,7 +123,7 @@
       "format": "esm",
       "uncompressed": 5038,
       "gzip": 0,
-      "brotli": 1283,
+      "brotli": 1282,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -140,7 +140,7 @@
       "format": "esm",
       "uncompressed": 1239,
       "gzip": 0,
-      "brotli": 310,
+      "brotli": 309,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -191,7 +191,7 @@
       "format": "cjs",
       "uncompressed": 7203,
       "gzip": 0,
-      "brotli": 1464,
+      "brotli": 1463,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -208,7 +208,7 @@
       "format": "cjs",
       "uncompressed": 33778,
       "gzip": 0,
-      "brotli": 4640,
+      "brotli": 4636,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -225,7 +225,7 @@
       "format": "cjs",
       "uncompressed": 1561,
       "gzip": 0,
-      "brotli": 446,
+      "brotli": 445,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -242,7 +242,7 @@
       "format": "cjs",
       "uncompressed": 895,
       "gzip": 0,
-      "brotli": 336,
+      "brotli": 335,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -276,7 +276,7 @@
       "format": "cjs",
       "uncompressed": 3327,
       "gzip": 0,
-      "brotli": 1020,
+      "brotli": 1019,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -293,7 +293,7 @@
       "format": "cjs",
       "uncompressed": 160,
       "gzip": 0,
-      "brotli": 93,
+      "brotli": 92,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -327,7 +327,7 @@
       "format": "cjs",
       "uncompressed": 2721,
       "gzip": 0,
-      "brotli": 744,
+      "brotli": 743,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -344,7 +344,7 @@
       "format": "cjs",
       "uncompressed": 2453,
       "gzip": 0,
-      "brotli": 858,
+      "brotli": 857,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -395,7 +395,7 @@
       "format": "esm",
       "uncompressed": 1010,
       "gzip": 0,
-      "brotli": 410,
+      "brotli": 409,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -412,7 +412,7 @@
       "format": "esm",
       "uncompressed": 10833,
       "gzip": 0,
-      "brotli": 2217,
+      "brotli": 2215,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -429,7 +429,7 @@
       "format": "esm",
       "uncompressed": 25206,
       "gzip": 0,
-      "brotli": 4855,
+      "brotli": 4850,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -446,7 +446,7 @@
       "format": "esm",
       "uncompressed": 831,
       "gzip": 0,
-      "brotli": 333,
+      "brotli": 332,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -463,7 +463,7 @@
       "format": "esm",
       "uncompressed": 4907,
       "gzip": 0,
-      "brotli": 1233,
+      "brotli": 1232,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -504,7 +504,7 @@
       "format": "cjs",
       "uncompressed": 1610,
       "gzip": 0,
-      "brotli": 485,
+      "brotli": 484,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -521,7 +521,7 @@
       "format": "esm",
       "uncompressed": 1463,
       "gzip": 0,
-      "brotli": 410,
+      "brotli": 409,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -538,7 +538,7 @@
       "format": "esm",
       "uncompressed": 671,
       "gzip": 0,
-      "brotli": 265,
+      "brotli": 264,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -589,7 +589,7 @@
       "format": "esm",
       "uncompressed": 1563,
       "gzip": 0,
-      "brotli": 462,
+      "brotli": 461,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -678,7 +678,7 @@
       "format": "esm",
       "uncompressed": 755,
       "gzip": 0,
-      "brotli": 274,
+      "brotli": 273,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     },
     {
@@ -754,16 +754,16 @@
       "name": "src/index.ts",
       "type": "script",
       "format": "esm",
-      "uncompressed": 7596
+      "uncompressed": 7518
     },
     {
       "kind": "chunk",
       "name": "src/index.ts",
       "type": "script",
       "format": "esm",
-      "uncompressed": 4562,
+      "uncompressed": 4547,
       "gzip": 0,
-      "brotli": 1026,
+      "brotli": 1031,
       "parent": "dist/dpuse-tool-file-operators.es.js"
     }
   ],

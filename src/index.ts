@@ -56,7 +56,7 @@ const FILE_TYPE_MAP: Record<string, { label: string; isAutoDetectable: boolean; 
 
 export class Tool {
     async previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<FilePreviewResult> {
-        const response = await fetch(encodeURI(url), { headers: { Range: `bytes=0-${chunkSize ?? DEFAULT_PREVIEW_CHUNK_SIZE - 1}` }, signal });
+        const response = await fetch(encodeURI(url), { headers: { Range: `bytes=0-${String(chunkSize ?? DEFAULT_PREVIEW_CHUNK_SIZE - 1)}` }, signal });
         if (!response.ok) throw await buildFetchError(response, `Failed to fetch '${url}' file.`, 'dpuse-tool-file-operators.previewRemoteFile');
 
         const fileBytes = new Uint8Array(await response.arrayBuffer());
@@ -152,7 +152,7 @@ function isLikelyJSONFormat(text: string): boolean {
         const isObjectStart = firstChar === '{';
         const isArrayStart = firstChar === '[';
         const hasKeyValue = /"\s*:\s*/.test(trimmedText); // "key": something
-        const hasJSONLiterals = /\b(true|false|null)\b/.test(trimmedText);
+        const hasJSONLiterals = /\b(?:true|false|null)\b/.test(trimmedText);
         const hasQuotes = trimmedText.includes('"');
         return (isObjectStart || isArrayStart) && (hasKeyValue || hasJSONLiterals || hasQuotes);
     }
@@ -164,7 +164,7 @@ function isLikelyJSONFormat(text: string): boolean {
  */
 function isLikelyXMLFormat(text: string): boolean {
     const trimmedText = text.trimStart();
-    return trimmedText.startsWith('<?xml') || /^<([a-zA-Z_][\w\-.:]*)[\s>]/.test(trimmedText);
+    return trimmedText.startsWith('<?xml') || /^<[a-z_][\w\-.:]*[\s>]/i.test(trimmedText);
 }
 
 /**
@@ -176,17 +176,12 @@ function truncateData(fileBytes: Uint8Array): Uint8Array {
     let transformedData = fileBytes;
     const characterCount = transformedData.length;
     for (let characterIndex = characterCount - 1; characterIndex >= 0; characterIndex--) {
-        // eslint-disable-next-line security/detect-object-injection
         const character = transformedData[characterIndex];
-        if (character === 10) {
-            if (characterIndex > 0 && transformedData[characterIndex - 1] === 13) {
-                transformedData = transformedData.slice(0, characterIndex - 1);
-                break;
-            } else {
-                transformedData = transformedData.slice(0, characterIndex);
-                break;
-            }
-        } else if (character === 13) {
+        if (character === 10 && characterIndex > 0 && transformedData[characterIndex - 1] === 13) {
+            transformedData = transformedData.slice(0, characterIndex - 1);
+            break;
+        }
+        if (character === 10 || character === 13) {
             transformedData = transformedData.slice(0, characterIndex);
             break;
         }
