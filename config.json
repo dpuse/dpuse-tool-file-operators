@@ -1,7 +1,7 @@
 {
     "id": "dpuse-tool-file-operators",
     "label": {
-        "en": "DPUse File Operators"
+        "en": "File Operators"
     },
     "description": {
         "en": [
@@ -12,5 +12,5 @@
     "iconDark": null,
     "statusId": "alpha",
     "typeId": "tool",
-    "version": "0.0.55"
+    "version": "0.0.56"
 }
