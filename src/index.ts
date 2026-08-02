@@ -57,7 +57,7 @@ const FILE_TYPE_MAP: Record<string, { label: string; isAutoDetectable: boolean; 
 export class Tool {
     async previewFile(url: string, signal: AbortSignal, chunkSize?: number): Promise<FilePreviewResult> {
         const response = await fetch(encodeURI(url), { headers: { Range: `bytes=0-${String(chunkSize ?? DEFAULT_PREVIEW_CHUNK_SIZE - 1)}` }, signal });
-        if (!response.ok) throw await buildFetchError(response, `Failed to fetch '${url}' file.`, 'dpuse-tool-file-operators.previewRemoteFile');
+        if (!response.ok) throw await buildFetchError(response, `Failed to fetch '${url}' file.`, 'dpuse-tool-file-previewer.previewRemoteFile');
 
         const fileBytes = new Uint8Array(await response.arrayBuffer());
         return await previewFileBytes(fileBytes);

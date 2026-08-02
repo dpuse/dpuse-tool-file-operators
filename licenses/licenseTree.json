@@ -1,10 +1,10 @@
 {
-  "version": "0.0.51",
-  "name": "@dpuse/dpuse-tool-file-operators",
+  "version": "0.0.57",
+  "name": "@dpuse/dpuse-tool-file-previewer",
   "dependencies": {
     "@dpuse/dpuse-shared": {
-      "version": "0.3.743",
-      "resolved": "https://registry.npmjs.org/@dpuse/dpuse-shared/-/dpuse-shared-0.3.743.tgz",
+      "version": "0.3.760",
+      "resolved": "https://registry.npmjs.org/@dpuse/dpuse-shared/-/dpuse-shared-0.3.760.tgz",
       "overridden": false
     },
     "chardet": {

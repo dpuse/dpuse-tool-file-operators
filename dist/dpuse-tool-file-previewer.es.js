@@ -5,10 +5,10 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 		enumerable: !(s = n(i, d)) || s.enumerable
 	});
 	return e;
-}, c = (n, r, a) => (a = n == null ? {} : e(i(n)), s(r || !n || !n.__esModule ? t(a, "default", {
+}, c = (n, r, o) => (o = n == null ? {} : e(i(n)), s(r || !n || !n.__esModule || !a.call(n, "default") ? t(o, "default", {
 	value: n,
 	enumerable: !0
-}) : a, n)), l = /* @__PURE__ */ o(((e) => {
+}) : o, n)), l = /* @__PURE__ */ o(((e) => {
 	Object.defineProperty(e, "__esModule", { value: !0 }), e.default = () => {
 		throw Error("File system is not available");
 	};
@@ -5667,7 +5667,7 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 		return e && e.__esModule ? e : { default: e };
 	};
 	Object.defineProperty(e, "__esModule", { value: !0 }), e.detectFileSync = e.detectFile = e.analyse = e.detect = void 0;
-	var a = i(l()), o = i(d()), s = i(ee()), c = r(te()), u = r(ne()), f = r(re()), p = r(ie()), m = ae(), oe = [
+	var a = i(l()), o = i(d()), s = i(ee()), c = r(te()), u = r(ne()), f = r(re()), p = r(ie()), oe = ae(), se = [
 		new s.default(),
 		new c.UTF_16BE(),
 		new c.UTF_16LE(),
@@ -5700,7 +5700,7 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 		let n = (0, e.analyse)(t);
 		return n.length > 0 ? n[0].name : null;
 	}, e.analyse = (e) => {
-		if (!(0, m.isByteArray)(e)) throw Error("Input must be a byte array, e.g. Buffer or Uint8Array");
+		if (!(0, oe.isByteArray)(e)) throw Error("Input must be a byte array, e.g. Buffer or Uint8Array");
 		let t = [];
 		for (let e = 0; e < 256; e++) t[e] = 0;
 		for (let n = e.length - 1; n >= 0; n--) t[e[n] & 255]++;
@@ -5717,7 +5717,7 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 			inputBytes: e,
 			inputLen: e.length
 		};
-		return oe.map((e) => e.match(r)).filter((e) => !!e).sort((e, t) => t.confidence - e.confidence);
+		return se.map((e) => e.match(r)).filter((e) => !!e).sort((e, t) => t.confidence - e.confidence);
 	}, e.detectFile = (t, n = {}) => new Promise((r, i) => {
 		let o, s = (0, a.default)(), c = (t, n) => {
 			o && s.closeSync(o), t ? i(t) : n ? r((0, e.detect)(n)) : i(/* @__PURE__ */ Error("No error and no buffer received"));
@@ -5772,215 +5772,215 @@ var e = Object.create, t = Object.defineProperty, n = Object.getOwnPropertyDescr
 	156: "œ",
 	158: "ž",
 	159: "Ÿ"
-}, m = {};
-for (let [e, t] of Object.entries(p)) m[t] = Number.parseInt(e, 10);
-var oe;
-function se() {
-	if (globalThis.TextDecoder !== void 0) return oe ??= new globalThis.TextDecoder("utf-8");
+}, oe = {};
+for (let [e, t] of Object.entries(p)) oe[t] = Number.parseInt(e, 10);
+var se;
+function ce() {
+	if (globalThis.TextDecoder !== void 0) return se ??= new globalThis.TextDecoder("utf-8");
 }
-var h = 32 * 1024, g = 65533;
-function ce(e, t = "utf-8") {
+var m = 32768, h = 65533;
+function le(e, t = "utf-8") {
 	switch (t.toLowerCase()) {
 		case "utf-8":
 		case "utf8": {
-			let t = se();
-			return t ? t.decode(e) : ue(e);
+			let t = ce();
+			return t ? t.decode(e) : de(e);
 		}
-		case "utf-16le": return de(e);
+		case "utf-16le": return fe(e);
 		case "us-ascii":
-		case "ascii": return fe(e);
+		case "ascii": return pe(e);
 		case "latin1":
-		case "iso-8859-1": return pe(e);
-		case "windows-1252": return me(e);
+		case "iso-8859-1": return me(e);
+		case "windows-1252": return he(e);
 		default: throw RangeError(`Encoding '${t}' not supported`);
 	}
 }
-function _(e, t) {
+function g(e, t) {
 	t.length !== 0 && (e.push(String.fromCharCode.apply(null, t)), t.length = 0);
 }
-function v(e, t, n) {
-	t.push(n), t.length >= h && _(e, t);
+function _(e, t, n) {
+	t.push(n), t.length >= m && g(e, t);
 }
-function le(e, t, n) {
+function ue(e, t, n) {
 	if (n <= 65535) {
-		v(e, t, n);
+		_(e, t, n);
 		return;
 	}
-	n -= 65536, v(e, t, 55296 + (n >> 10)), v(e, t, 56320 + (n & 1023));
+	n -= 65536, _(e, t, 55296 + (n >> 10)), _(e, t, 56320 + (n & 1023));
 }
-function ue(e) {
+function de(e) {
 	let t = [], n = [], r = 0;
 	for (e.length >= 3 && e[0] === 239 && e[1] === 187 && e[2] === 191 && (r = 3); r < e.length;) {
 		let i = e[r];
 		if (i <= 127) {
-			v(t, n, i), r++;
+			_(t, n, i), r++;
 			continue;
 		}
 		if (i < 194 || i > 244) {
-			v(t, n, g), r++;
+			_(t, n, h), r++;
 			continue;
 		}
 		if (i <= 223) {
 			if (r + 1 >= e.length) {
-				v(t, n, g), r++;
+				_(t, n, h), r++;
 				continue;
 			}
 			let a = e[r + 1];
 			if ((a & 192) != 128) {
-				v(t, n, g), r++;
+				_(t, n, h), r++;
 				continue;
 			}
-			v(t, n, (i & 31) << 6 | a & 63), r += 2;
+			_(t, n, (i & 31) << 6 | a & 63), r += 2;
 			continue;
 		}
 		if (i <= 239) {
 			if (r + 2 >= e.length) {
-				v(t, n, g), r++;
+				_(t, n, h), r++;
 				continue;
 			}
 			let a = e[r + 1], o = e[r + 2];
 			if (!((a & 192) == 128 && (o & 192) == 128 && !(i === 224 && a < 160) && !(i === 237 && a >= 160))) {
-				v(t, n, g), r++;
+				_(t, n, h), r++;
 				continue;
 			}
-			v(t, n, (i & 15) << 12 | (a & 63) << 6 | o & 63), r += 3;
+			_(t, n, (i & 15) << 12 | (a & 63) << 6 | o & 63), r += 3;
 			continue;
 		}
 		if (r + 3 >= e.length) {
-			v(t, n, g), r++;
+			_(t, n, h), r++;
 			continue;
 		}
 		let a = e[r + 1], o = e[r + 2], s = e[r + 3];
 		if (!((a & 192) == 128 && (o & 192) == 128 && (s & 192) == 128 && !(i === 240 && a < 144) && !(i === 244 && a > 143))) {
-			v(t, n, g), r++;
+			_(t, n, h), r++;
 			continue;
 		}
-		le(t, n, (i & 7) << 18 | (a & 63) << 12 | (o & 63) << 6 | s & 63), r += 4;
+		ue(t, n, (i & 7) << 18 | (a & 63) << 12 | (o & 63) << 6 | s & 63), r += 4;
 	}
-	return _(t, n), t.join("");
+	return g(t, n), t.join("");
 }
-function de(e) {
+function fe(e) {
 	let t = [], n = [], r = e.length, i = 0;
 	for (; i + 1 < r;) {
 		let a = e[i] | e[i + 1] << 8;
 		if (i += 2, a >= 55296 && a <= 56319) {
 			if (i + 1 < r) {
 				let r = e[i] | e[i + 1] << 8;
-				r >= 56320 && r <= 57343 ? (v(t, n, a), v(t, n, r), i += 2) : v(t, n, g);
-			} else v(t, n, g);
+				r >= 56320 && r <= 57343 ? (_(t, n, a), _(t, n, r), i += 2) : _(t, n, h);
+			} else _(t, n, h);
 			continue;
 		}
 		if (a >= 56320 && a <= 57343) {
-			v(t, n, g);
+			_(t, n, h);
 			continue;
 		}
-		v(t, n, a);
+		_(t, n, a);
 	}
-	return i < r && v(t, n, g), _(t, n), t.join("");
+	return i < r && _(t, n, h), g(t, n), t.join("");
 }
-function fe(e) {
+function pe(e) {
 	let t = [];
-	for (let n = 0; n < e.length; n += h) {
-		let r = Math.min(e.length, n + h), i = Array(r - n);
+	for (let n = 0; n < e.length; n += m) {
+		let r = Math.min(e.length, n + m), i = Array(r - n);
 		for (let t = n, a = 0; t < r; t++, a++) i[a] = e[t] & 127;
 		t.push(String.fromCharCode.apply(null, i));
 	}
 	return t.join("");
 }
-function pe(e) {
+function me(e) {
 	let t = [];
-	for (let n = 0; n < e.length; n += h) {
-		let r = Math.min(e.length, n + h), i = Array(r - n);
+	for (let n = 0; n < e.length; n += m) {
+		let r = Math.min(e.length, n + m), i = Array(r - n);
 		for (let t = n, a = 0; t < r; t++, a++) i[a] = e[t];
 		t.push(String.fromCharCode.apply(null, i));
 	}
 	return t.join("");
 }
-function me(e) {
+function he(e) {
 	let t = [], n = "";
 	for (let r = 0; r < e.length; r++) {
 		let i = e[r], a = i >= 128 && i <= 159 ? p[i] : void 0;
-		n += a ?? String.fromCharCode(i), n.length >= h && (t.push(n), n = "");
+		n += a ?? String.fromCharCode(i), n.length >= m && (t.push(n), n = "");
 	}
 	return n && t.push(n), t.join("");
 }
 //#endregion
 //#region node_modules/token-types/lib/index.js
-function y(e) {
+function v(e) {
 	return new DataView(e.buffer, e.byteOffset);
 }
-var he = {
+var ge = {
 	len: 1,
 	get(e, t) {
-		return y(e).getUint8(t);
+		return v(e).getUint8(t);
 	},
 	put(e, t, n) {
-		return y(e).setUint8(t, n), t + 1;
+		return v(e).setUint8(t, n), t + 1;
+	}
+}, y = {
+	len: 2,
+	get(e, t) {
+		return v(e).getUint16(t, !0);
+	},
+	put(e, t, n) {
+		return v(e).setUint16(t, n, !0), t + 2;
 	}
 }, b = {
 	len: 2,
 	get(e, t) {
-		return y(e).getUint16(t, !0);
+		return v(e).getUint16(t);
 	},
 	put(e, t, n) {
-		return y(e).setUint16(t, n, !0), t + 2;
+		return v(e).setUint16(t, n), t + 2;
 	}
 }, x = {
-	len: 2,
+	len: 4,
 	get(e, t) {
-		return y(e).getUint16(t);
+		return v(e).getUint32(t, !0);
 	},
 	put(e, t, n) {
-		return y(e).setUint16(t, n), t + 2;
+		return v(e).setUint32(t, n, !0), t + 4;
 	}
 }, S = {
 	len: 4,
 	get(e, t) {
-		return y(e).getUint32(t, !0);
+		return v(e).getUint32(t);
 	},
 	put(e, t, n) {
-		return y(e).setUint32(t, n, !0), t + 4;
-	}
-}, C = {
-	len: 4,
-	get(e, t) {
-		return y(e).getUint32(t);
-	},
-	put(e, t, n) {
-		return y(e).setUint32(t, n), t + 4;
-	}
-}, ge = {
-	len: 4,
-	get(e, t) {
-		return y(e).getInt32(t);
-	},
-	put(e, t, n) {
-		return y(e).setInt32(t, n), t + 4;
+		return v(e).setUint32(t, n), t + 4;
 	}
 }, _e = {
-	len: 8,
+	len: 4,
 	get(e, t) {
-		return y(e).getBigUint64(t, !0);
+		return v(e).getInt32(t);
 	},
 	put(e, t, n) {
-		return y(e).setBigUint64(t, n, !0), t + 8;
+		return v(e).setInt32(t, n), t + 4;
 	}
-}, w = class {
+}, ve = {
+	len: 8,
+	get(e, t) {
+		return v(e).getBigUint64(t, !0);
+	},
+	put(e, t, n) {
+		return v(e).setBigUint64(t, n, !0), t + 8;
+	}
+}, C = class {
 	constructor(e, t) {
 		this.len = e, this.encoding = t;
 	}
 	get(e, t = 0) {
-		return ce(e.subarray(t, t + this.len), this.encoding);
+		return le(e.subarray(t, t + this.len), this.encoding);
 	}
-}, ve = "End-Of-Stream", T = class extends Error {
+}, ye = "End-Of-Stream", w = class extends Error {
 	constructor() {
-		super(ve), this.name = "EndOfStreamError";
+		super(ye), this.name = "EndOfStreamError";
 	}
-}, ye = class extends Error {
+}, be = class extends Error {
 	constructor(e = "The operation was aborted") {
 		super(e), this.name = "AbortError";
 	}
-}, be = class {
+}, xe = class {
 	constructor() {
 		this.endOfStream = !1, this.interrupted = !1, this.peekQueue = [];
 	}
@@ -5991,7 +5991,7 @@ var he = {
 	async read(e, t = !1) {
 		if (e.length === 0) return 0;
 		let n = this.readFromPeekBuffer(e);
-		if (this.endOfStream || (n += await this.readRemainderFromStream(e.subarray(n), t)), n === 0 && !t) throw new T();
+		if (this.endOfStream || (n += await this.readRemainderFromStream(e.subarray(n), t)), n === 0 && !t) throw new w();
 		return n;
 	}
 	readFromPeekBuffer(e) {
@@ -6007,15 +6007,15 @@ var he = {
 	async readRemainderFromStream(e, t) {
 		let n = 0;
 		for (; n < e.length && !this.endOfStream;) {
-			if (this.interrupted) throw new ye();
+			if (this.interrupted) throw new be();
 			let r = await this.readFromStream(e.subarray(n), t);
 			if (r === 0) break;
 			n += r;
 		}
-		if (!t && n < e.length) throw new T();
+		if (!t && n < e.length) throw new w();
 		return n;
 	}
-}, xe = class extends be {
+}, Se = class extends xe {
 	constructor(e) {
 		super(), this.reader = e;
 	}
@@ -6025,19 +6025,19 @@ var he = {
 	async close() {
 		this.reader.releaseLock();
 	}
-}, Se = class extends xe {
+}, Ce = class extends Se {
 	async readFromStream(e, t) {
 		if (e.length === 0) return 0;
 		let n = await this.reader.read(new Uint8Array(e.length), { min: t ? void 0 : e.length });
 		return n.done && (this.endOfStream = n.done), n.value ? (e.set(n.value), n.value.length) : 0;
 	}
-}, Ce = class extends be {
+}, we = class extends xe {
 	constructor(e) {
 		super(), this.reader = e, this.buffer = null;
 	}
 	writeChunk(e, t) {
 		let n = Math.min(t.length, e.length);
-		return e.set(t.subarray(0, n)), n < t.length ? this.buffer = t.subarray(n) : this.buffer = null, n;
+		return e.set(t.subarray(0, n)), this.buffer = n < t.length ? t.subarray(n) : null, n;
 	}
 	async readFromStream(e, t) {
 		if (e.length === 0) return 0;
@@ -6050,7 +6050,7 @@ var he = {
 			}
 			t.value && (n += this.writeChunk(e.subarray(n), t.value));
 		}
-		if (!t && n === 0 && this.endOfStream) throw new T();
+		if (!t && n === 0 && this.endOfStream) throw new w();
 		return n;
 	}
 	abort() {
@@ -6062,18 +6062,18 @@ var he = {
 };
 //#endregion
 //#region node_modules/strtok3/lib/stream/WebStreamReaderFactory.js
-function we(e) {
+function Te(e) {
 	try {
 		let t = e.getReader({ mode: "byob" });
-		return t instanceof ReadableStreamDefaultReader ? new Ce(t) : new Se(t);
+		return t instanceof ReadableStreamDefaultReader ? new we(t) : new Ce(t);
 	} catch (t) {
-		if (t instanceof TypeError) return new Ce(e.getReader());
+		if (t instanceof TypeError) return new we(e.getReader());
 		throw t;
 	}
 }
 //#endregion
 //#region node_modules/strtok3/lib/AbstractTokenizer.js
-var E = class {
+var T = class {
 	constructor(e) {
 		this.numBuffer = /* @__PURE__ */ new Uint8Array(8), this.position = 0, this.onClose = e?.onClose, e?.abortSignal && e.abortSignal.addEventListener("abort", () => {
 			this.abort();
@@ -6081,20 +6081,20 @@ var E = class {
 	}
 	async readToken(e, t = this.position) {
 		let n = new Uint8Array(e.len);
-		if (await this.readBuffer(n, { position: t }) < e.len) throw new T();
+		if (await this.readBuffer(n, { position: t }) < e.len) throw new w();
 		return e.get(n, 0);
 	}
 	async peekToken(e, t = this.position) {
 		let n = new Uint8Array(e.len);
-		if (await this.peekBuffer(n, { position: t }) < e.len) throw new T();
+		if (await this.peekBuffer(n, { position: t }) < e.len) throw new w();
 		return e.get(n, 0);
 	}
 	async readNumber(e) {
-		if (await this.readBuffer(this.numBuffer, { length: e.len }) < e.len) throw new T();
+		if (await this.readBuffer(this.numBuffer, { length: e.len }) < e.len) throw new w();
 		return e.get(this.numBuffer, 0);
 	}
 	async peekNumber(e) {
-		if (await this.peekBuffer(this.numBuffer, { length: e.len }) < e.len) throw new T();
+		if (await this.peekBuffer(this.numBuffer, { length: e.len }) < e.len) throw new w();
 		return e.get(this.numBuffer, 0);
 	}
 	async ignore(e) {
@@ -6121,7 +6121,7 @@ var E = class {
 	abort() {
 		return Promise.resolve();
 	}
-}, Te = 256e3, Ee = class extends E {
+}, Ee = 256e3, De = class extends T {
 	constructor(e, t) {
 		super(t), this.streamReader = e, this.fileInfo = t?.fileInfo ?? {};
 	}
@@ -6131,7 +6131,7 @@ var E = class {
 		if (r < 0) throw Error("`options.position` must be equal or greater than `tokenizer.position`");
 		if (n.length === 0) return 0;
 		let i = await this.streamReader.read(e.subarray(0, n.length), n.mayBeLess);
-		if (this.position += i, (!t || !t.mayBeLess) && i < n.length) throw new T();
+		if (this.position += i, (!t || !t.mayBeLess) && i < n.length) throw new w();
 		return i;
 	}
 	async peekBuffer(e, t) {
@@ -6148,16 +6148,16 @@ var E = class {
 			try {
 				r = await this.streamReader.peek(e.subarray(0, n.length), n.mayBeLess);
 			} catch (e) {
-				if (t?.mayBeLess && e instanceof T) return 0;
+				if (t?.mayBeLess && e instanceof w) return 0;
 				throw e;
 			}
-			if (!n.mayBeLess && r < n.length) throw new T();
+			if (!n.mayBeLess && r < n.length) throw new w();
 		}
 		return r;
 	}
 	async ignore(e) {
 		if (e < 0) throw RangeError("ignore length must be ≥ 0 bytes");
-		let t = Math.min(Te, e), n = new Uint8Array(t), r = 0;
+		let t = Math.min(Ee, e), n = new Uint8Array(t), r = 0;
 		for (; r < e;) {
 			let i = e - r, a = await this.readBuffer(n, { length: Math.min(t, i) });
 			if (a < 0) return a;
@@ -6174,7 +6174,7 @@ var E = class {
 	supportsRandomAccess() {
 		return !1;
 	}
-}, De = class extends E {
+}, Oe = class extends T {
 	constructor(e, t) {
 		super(t), this.uint8Array = e, this.fileInfo = {
 			...t?.fileInfo ?? {},
@@ -6188,7 +6188,7 @@ var E = class {
 	}
 	async peekBuffer(e, t) {
 		let n = this.normalizeOptions(e, t), r = Math.min(this.uint8Array.length - n.position, n.length);
-		if (!n.mayBeLess && r < n.length) throw new T();
+		if (!n.mayBeLess && r < n.length) throw new w();
 		return e.set(this.uint8Array.subarray(n.position, n.position + r)), r;
 	}
 	close() {
@@ -6200,7 +6200,7 @@ var E = class {
 	setPosition(e) {
 		this.position = e;
 	}
-}, Oe = class extends E {
+}, ke = class extends T {
 	constructor(e, t) {
 		super(t), this.blob = e, this.fileInfo = {
 			...t?.fileInfo ?? {},
@@ -6215,7 +6215,7 @@ var E = class {
 	}
 	async peekBuffer(e, t) {
 		let n = this.normalizeOptions(e, t), r = Math.min(this.blob.size - n.position, n.length);
-		if (!n.mayBeLess && r < n.length) throw new T();
+		if (!n.mayBeLess && r < n.length) throw new w();
 		let i = await this.blob.slice(n.position, n.position + r).arrayBuffer();
 		return e.set(new Uint8Array(i)), r;
 	}
@@ -6231,21 +6231,21 @@ var E = class {
 };
 //#endregion
 //#region node_modules/strtok3/lib/core.js
-function ke(e, t) {
-	let n = we(e), r = t ?? {}, i = r.onClose;
+function Ae(e, t) {
+	let n = Te(e), r = t ?? {}, i = r.onClose;
 	return r.onClose = async () => {
 		if (await n.close(), i) return i();
-	}, new Ee(n, r);
-}
-function Ae(e, t) {
-	return new De(e, t);
+	}, new De(n, r);
 }
 function je(e, t) {
 	return new Oe(e, t);
 }
+function Me(e, t) {
+	return new ke(e, t);
+}
 //#endregion
 //#region node_modules/ms/index.js
-var Me = /* @__PURE__ */ o(((e, t) => {
+var Ne = /* @__PURE__ */ o(((e, t) => {
 	var n = 1e3, r = n * 60, i = r * 60, a = i * 24, o = a * 7, s = a * 365.25;
 	t.exports = function(e, t) {
 		t ||= {};
@@ -6308,9 +6308,9 @@ var Me = /* @__PURE__ */ o(((e, t) => {
 		var i = t >= n * 1.5;
 		return Math.round(e / n) + " " + r + (i ? "s" : "");
 	}
-})), Ne = /* @__PURE__ */ o(((e, t) => {
+})), Pe = /* @__PURE__ */ o(((e, t) => {
 	function n(e) {
-		n.debug = n, n.default = n, n.coerce = c, n.disable = o, n.enable = i, n.enabled = s, n.humanize = Me(), n.destroy = l, Object.keys(e).forEach((t) => {
+		n.debug = n, n.default = n, n.coerce = c, n.disable = o, n.enable = i, n.enabled = s, n.humanize = Ne(), n.destroy = l, Object.keys(e).forEach((t) => {
 			n[t] = e[t];
 		}), n.names = [], n.skips = [], n.formatters = {};
 		function t(e) {
@@ -6381,7 +6381,7 @@ var Me = /* @__PURE__ */ o(((e, t) => {
 		return n.enable(n.load()), n;
 	}
 	t.exports = n;
-})), Pe = /* @__PURE__ */ c((/* @__PURE__ */ o(((e, t) => {
+})), Fe = /* @__PURE__ */ c((/* @__PURE__ */ o(((e, t) => {
 	e.formatArgs = r, e.save = i, e.load = a, e.useColors = n, e.storage = o(), e.destroy = (() => {
 		let e = !1;
 		return () => {
@@ -6421,7 +6421,7 @@ var Me = /* @__PURE__ */ o(((e, t) => {
 			return localStorage;
 		} catch {}
 	}
-	t.exports = Ne()(e);
+	t.exports = Pe()(e);
 	var { formatters: s } = t.exports;
 	s.j = function(e) {
 		try {
@@ -6430,32 +6430,32 @@ var Me = /* @__PURE__ */ o(((e, t) => {
 			return "[UnexpectedJSONParseError]: " + e.message;
 		}
 	};
-})))(), 1), D = {
+})))(), 1), E = {
 	LocalFileHeader: 67324752,
 	DataDescriptor: 134695760,
 	CentralFileHeader: 33639248,
 	EndOfCentralDirectory: 101010256
-}, Fe = {
+}, D = {
 	get(e) {
 		return {
-			signature: S.get(e, 0),
-			compressedSize: S.get(e, 8),
-			uncompressedSize: S.get(e, 12)
+			signature: x.get(e, 0),
+			compressedSize: x.get(e, 8),
+			uncompressedSize: x.get(e, 12)
 		};
 	},
 	len: 16
 }, Ie = {
 	get(e) {
-		let t = b.get(e, 6);
+		let t = y.get(e, 6);
 		return {
-			signature: S.get(e, 0),
-			minVersion: b.get(e, 4),
+			signature: x.get(e, 0),
+			minVersion: y.get(e, 4),
 			dataDescriptor: !!(t & 8),
-			compressedMethod: b.get(e, 8),
-			compressedSize: S.get(e, 18),
-			uncompressedSize: S.get(e, 22),
-			filenameLength: b.get(e, 26),
-			extraFieldLength: b.get(e, 28),
+			compressedMethod: y.get(e, 8),
+			compressedSize: x.get(e, 18),
+			uncompressedSize: x.get(e, 22),
+			filenameLength: y.get(e, 26),
+			extraFieldLength: y.get(e, 28),
 			filename: null
 		};
 	},
@@ -6463,31 +6463,31 @@ var Me = /* @__PURE__ */ o(((e, t) => {
 }, Le = {
 	get(e) {
 		return {
-			signature: S.get(e, 0),
-			nrOfThisDisk: b.get(e, 4),
-			nrOfThisDiskWithTheStart: b.get(e, 6),
-			nrOfEntriesOnThisDisk: b.get(e, 8),
-			nrOfEntriesOfSize: b.get(e, 10),
-			sizeOfCd: S.get(e, 12),
-			offsetOfStartOfCd: S.get(e, 16),
-			zipFileCommentLength: b.get(e, 20)
+			signature: x.get(e, 0),
+			nrOfThisDisk: y.get(e, 4),
+			nrOfThisDiskWithTheStart: y.get(e, 6),
+			nrOfEntriesOnThisDisk: y.get(e, 8),
+			nrOfEntriesOfSize: y.get(e, 10),
+			sizeOfCd: x.get(e, 12),
+			offsetOfStartOfCd: x.get(e, 16),
+			zipFileCommentLength: y.get(e, 20)
 		};
 	},
 	len: 22
 }, Re = {
 	get(e) {
-		let t = b.get(e, 8);
+		let t = y.get(e, 8);
 		return {
-			signature: S.get(e, 0),
-			minVersion: b.get(e, 6),
+			signature: x.get(e, 0),
+			minVersion: y.get(e, 6),
 			dataDescriptor: !!(t & 8),
-			compressedMethod: b.get(e, 10),
-			compressedSize: S.get(e, 20),
-			uncompressedSize: S.get(e, 24),
-			filenameLength: b.get(e, 28),
-			extraFieldLength: b.get(e, 30),
-			fileCommentLength: b.get(e, 32),
-			relativeOffsetOfLocalHeader: S.get(e, 42),
+			compressedMethod: y.get(e, 10),
+			compressedSize: x.get(e, 20),
+			uncompressedSize: x.get(e, 24),
+			filenameLength: y.get(e, 28),
+			extraFieldLength: y.get(e, 30),
+			fileCommentLength: y.get(e, 32),
+			relativeOffsetOfLocalHeader: x.get(e, 42),
 			filename: null
 		};
 	},
@@ -6496,21 +6496,21 @@ var Me = /* @__PURE__ */ o(((e, t) => {
 //#endregion
 //#region node_modules/@tokenizer/inflate/lib/ZipHandler.js
 function O(e) {
-	let t = new Uint8Array(S.len);
-	return S.put(t, 0, e), t;
+	let t = new Uint8Array(x.len);
+	return x.put(t, 0, e), t;
 }
-var k = (0, Pe.default)("tokenizer:inflate"), A = 256 * 1024, ze = O(D.DataDescriptor), j = O(D.EndOfCentralDirectory), M = class e {
+var k = (0, Fe.default)("tokenizer:inflate"), A = 262144, ze = O(E.DataDescriptor), j = O(E.EndOfCentralDirectory), M = class e {
 	constructor(e) {
 		this.tokenizer = e, this.syncBuffer = new Uint8Array(A);
 	}
 	async isZip() {
-		return await this.peekSignature() === D.LocalFileHeader;
+		return await this.peekSignature() === E.LocalFileHeader;
 	}
 	peekSignature() {
-		return this.tokenizer.peekToken(S);
+		return this.tokenizer.peekToken(x);
 	}
 	async findEndOfCentralDirectoryLocator() {
-		let e = this.tokenizer, t = Math.min(16 * 1024, e.fileInfo.size), n = this.syncBuffer.subarray(0, t);
+		let e = this.tokenizer, t = Math.min(16384, e.fileInfo.size), n = this.syncBuffer.subarray(0, t);
 		await this.tokenizer.readBuffer(n, { position: e.fileInfo.size - t });
 		for (let r = n.length - 4; r >= 0; r--) if (n[r] === j[0] && n[r + 1] === j[1] && n[r + 2] === j[2] && n[r + 3] === j[3]) return e.fileInfo.size - t + r;
 		return -1;
@@ -6528,8 +6528,8 @@ var k = (0, Pe.default)("tokenizer:inflate"), A = 256 * 1024, ze = O(D.DataDescr
 			this.tokenizer.setPosition(n.offsetOfStartOfCd);
 			for (let e = 0; e < n.nrOfEntriesOfSize; ++e) {
 				let t = await this.tokenizer.readToken(Re);
-				if (t.signature !== D.CentralFileHeader) throw Error("Expected Central-File-Header signature");
-				t.filename = await this.tokenizer.readToken(new w(t.filenameLength, "utf-8")), await this.tokenizer.ignore(t.extraFieldLength), await this.tokenizer.ignore(t.fileCommentLength), r.push(t), k(`Add central-directory file-entry: n=${e + 1}/${r.length}: filename=${r[e].filename}`);
+				if (t.signature !== E.CentralFileHeader) throw Error("Expected Central-File-Header signature");
+				t.filename = await this.tokenizer.readToken(new C(t.filenameLength, "utf-8")), await this.tokenizer.ignore(t.extraFieldLength), await this.tokenizer.ignore(t.fileCommentLength), r.push(t), k(`Add central-directory file-entry: n=${e + 1}/${r.length}: filename=${r[e].filename}`);
 			}
 			return this.tokenizer.setPosition(e), r;
 		}
@@ -6559,7 +6559,7 @@ var k = (0, Pe.default)("tokenizer:inflate"), A = 256 * 1024, ze = O(D.DataDescr
 				}
 				k(`Found data-descriptor-signature at pos=${this.tokenizer.position}`), r.handler && await this.inflate(t, Ve(e), r.handler);
 			} else r.handler ? (k(`Reading compressed-file-data: ${t.compressedSize} bytes`), i = new Uint8Array(t.compressedSize), await this.tokenizer.readBuffer(i), await this.inflate(t, i, r.handler)) : (k(`Ignoring compressed-file-data: ${t.compressedSize} bytes`), await this.tokenizer.ignore(t.compressedSize));
-			if (k(`Reading data-descriptor at pos=${this.tokenizer.position}`), t.dataDescriptor && (await this.tokenizer.readToken(Fe)).signature !== 134695760) throw Error(`Expected data-descriptor-signature at position ${this.tokenizer.position - Fe.len}`);
+			if (k(`Reading data-descriptor at pos=${this.tokenizer.position}`), t.dataDescriptor && (await this.tokenizer.readToken(D)).signature !== 134695760) throw Error(`Expected data-descriptor-signature at position ${this.tokenizer.position - D.len}`);
 		} while (!n);
 	}
 	async iterateOverCentralDirectory(e, t) {
@@ -6595,12 +6595,12 @@ var k = (0, Pe.default)("tokenizer:inflate"), A = 256 * 1024, ze = O(D.DataDescr
 		}
 	}
 	async readLocalFileHeader() {
-		let e = await this.tokenizer.peekToken(S);
-		if (e === D.LocalFileHeader) {
+		let e = await this.tokenizer.peekToken(x);
+		if (e === E.LocalFileHeader) {
 			let e = await this.tokenizer.readToken(Ie);
-			return e.filename = await this.tokenizer.readToken(new w(e.filenameLength, "utf-8")), e;
+			return e.filename = await this.tokenizer.readToken(new C(e.filenameLength, "utf-8")), e;
 		}
-		if (e === D.CentralFileHeader) return !1;
+		if (e === E.CentralFileHeader) return !1;
 		throw Error(e === 3759263696 ? "Encrypted ZIP" : "Unexpected signature");
 	}
 };
@@ -6657,7 +6657,7 @@ function Je(e, t) {
 	return n;
 }
 new globalThis.TextDecoder("utf8"), new globalThis.TextEncoder(), Array.from({ length: 256 }, (e, t) => t.toString(16).padStart(2, "0"));
-function N(e) {
+function Ye(e) {
 	let { byteLength: t } = e;
 	if (t === 6) return e.getUint16(0) * 2 ** 32 + e.getUint32(2);
 	if (t === 5) return e.getUint8(0) * 2 ** 32 + e.getUint32(1);
@@ -6668,7 +6668,7 @@ function N(e) {
 }
 //#endregion
 //#region node_modules/file-type/source/tokens.js
-function Ye(e, t) {
+function Xe(e, t) {
 	if (t === "utf-16le") {
 		let t = [];
 		for (let n = 0; n < e.length; n++) {
@@ -6687,34 +6687,34 @@ function Ye(e, t) {
 	}
 	return [...e].map((e) => e.charCodeAt(0));
 }
-function Xe(e, t = 0) {
-	let n = Number.parseInt(new w(6).get(e, 148).replace(/\0.*$/v, "").trim(), 8);
+function Ze(e, t = 0) {
+	let n = Number.parseInt(new C(6).get(e, 148).replace(/\0.*$/v, "").trim(), 8);
 	if (Number.isNaN(n)) return !1;
 	let r = 256;
 	for (let n = t; n < t + 148; n++) r += e[n];
 	for (let n = t + 156; n < t + 512; n++) r += e[n];
 	return n === r;
 }
-var Ze = {
+var Qe = {
 	get: (e, t) => e[t + 3] & 127 | (e[t + 2] & 127) << 7 | (e[t + 1] & 127) << 14 | (e[t] & 127) << 21,
 	len: 4
-}, Qe = /* @__PURE__ */ "jpg,png,apng,gif,webp,flif,xcf,cr2,cr3,orf,arw,dng,nef,rw2,raf,tif,bmp,icns,jxr,psd,indd,zip,tar,rar,gz,bz2,7z,dmg,mp4,mid,mkv,webm,mov,avi,mpg,mp2,mp3,m4a,oga,ogg,ogv,opus,flac,wav,spx,amr,pdf,epub,elf,macho,exe,swf,rtf,wasm,woff,woff2,eot,ttf,otf,ttc,ico,flv,ps,xz,sqlite,nes,crx,xpi,cab,deb,ar,rpm,Z,lz,cfb,mxf,mts,blend,bpg,docx,pptx,xlsx,3gp,3g2,j2c,jp2,jpm,jpx,mj2,aif,qcp,odt,ods,odp,xml,mobi,heic,cur,ktx,ape,wv,dcm,ics,glb,pcap,dsf,lnk,alias,voc,ac3,m4v,m4p,m4b,f4v,f4p,f4b,f4a,mie,asf,ogm,ogx,mpc,arrow,shp,aac,mp1,it,s3m,xm,skp,avif,eps,lzh,pgp,asar,stl,chm,3mf,zst,jxl,vcf,jls,pst,dwg,parquet,class,arj,cpio,ace,avro,icc,fbx,vsdx,vtt,apk,drc,lz4,potx,xltx,dotx,xltm,ott,ots,otp,odg,otg,xlsm,docm,dotm,potm,pptm,jar,jmp,rm,sav,ppsm,ppsx,tar.gz,reg,dat,key,numbers,pages".split(","), $e = /* @__PURE__ */ "image/jpeg,image/png,image/gif,image/webp,image/flif,image/x-xcf,image/x-canon-cr2,image/x-canon-cr3,image/tiff,image/bmp,image/vnd.ms-photo,image/vnd.adobe.photoshop,application/x-indesign,application/epub+zip,application/x-xpinstall,application/vnd.ms-powerpoint.slideshow.macroenabled.12,application/vnd.oasis.opendocument.text,application/vnd.oasis.opendocument.spreadsheet,application/vnd.oasis.opendocument.presentation,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.presentationml.slideshow,application/zip,application/x-tar,application/x-rar-compressed,application/gzip,application/x-bzip2,application/x-7z-compressed,application/x-apple-diskimage,application/vnd.apache.arrow.file,video/mp4,audio/midi,video/matroska,video/webm,video/quicktime,video/vnd.avi,audio/wav,audio/qcelp,audio/x-ms-asf,video/x-ms-asf,application/vnd.ms-asf,video/mpeg,video/3gpp,audio/mpeg,audio/mp4,video/ogg,audio/ogg,audio/ogg; codecs=opus,application/ogg,audio/flac,audio/ape,audio/wavpack,audio/amr,application/pdf,application/x-elf,application/x-mach-binary,application/x-msdownload,application/x-shockwave-flash,application/rtf,application/wasm,font/woff,font/woff2,application/vnd.ms-fontobject,font/ttf,font/otf,font/collection,image/x-icon,video/x-flv,application/postscript,application/eps,application/x-xz,application/x-sqlite3,application/x-nintendo-nes-rom,application/x-google-chrome-extension,application/vnd.ms-cab-compressed,application/x-deb,application/x-unix-archive,application/x-rpm,application/x-compress,application/lzip,application/x-cfb,application/x-mie,application/mxf,video/mp2t,application/x-blender,image/bpg,image/j2c,image/jp2,image/jpx,image/jpm,image/mj2,audio/aiff,application/xml,application/x-mobipocket-ebook,image/heif,image/heif-sequence,image/heic,image/heic-sequence,image/icns,image/ktx,application/dicom,audio/x-musepack,text/calendar,text/vcard,text/vtt,model/gltf-binary,application/vnd.tcpdump.pcap,audio/x-dsf,application/x-ms-shortcut,application/x-ft-apple.alias,audio/x-voc,audio/vnd.dolby.dd-raw,audio/x-m4a,image/apng,image/x-olympus-orf,image/x-sony-arw,image/x-adobe-dng,image/x-nikon-nef,image/x-panasonic-rw2,image/x-fujifilm-raf,video/x-m4v,video/3gpp2,application/x-esri-shape,audio/aac,audio/x-it,audio/x-s3m,audio/x-xm,video/MP1S,video/MP2P,application/vnd.sketchup.skp,image/avif,application/x-lzh-compressed,application/pgp-encrypted,application/x-asar,model/stl,application/vnd.ms-htmlhelp,model/3mf,image/jxl,application/zstd,image/jls,application/vnd.ms-outlook,image/vnd.dwg,application/vnd.apache.parquet,application/java-vm,application/x-arj,application/x-cpio,application/x-ace-compressed,application/avro,application/vnd.iccprofile,application/x-ft-fbx,application/vnd.visio,application/vnd.android.package-archive,application/x-ft-draco,application/x-lz4,application/vnd.openxmlformats-officedocument.presentationml.template,application/vnd.openxmlformats-officedocument.spreadsheetml.template,application/vnd.openxmlformats-officedocument.wordprocessingml.template,application/vnd.ms-excel.template.macroenabled.12,application/vnd.oasis.opendocument.text-template,application/vnd.oasis.opendocument.spreadsheet-template,application/vnd.oasis.opendocument.presentation-template,application/vnd.oasis.opendocument.graphics,application/vnd.oasis.opendocument.graphics-template,application/vnd.ms-excel.sheet.macroenabled.12,application/vnd.ms-word.document.macroenabled.12,application/vnd.ms-word.template.macroenabled.12,application/vnd.ms-powerpoint.template.macroenabled.12,application/vnd.ms-powerpoint.presentation.macroenabled.12,application/java-archive,application/vnd.rn-realmedia,application/x-spss-sav,application/x-ms-regedit,application/x-ft-windows-registry-hive,application/x-jmp-data,application/vnd.apple.keynote,application/vnd.apple.numbers,application/vnd.apple.pages".split(","), P = 16 * 1024 * 1024, F = class extends Error {};
-function I(e, t, n) {
-	if (!Number.isFinite(e) || e < 0 || e > t) throw new F(`${n} has invalid size ${e} (maximum ${t} bytes)`);
+}, $e = /* @__PURE__ */ "jpg,png,apng,gif,webp,flif,xcf,cr2,cr3,orf,arw,dng,nef,rw2,raf,tif,bmp,icns,jxr,psd,indd,zip,tar,rar,gz,bz2,7z,dmg,mp4,mid,mkv,webm,mov,avi,mpg,mp2,mp3,m4a,oga,ogg,ogv,opus,flac,wav,spx,amr,pdf,epub,elf,macho,exe,swf,rtf,wasm,woff,woff2,eot,ttf,otf,ttc,ico,flv,ps,xz,sqlite,nes,crx,xpi,cab,deb,ar,rpm,Z,lz,cfb,mxf,mts,blend,bpg,docx,pptx,xlsx,3gp,3g2,j2c,jp2,jpm,jpx,mj2,aif,qcp,odt,ods,odp,xml,mobi,heic,cur,ktx,ape,wv,dcm,ics,glb,pcap,dsf,lnk,alias,voc,ac3,m4v,m4p,m4b,f4v,f4p,f4b,f4a,mie,asf,ogm,ogx,mpc,arrow,shp,aac,mp1,it,s3m,xm,skp,avif,eps,lzh,pgp,asar,stl,chm,3mf,zst,jxl,vcf,jls,pst,dwg,parquet,class,arj,cpio,ace,avro,icc,fbx,vsdx,vtt,apk,drc,lz4,potx,xltx,dotx,xltm,ott,ots,otp,odg,otg,xlsm,docm,dotm,potm,pptm,jar,jmp,rm,sav,ppsm,ppsx,tar.gz,reg,dat,key,numbers,pages".split(","), et = /* @__PURE__ */ "image/jpeg,image/png,image/gif,image/webp,image/flif,image/x-xcf,image/x-canon-cr2,image/x-canon-cr3,image/tiff,image/bmp,image/vnd.ms-photo,image/vnd.adobe.photoshop,application/x-indesign,application/epub+zip,application/x-xpinstall,application/vnd.ms-powerpoint.slideshow.macroenabled.12,application/vnd.oasis.opendocument.text,application/vnd.oasis.opendocument.spreadsheet,application/vnd.oasis.opendocument.presentation,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.presentationml.slideshow,application/zip,application/x-tar,application/x-rar-compressed,application/gzip,application/x-bzip2,application/x-7z-compressed,application/x-apple-diskimage,application/vnd.apache.arrow.file,video/mp4,audio/midi,video/matroska,video/webm,video/quicktime,video/vnd.avi,audio/wav,audio/qcelp,audio/x-ms-asf,video/x-ms-asf,application/vnd.ms-asf,video/mpeg,video/3gpp,audio/mpeg,audio/mp4,video/ogg,audio/ogg,audio/ogg; codecs=opus,application/ogg,audio/flac,audio/ape,audio/wavpack,audio/amr,application/pdf,application/x-elf,application/x-mach-binary,application/x-msdownload,application/x-shockwave-flash,application/rtf,application/wasm,font/woff,font/woff2,application/vnd.ms-fontobject,font/ttf,font/otf,font/collection,image/x-icon,video/x-flv,application/postscript,application/eps,application/x-xz,application/x-sqlite3,application/x-nintendo-nes-rom,application/x-google-chrome-extension,application/vnd.ms-cab-compressed,application/x-deb,application/x-unix-archive,application/x-rpm,application/x-compress,application/lzip,application/x-cfb,application/x-mie,application/mxf,video/mp2t,application/x-blender,image/bpg,image/j2c,image/jp2,image/jpx,image/jpm,image/mj2,audio/aiff,application/xml,application/x-mobipocket-ebook,image/heif,image/heif-sequence,image/heic,image/heic-sequence,image/icns,image/ktx,application/dicom,audio/x-musepack,text/calendar,text/vcard,text/vtt,model/gltf-binary,application/vnd.tcpdump.pcap,audio/x-dsf,application/x-ms-shortcut,application/x-ft-apple.alias,audio/x-voc,audio/vnd.dolby.dd-raw,audio/x-m4a,image/apng,image/x-olympus-orf,image/x-sony-arw,image/x-adobe-dng,image/x-nikon-nef,image/x-panasonic-rw2,image/x-fujifilm-raf,video/x-m4v,video/3gpp2,application/x-esri-shape,audio/aac,audio/x-it,audio/x-s3m,audio/x-xm,video/MP1S,video/MP2P,application/vnd.sketchup.skp,image/avif,application/x-lzh-compressed,application/pgp-encrypted,application/x-asar,model/stl,application/vnd.ms-htmlhelp,model/3mf,image/jxl,application/zstd,image/jls,application/vnd.ms-outlook,image/vnd.dwg,application/vnd.apache.parquet,application/java-vm,application/x-arj,application/x-cpio,application/x-ace-compressed,application/avro,application/vnd.iccprofile,application/x-ft-fbx,application/vnd.visio,application/vnd.android.package-archive,application/x-ft-draco,application/x-lz4,application/vnd.openxmlformats-officedocument.presentationml.template,application/vnd.openxmlformats-officedocument.spreadsheetml.template,application/vnd.openxmlformats-officedocument.wordprocessingml.template,application/vnd.ms-excel.template.macroenabled.12,application/vnd.oasis.opendocument.text-template,application/vnd.oasis.opendocument.spreadsheet-template,application/vnd.oasis.opendocument.presentation-template,application/vnd.oasis.opendocument.graphics,application/vnd.oasis.opendocument.graphics-template,application/vnd.ms-excel.sheet.macroenabled.12,application/vnd.ms-word.document.macroenabled.12,application/vnd.ms-word.template.macroenabled.12,application/vnd.ms-powerpoint.template.macroenabled.12,application/vnd.ms-powerpoint.presentation.macroenabled.12,application/java-archive,application/vnd.rn-realmedia,application/x-spss-sav,application/x-ms-regedit,application/x-ft-windows-registry-hive,application/x-jmp-data,application/vnd.apple.keynote,application/vnd.apple.numbers,application/vnd.apple.pages".split(","), N = 16777216, P = class extends Error {};
+function F(e, t, n) {
+	if (!Number.isFinite(e) || e < 0 || e > t) throw new P(`${n} has invalid size ${e} (maximum ${t} bytes)`);
 	return e;
 }
-async function L(e, t, { maximumLength: n = P, reason: r = "skip" } = {}) {
-	let i = I(t, n, r);
+async function I(e, t, { maximumLength: n = N, reason: r = "skip" } = {}) {
+	let i = F(t, n, r);
 	await e.ignore(i);
 }
-async function R(e, t, n, { maximumLength: r = t.length, reason: i = "read" } = {}) {
-	let a = I(n?.length ?? t.length, r, i);
+async function L(e, t, n, { maximumLength: r = t.length, reason: i = "read" } = {}) {
+	let a = F(n?.length ?? t.length, r, i);
 	return e.readBuffer(t, {
 		...n,
 		length: a
 	});
 }
-function z(e, t, n) {
+function R(e, t, n) {
 	n = {
 		offset: 0,
 		...n
@@ -6724,31 +6724,31 @@ function z(e, t, n) {
 	} else if (i !== e[r + n.offset]) return !1;
 	return !0;
 }
-function B(e) {
+function z(e) {
 	let t = e.fileInfo.size;
 	return !Number.isFinite(t) || t === 2 ** 53 - 1;
 }
-function V(e, t, n) {
-	return B(e) && e.position - t > n;
+function B(e, t, n) {
+	return z(e) && e.position - t > n;
 }
 //#endregion
 //#region node_modules/file-type/source/detectors/zip.js
-var H = 1024 * 1024, U = 1024, et = 2 ** 31 - 1, W = H, tt = /* @__PURE__ */ new Set([
+var V = 1048576, H = 1024, tt = 2 ** 31 - 1, U = V, nt = /* @__PURE__ */ new Set([
 	"Unexpected signature",
 	"Encrypted ZIP",
 	"Expected Central-File-Header signature"
-]), nt = [
+]), rt = [
 	"ZIP entry count exceeds ",
 	"Unsupported ZIP compression method:",
 	"ZIP entry compressed data exceeds ",
 	"ZIP entry decompressed data exceeds ",
 	"Expected data-descriptor-signature at position "
-], rt = /* @__PURE__ */ new Set([
+], it = /* @__PURE__ */ new Set([
 	"Z_BUF_ERROR",
 	"Z_DATA_ERROR",
 	"ERR_INVALID_STATE"
 ]);
-async function it(e, { maximumLength: t = H } = {}) {
+async function at(e, { maximumLength: t = V } = {}) {
 	let n = new ReadableStream({ start(t) {
 		t.enqueue(e), t.close();
 	} }).pipeThrough(new DecompressionStream("deflate-raw")).getReader(), r = [], i = 0;
@@ -6766,28 +6766,28 @@ async function it(e, { maximumLength: t = H } = {}) {
 	for (let e of r) a.set(e, o), o += e.length;
 	return a;
 }
-function at(e, t) {
+function ot(e, t) {
 	let n = new Uint8Array(t), r = 0;
 	for (let t of e) n.set(t, r), r += t.length;
 	return n;
 }
-function ot(e) {
-	let t = e.fileInfo.size, n = Number.isFinite(t) ? Math.max(0, t - e.position) : 2 ** 53 - 1;
-	return Math.min(n, et);
-}
 function st(e) {
-	if (e instanceof T || e instanceof F) return !0;
+	let t = e.fileInfo.size, n = Number.isFinite(t) ? Math.max(0, t - e.position) : 2 ** 53 - 1;
+	return Math.min(n, tt);
+}
+function ct(e) {
+	if (e instanceof w || e instanceof P) return !0;
 	if (!(e instanceof Error)) return !1;
-	if (tt.has(e.message) || rt.has(e.code)) return !0;
-	for (let t of nt) if (e.message.startsWith(t)) return !0;
+	if (nt.has(e.message) || it.has(e.code)) return !0;
+	for (let t of rt) if (e.message.startsWith(t)) return !0;
 	return !1;
 }
-function G(e, t = H) {
+function W(e, t = V) {
 	let n = [e.compressedSize, e.uncompressedSize];
 	for (let e of n) if (!Number.isFinite(e) || e < 0 || e > t) return !1;
 	return !0;
 }
-function ct() {
+function lt() {
 	return {
 		hasDocumentEntry: !1,
 		hasMasterSlideEntry: !1,
@@ -6795,10 +6795,10 @@ function ct() {
 		hasCalculationEngineEntry: !1
 	};
 }
-function lt(e, t) {
+function ut(e, t) {
 	t === "Index/Document.iwa" && (e.hasDocumentEntry = !0), t.startsWith("Index/MasterSlide") && (e.hasMasterSlideEntry = !0), t.startsWith("Index/Tables/") && (e.hasTablesEntry = !0), t === "Index/CalculationEngine.iwa" && (e.hasCalculationEngineEntry = !0);
 }
-function K(e) {
+function G(e) {
 	if (e.hasDocumentEntry) return e.hasMasterSlideEntry ? {
 		ext: "key",
 		mime: "application/vnd.apple.keynote"
@@ -6810,7 +6810,7 @@ function K(e) {
 		mime: "application/vnd.apple.pages"
 	};
 }
-function q(e) {
+function K(e) {
 	switch (e = e.toLowerCase(), e) {
 		case "application/epub+zip": return {
 			ext: "epub",
@@ -6912,10 +6912,9 @@ function q(e) {
 			ext: "3mf",
 			mime: "model/3mf"
 		};
-		default:
 	}
 }
-function ut() {
+function dt() {
 	return {
 		hasContentTypesEntry: !1,
 		hasParsedContentTypesEntry: !1,
@@ -6927,10 +6926,10 @@ function ut() {
 		hasThreeDimensionalModelEntry: !1
 	};
 }
-function dt(e, t) {
+function ft(e, t) {
 	t.startsWith("word/") && (e.hasWordDirectory = !0), t.startsWith("ppt/") && (e.hasPresentationDirectory = !0), t.startsWith("xl/") && (e.hasSpreadsheetDirectory = !0), t.startsWith("3D/") && t.endsWith(".model") && (e.hasThreeDimensionalModelEntry = !0);
 }
-function J(e) {
+function q(e) {
 	if (e.hasWordDirectory) return {
 		ext: "docx",
 		mime: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -6948,10 +6947,10 @@ function J(e) {
 		mime: "model/3mf"
 	};
 }
-function Y(e) {
-	if (!(!e.hasContentTypesEntry || e.hasUnparseableContentTypes || e.isParsingContentTypes || e.hasParsedContentTypesEntry)) return J(e);
+function J(e) {
+	if (!(!e.hasContentTypesEntry || e.hasUnparseableContentTypes || e.isParsingContentTypes || e.hasParsedContentTypesEntry)) return q(e);
 }
-function ft(e) {
+function pt(e) {
 	let t = e.indexOf(".main+xml\"");
 	if (t === -1) {
 		let t = "application/vnd.ms-package.3dmanufacturing-3dmodel+xml";
@@ -6960,17 +6959,17 @@ function ft(e) {
 	let n = e.slice(0, t), r = n.lastIndexOf("\"");
 	return n.slice(r + 1);
 }
-var X = 134695760, Z = 16, pt = Z - 1;
-function mt(e, t) {
-	if (e.length < Z) return -1;
-	let n = e.length - Z;
-	for (let r = 0; r <= n; r++) if (S.get(e, r) === X && S.get(e, r + 8) === t + r) return r;
+var Y = 134695760, X = 16, mt = 15;
+function ht(e, t) {
+	if (e.length < X) return -1;
+	let n = e.length - X;
+	for (let r = 0; r <= n; r++) if (x.get(e, r) === Y && x.get(e, r + 8) === t + r) return r;
 	return -1;
 }
-async function ht(e, { shouldBuffer: t, maximumLength: n = H } = {}) {
+async function gt(e, { shouldBuffer: t, maximumLength: n = V } = {}) {
 	let { syncBuffer: r } = e, { length: i } = r, a = [], o = 0;
 	for (;;) {
-		let s = await e.tokenizer.peekBuffer(r, { mayBeLess: !0 }), c = mt(r.subarray(0, s), o), l = c >= 0 ? 0 : s === i ? Math.min(pt, s - 1) : 0, u = c >= 0 ? c : s - l;
+		let s = await e.tokenizer.peekBuffer(r, { mayBeLess: !0 }), c = ht(r.subarray(0, s), o), l = c >= 0 ? 0 : s === i ? Math.min(mt, s - 1) : 0, u = c >= 0 ? c : s - l;
 		if (u === 0) break;
 		if (o += u, o > n) throw Error(`ZIP entry compressed data exceeds ${n} bytes`);
 		if (t) {
@@ -6979,24 +6978,24 @@ async function ht(e, { shouldBuffer: t, maximumLength: n = H } = {}) {
 		} else await e.tokenizer.ignore(u);
 		if (c >= 0) break;
 	}
-	if (B(e.tokenizer) || (e.knownSizeDescriptorScannedBytes += o), t) return at(a, o);
+	if (z(e.tokenizer) || (e.knownSizeDescriptorScannedBytes += o), t) return ot(a, o);
 }
-function gt(e, t) {
-	return B(e.tokenizer) ? Math.max(0, P - (e.tokenizer.position - t)) : Math.max(0, H - e.knownSizeDescriptorScannedBytes);
+function _t(e, t) {
+	return z(e.tokenizer) ? Math.max(0, N - (e.tokenizer.position - t)) : Math.max(0, V - e.knownSizeDescriptorScannedBytes);
 }
-async function _t(e, t, { shouldBuffer: n, maximumDescriptorLength: r = H } = {}) {
-	if (t.dataDescriptor && t.compressedSize === 0) return ht(e, {
+async function vt(e, t, { shouldBuffer: n, maximumDescriptorLength: r = V } = {}) {
+	if (t.dataDescriptor && t.compressedSize === 0) return gt(e, {
 		shouldBuffer: n,
 		maximumLength: r
 	});
 	if (!n) {
-		await L(e.tokenizer, t.compressedSize, {
-			maximumLength: B(e.tokenizer) ? H : e.tokenizer.fileInfo.size,
+		await I(e.tokenizer, t.compressedSize, {
+			maximumLength: z(e.tokenizer) ? V : e.tokenizer.fileInfo.size,
 			reason: "ZIP entry compressed data"
 		});
 		return;
 	}
-	let i = ot(e.tokenizer);
+	let i = st(e.tokenizer);
 	if (!Number.isFinite(t.compressedSize) || t.compressedSize < 0 || t.compressedSize > i) throw Error(`ZIP entry compressed data exceeds ${i} bytes`);
 	let a = new Uint8Array(t.compressedSize);
 	return await e.tokenizer.readBuffer(a), a;
@@ -7004,34 +7003,34 @@ async function _t(e, t, { shouldBuffer: n, maximumDescriptorLength: r = H } = {}
 M.prototype.inflate = async function(e, t, n) {
 	if (e.compressedMethod === 0) return n(t);
 	if (e.compressedMethod !== 8) throw Error(`Unsupported ZIP compression method: ${e.compressedMethod}`);
-	return n(await it(t, { maximumLength: H }));
+	return n(await at(t, { maximumLength: V }));
 }, M.prototype.unzip = async function(e) {
 	let t = !1, n = 0, r = this.tokenizer.position;
 	this.knownSizeDescriptorScannedBytes = 0;
 	do {
-		if (V(this.tokenizer, r, 16777216)) throw new F(`ZIP stream probing exceeds ${P} bytes`);
+		if (B(this.tokenizer, r, 16777216)) throw new P(`ZIP stream probing exceeds ${N} bytes`);
 		let i = await this.readLocalFileHeader();
 		if (!i) break;
-		if (n++, n > U) throw Error(`ZIP entry count exceeds ${U}`);
+		if (n++, n > H) throw Error(`ZIP entry count exceeds ${H}`);
 		let a = e(i);
 		t = !!a.stop, await this.tokenizer.ignore(i.extraFieldLength);
-		let o = await _t(this, i, {
+		let o = await vt(this, i, {
 			shouldBuffer: !!a.handler,
-			maximumDescriptorLength: Math.min(H, gt(this, r))
+			maximumDescriptorLength: Math.min(V, _t(this, r))
 		});
 		if (a.handler && await this.inflate(i, o, a.handler), i.dataDescriptor) {
-			let e = new Uint8Array(Z);
-			if (await this.tokenizer.readBuffer(e), S.get(e, 0) !== X) throw Error(`Expected data-descriptor-signature at position ${this.tokenizer.position - e.length}`);
+			let e = new Uint8Array(X);
+			if (await this.tokenizer.readBuffer(e), x.get(e, 0) !== Y) throw Error(`Expected data-descriptor-signature at position ${this.tokenizer.position - e.length}`);
 		}
-		if (V(this.tokenizer, r, 16777216)) throw new F(`ZIP stream probing exceeds ${P} bytes`);
+		if (B(this.tokenizer, r, 16777216)) throw new P(`ZIP stream probing exceeds ${N} bytes`);
 	} while (!t);
 };
-async function vt(e) {
-	let t, n = ut(), r = ct();
+async function yt(e) {
+	let t, n = dt(), r = lt();
 	try {
 		await new M(e).unzip((e) => {
-			if (dt(n, e.filename), lt(r, e.filename), r.hasDocumentEntry && (r.hasMasterSlideEntry || r.hasTablesEntry)) return t = K(r), { stop: !0 };
-			let i = e.filename === "[Content_Types].xml", a = Y(n);
+			if (ft(n, e.filename), ut(r, e.filename), r.hasDocumentEntry && (r.hasMasterSlideEntry || r.hasTablesEntry)) return t = G(r), { stop: !0 };
+			let i = e.filename === "[Content_Types].xml", a = J(n);
 			if (!i && a) return t = a, { stop: !0 };
 			switch (e.filename) {
 				case "META-INF/mozilla.rsa": return t = {
@@ -7042,16 +7041,16 @@ async function vt(e) {
 					ext: "jar",
 					mime: "application/java-archive"
 				}, { stop: !0 };
-				case "mimetype": return G(e, W) ? {
+				case "mimetype": return W(e, U) ? {
 					async handler(e) {
-						t = q(new TextDecoder("utf-8").decode(e).trim());
+						t = K(new TextDecoder("utf-8").decode(e).trim());
 					},
 					stop: !0
 				} : {};
-				case "[Content_Types].xml": return n.hasContentTypesEntry = !0, G(e, W) ? (n.isParsingContentTypes = !0, {
+				case "[Content_Types].xml": return n.hasContentTypesEntry = !0, W(e, U) ? (n.isParsingContentTypes = !0, {
 					async handler(e) {
-						let r = ft(new TextDecoder("utf-8").decode(e));
-						r && (t = q(r)), n.hasParsedContentTypesEntry = !0, n.isParsingContentTypes = !1;
+						let r = pt(new TextDecoder("utf-8").decode(e));
+						r && (t = K(r)), n.hasParsedContentTypesEntry = !0, n.isParsingContentTypes = !1;
 					},
 					stop: !0
 				}) : (n.hasUnparseableContentTypes = !0, {});
@@ -7062,24 +7061,24 @@ async function vt(e) {
 			}
 		});
 	} catch (e) {
-		if (!st(e)) throw e;
-		n.isParsingContentTypes && (n.isParsingContentTypes = !1, n.hasUnparseableContentTypes = !0), !t && e instanceof T && !n.hasContentTypesEntry && (t = J(n));
+		if (!ct(e)) throw e;
+		n.isParsingContentTypes && (n.isParsingContentTypes = !1, n.hasUnparseableContentTypes = !0), !t && e instanceof w && !n.hasContentTypesEntry && (t = q(n));
 	}
-	let i = B(e) && r.hasDocumentEntry && !r.hasMasterSlideEntry && !r.hasTablesEntry && !r.hasCalculationEngineEntry ? void 0 : K(r);
-	return t ?? Y(n) ?? i ?? {
+	let i = z(e) && r.hasDocumentEntry && !r.hasMasterSlideEntry && !r.hasTablesEntry && !r.hasCalculationEngineEntry ? void 0 : G(r);
+	return t ?? J(n) ?? i ?? {
 		ext: "zip",
 		mime: "application/zip"
 	};
 }
 //#endregion
 //#region node_modules/file-type/source/detectors/ebml.js
-var yt = 64, bt = 1024 * 1024, xt = 256;
-async function St(e) {
+var bt = 64, xt = 1048576, St = 256;
+async function Ct(e) {
 	async function t() {
-		let t = await e.peekNumber(he), n = 128, r = 0;
+		let t = await e.peekNumber(ge), n = 128, r = 0;
 		for (; (t & n) === 0 && n !== 0;) ++r, n >>= 1;
 		let i = new Uint8Array(r + 1);
-		return await R(e, i, void 0, {
+		return await L(e, i, void 0, {
 			maximumLength: i.length,
 			reason: "EBML field"
 		}), i;
@@ -7089,22 +7088,22 @@ async function St(e) {
 		n[0] ^= 128 >> n.length - 1;
 		let r = Math.min(6, n.length), i = new DataView(e.buffer), a = new DataView(n.buffer, n.length - r, r);
 		return {
-			id: N(i),
-			len: N(a)
+			id: Ye(i),
+			len: Ye(a)
 		};
 	}
 	async function r(t) {
 		let r = 0;
 		for (; t > 0;) {
-			if (r++, r > xt || V(e, a, 16777216)) return;
+			if (r++, r > St || B(e, a, 16777216)) return;
 			let i = e.position, o = await n();
 			if (o.id === 17026) {
-				if (o.len > yt) return;
-				let t = I(o.len, yt, "EBML DocType");
-				return (await e.readToken(new w(t))).replaceAll(/\0.*$/gv, "");
+				if (o.len > bt) return;
+				let t = F(o.len, bt, "EBML DocType");
+				return (await e.readToken(new C(t))).replaceAll(/\0.*$/gv, "");
 			}
-			if (B(e) && (!Number.isFinite(o.len) || o.len < 0 || o.len > bt) || (await L(e, o.len, {
-				maximumLength: B(e) ? bt : e.fileInfo.size,
+			if (z(e) && (!Number.isFinite(o.len) || o.len < 0 || o.len > xt) || (await I(e, o.len, {
+				maximumLength: z(e) ? xt : e.fileInfo.size,
 				reason: "EBML payload"
 			}), --t, e.position <= i)) return;
 		}
@@ -7119,16 +7118,15 @@ async function St(e) {
 			ext: "mkv",
 			mime: "video/matroska"
 		};
-		default:
 	}
 }
 //#endregion
 //#region node_modules/file-type/source/detectors/png.js
-var Ct = 512, wt = 16 * 1024 * 1024, Tt = 1024 * 1024;
-function Et(e) {
-	return (e.codePointAt(0) & 32) != 0;
+var wt = 512, Tt = 16777216, Et = 1048576;
+function Dt(e) {
+	return !!(e.codePointAt(0) & 32);
 }
-async function Dt(e) {
+async function Ot(e) {
 	let t = {
 		ext: "png",
 		mime: "image/png"
@@ -7139,13 +7137,13 @@ async function Dt(e) {
 	await e.ignore(8);
 	async function r() {
 		return {
-			length: await e.readToken(ge),
-			type: await e.readToken(new w(4, "latin1"))
+			length: await e.readToken(_e),
+			type: await e.readToken(new C(4, "latin1"))
 		};
 	}
-	let i = B(e), a = e.position, o = 0, s = !1;
+	let i = z(e), a = e.position, o = 0, s = !1;
 	do {
-		if (o++, o > Ct || V(e, a, wt)) break;
+		if (o++, o > wt || B(e, a, Tt)) break;
 		let c = e.position, l = await r();
 		if (l.length < 0) return;
 		if (l.type === "IHDR") {
@@ -7157,14 +7155,14 @@ async function Dt(e) {
 			case "acTL": return n;
 			default:
 				if (!s && l.type !== "CgBI") return;
-				if (i && l.length > Tt) return s && Et(l.type) ? t : void 0;
+				if (i && l.length > Et) return s && Dt(l.type) ? t : void 0;
 				try {
-					await L(e, l.length + 4, {
+					await I(e, l.length + 4, {
 						maximumLength: i ? 1048580 : e.fileInfo.size,
 						reason: "PNG chunk payload"
 					});
 				} catch (e) {
-					if (!i && (e instanceof F || e instanceof T)) return t;
+					if (!i && (e instanceof P || e instanceof w)) return t;
 					throw e;
 				}
 		}
@@ -7174,32 +7172,32 @@ async function Dt(e) {
 }
 //#endregion
 //#region node_modules/file-type/source/detectors/asf.js
-var Ot = 512, kt = 1024 * 1024;
-async function At(e) {
+var kt = 512, At = 1048576;
+async function jt(e) {
 	let t = !1;
 	try {
 		async function n() {
 			let t = /* @__PURE__ */ new Uint8Array(16);
-			return await R(e, t, void 0, {
+			return await L(e, t, void 0, {
 				maximumLength: t.length,
 				reason: "ASF header GUID"
 			}), {
 				id: t,
-				size: Number(await e.readToken(_e))
+				size: Number(await e.readToken(ve))
 			};
 		}
-		await L(e, 30, {
+		await I(e, 30, {
 			maximumLength: 30,
 			reason: "ASF header prelude"
 		});
-		let r = B(e), i = e.position, a = 0;
-		for (; e.position + 24 < e.fileInfo.size && (a++, !(a > Ot || V(e, i, 16777216)));) {
+		let r = z(e), i = e.position, a = 0;
+		for (; e.position + 24 < e.fileInfo.size && (a++, !(a > kt || B(e, i, 16777216)));) {
 			let i = e.position, a = await n(), o = a.size - 24;
 			if (!Number.isFinite(o) || o < 0) {
 				t = !0;
 				break;
 			}
-			if (z(a.id, [
+			if (R(a.id, [
 				145,
 				7,
 				220,
@@ -7218,10 +7216,10 @@ async function At(e) {
 				101
 			])) {
 				let t = /* @__PURE__ */ new Uint8Array(16);
-				if (o -= await R(e, t, void 0, {
+				if (o -= await L(e, t, void 0, {
 					maximumLength: t.length,
 					reason: "ASF stream type GUID"
-				}), z(t, [
+				}), R(t, [
 					64,
 					158,
 					105,
@@ -7242,7 +7240,7 @@ async function At(e) {
 					ext: "asf",
 					mime: "audio/x-ms-asf"
 				};
-				if (z(t, [
+				if (R(t, [
 					192,
 					239,
 					25,
@@ -7265,12 +7263,12 @@ async function At(e) {
 				};
 				break;
 			}
-			if (r && o > kt) {
+			if (r && o > At) {
 				t = !0;
 				break;
 			}
-			if (await L(e, o, {
-				maximumLength: r ? kt : e.fileInfo.size,
+			if (await I(e, o, {
+				maximumLength: r ? At : e.fileInfo.size,
 				reason: "ASF header payload"
 			}), e.position <= i) {
 				t = !0;
@@ -7278,7 +7276,7 @@ async function At(e) {
 			}
 		}
 	} catch (n) {
-		if (n instanceof T || n instanceof F) B(e) && (t = !0);
+		if (n instanceof w || n instanceof P) z(e) && (t = !0);
 		else throw n;
 	}
 	if (!t) return {
@@ -7288,12 +7286,12 @@ async function At(e) {
 }
 //#endregion
 //#region node_modules/file-type/source/index.js
-var Q = 4100, jt = Q - 2, Mt = P, Nt = 1, Pt = 100, $ = P, Ft = 512, It = 256, Lt = 1024 * 1024, Rt = P;
+var Z = 4100, Mt = 4098, Nt = N, Pt = 1, Ft = 100, Q = N, It = 512, Lt = 256, Rt = 1048576, $ = N;
 function zt(e) {
-	return Number.isFinite(e) ? Math.max(1, Math.trunc(e)) : Q;
+	return Number.isFinite(e) ? Math.max(1, Math.trunc(e)) : Z;
 }
 function Bt(e) {
-	return Number.isFinite(e) ? Math.max(0, Math.min(jt, Math.trunc(e))) : 0;
+	return Number.isFinite(e) ? Math.max(0, Math.min(Mt, Math.trunc(e))) : 0;
 }
 function Vt(e) {
 	return Number.isFinite(e) ? Math.max(0, e) : 2 ** 53 - 1;
@@ -7363,7 +7361,7 @@ var qt = class e {
 		return { ...this.tokenizerOptions };
 	}
 	createTokenizerFromWebStream(e) {
-		return ke(Ut(e), this.getTokenizerOptions());
+		return Ae(Ut(e), this.getTokenizerOptions());
 	}
 	async parseTokenizer(e, t = 0) {
 		this.detectionReentryCount = t;
@@ -7373,7 +7371,7 @@ var qt = class e {
 			try {
 				r = await t.detect(e);
 			} catch (e) {
-				if (e instanceof T || e instanceof F) return;
+				if (e instanceof w || e instanceof P) return;
 				throw e;
 			}
 			if (r) return r;
@@ -7390,11 +7388,11 @@ var qt = class e {
 	async fromBuffer(e) {
 		if (!(e instanceof Uint8Array || e instanceof ArrayBuffer)) throw TypeError(`Expected the \`input\` argument to be of type \`Uint8Array\` or \`ArrayBuffer\`, got \`${typeof e}\``);
 		let t = e instanceof Uint8Array ? e : new Uint8Array(e);
-		if (t?.length > 1) return this.fromTokenizer(Ae(t, this.getTokenizerOptions()));
+		if (t?.length > 1) return this.fromTokenizer(je(t, this.getTokenizerOptions()));
 	}
 	async fromBlob(e) {
 		this.options.signal?.throwIfAborted();
-		let t = je(e, this.getTokenizerOptions());
+		let t = Me(e, this.getTokenizerOptions());
 		return this.fromTokenizer(t);
 	}
 	async fromStream(e) {
@@ -7442,7 +7440,7 @@ var qt = class e {
 			try {
 				r = await this.fromBuffer(e.subarray(0, n));
 			} catch (e) {
-				if (!(e instanceof T)) throw e;
+				if (!(e instanceof w)) throw e;
 				r = void 0;
 			}
 			!i && r?.ext === "pages" && (r = {
@@ -7461,16 +7459,16 @@ var qt = class e {
 		return l.fileType = r, l;
 	}
 	async detectGzip(t) {
-		if (this.gzipProbeDepth >= Nt) return {
+		if (this.gzipProbeDepth >= Pt) return {
 			ext: "gz",
 			mime: "application/gzip"
 		};
-		let n = Gt(new He(t).inflate(), Mt), r = B(t), i, a, o, s;
+		let n = Gt(new He(t).inflate(), Nt), r = z(t), i, a, o, s;
 		if (r) {
 			let t = new AbortController();
 			i = setTimeout(() => {
-				t.abort(new DOMException(`Operation timed out after ${Pt} ms`, "TimeoutError"));
-			}, Pt), a = this.options.signal === void 0 ? t.signal : AbortSignal.any([this.options.signal, t.signal]), o = new e({
+				t.abort(new DOMException(`Operation timed out after ${Ft} ms`, "TimeoutError"));
+			}, Ft), a = this.options.signal === void 0 ? t.signal : AbortSignal.any([this.options.signal, t.signal]), o = new e({
 				...this.options,
 				signal: a
 			}), o.gzipProbeDepth = this.gzipProbeDepth + 1;
@@ -7491,13 +7489,13 @@ var qt = class e {
 		};
 	}
 	check(e, t) {
-		return z(this.buffer, e, t);
+		return R(this.buffer, e, t);
 	}
 	checkString(e, t) {
-		return this.check(Ye(e, t?.encoding), t);
+		return this.check(Xe(e, t?.encoding), t);
 	}
 	detectConfident = async (e) => {
-		if (this.buffer = new Uint8Array(Q), e.fileInfo.size === void 0 && (e.fileInfo.size = 2 ** 53 - 1), this.tokenizer = e, B(e) && (await e.peekBuffer(this.buffer, {
+		if (this.buffer = new Uint8Array(Z), e.fileInfo.size === void 0 && (e.fileInfo.size = 2 ** 53 - 1), this.tokenizer = e, z(e) && (await e.peekBuffer(this.buffer, {
 			length: 3,
 			mayBeLess: !0
 		}), this.check([
@@ -7550,7 +7548,7 @@ var qt = class e {
 			239,
 			187,
 			191
-		])) return this.detectionReentryCount >= It ? void 0 : (this.detectionReentryCount++, await this.tokenizer.ignore(3), this.detectConfident(e));
+		])) return this.detectionReentryCount >= Lt ? void 0 : (this.detectionReentryCount++, await this.tokenizer.ignore(3), this.detectConfident(e));
 		if (this.check([
 			71,
 			73,
@@ -7581,26 +7579,26 @@ var qt = class e {
 			mime: "application/x-bzip2"
 		};
 		if (this.checkString("ID3")) {
-			await L(e, 6, {
+			await I(e, 6, {
 				maximumLength: 6,
 				reason: "ID3 header prefix"
 			});
-			let t = await e.readToken(Ze), n = B(e);
-			if (!Number.isFinite(t) || t < 0 || n && (t > $ || e.position + t > $)) return;
+			let t = await e.readToken(Qe), n = z(e);
+			if (!Number.isFinite(t) || t < 0 || n && (t > Q || e.position + t > Q)) return;
 			if (e.position + t > e.fileInfo.size) return n ? void 0 : {
 				ext: "mp3",
 				mime: "audio/mpeg"
 			};
 			try {
-				await L(e, t, {
-					maximumLength: n ? $ : e.fileInfo.size,
+				await I(e, t, {
+					maximumLength: n ? Q : e.fileInfo.size,
 					reason: "ID3 payload"
 				});
 			} catch (e) {
-				if (e instanceof T) return;
+				if (e instanceof w) return;
 				throw e;
 			}
-			return this.detectionReentryCount >= It ? void 0 : (this.detectionReentryCount++, this.parseTokenizer(e, this.detectionReentryCount));
+			return this.detectionReentryCount >= Lt ? void 0 : (this.detectionReentryCount++, this.parseTokenizer(e, this.detectionReentryCount));
 		}
 		if (this.checkString("MP+")) return {
 			ext: "mpc",
@@ -7655,11 +7653,11 @@ var qt = class e {
 			75,
 			3,
 			4
-		])) return vt(e);
+		])) return yt(e);
 		if (this.checkString("OggS")) {
 			await e.ignore(28);
 			let t = /* @__PURE__ */ new Uint8Array(8);
-			return await e.readBuffer(t), z(t, [
+			return await e.readBuffer(t), R(t, [
 				79,
 				112,
 				117,
@@ -7671,7 +7669,7 @@ var qt = class e {
 			]) ? {
 				ext: "opus",
 				mime: "audio/ogg; codecs=opus"
-			} : z(t, [
+			} : R(t, [
 				128,
 				116,
 				104,
@@ -7682,7 +7680,7 @@ var qt = class e {
 			]) ? {
 				ext: "ogv",
 				mime: "video/ogg"
-			} : z(t, [
+			} : R(t, [
 				1,
 				118,
 				105,
@@ -7693,7 +7691,7 @@ var qt = class e {
 			]) ? {
 				ext: "ogm",
 				mime: "video/ogg"
-			} : z(t, [
+			} : R(t, [
 				127,
 				70,
 				76,
@@ -7702,7 +7700,7 @@ var qt = class e {
 			]) ? {
 				ext: "oga",
 				mime: "audio/ogg"
-			} : z(t, [
+			} : R(t, [
 				83,
 				112,
 				101,
@@ -7713,7 +7711,7 @@ var qt = class e {
 			]) ? {
 				ext: "spx",
 				mime: "audio/ogg"
-			} : z(t, [
+			} : R(t, [
 				1,
 				118,
 				111,
@@ -7824,7 +7822,7 @@ var qt = class e {
 			69,
 			223,
 			163
-		])) return St(e);
+		])) return Ct(e);
 		if (this.checkString("SQLi")) return {
 			ext: "sqlite",
 			mime: "application/x-sqlite3"
@@ -8006,7 +8004,7 @@ var qt = class e {
 			186,
 			190
 		])) {
-			let e = C.get(this.buffer, 4), t = x.get(this.buffer, 6);
+			let e = S.get(this.buffer, 4), t = b.get(this.buffer, 6);
 			if (e > 0 && e <= 30) return {
 				ext: "macho",
 				mime: "application/x-mach-binary"
@@ -8066,7 +8064,7 @@ var qt = class e {
 			mime: "model/stl"
 		};
 		if (this.checkString("AC")) {
-			let e = new w(4, "latin1").get(this.buffer, 2);
+			let e = new C(4, "latin1").get(this.buffer, 2);
 			if (/^\d+$/v.test(e) && e >= 1e3 && e <= 1050) return {
 				ext: "dwg",
 				mime: "image/vnd.dwg"
@@ -8080,7 +8078,7 @@ var qt = class e {
 			ext: "blend",
 			mime: "application/x-blender"
 		};
-		if (this.checkString("!<arch>")) return await e.ignore(8), await e.readToken(new w(13, "ascii")) === "debian-binary" ? {
+		if (this.checkString("!<arch>")) return await e.ignore(8), await e.readToken(new C(13, "ascii")) === "debian-binary" ? {
 			ext: "deb",
 			mime: "application/x-deb"
 		} : {
@@ -8106,7 +8104,7 @@ var qt = class e {
 			10,
 			26,
 			10
-		])) return Dt(e);
+		])) return Ot(e);
 		if (this.check([
 			65,
 			82,
@@ -8176,7 +8174,7 @@ var qt = class e {
 			mime: "image/x-xcf"
 		};
 		if (this.checkString("ftyp", { offset: 4 }) && this.buffer[8] & 96) {
-			let e = new w(4, "latin1").get(this.buffer, 8).replace("\0", " ").trim();
+			let e = new C(4, "latin1").get(this.buffer, 8).replace("\0", " ").trim();
 			switch (e) {
 				case "avif":
 				case "avis": return {
@@ -8324,7 +8322,7 @@ var qt = class e {
 			17,
 			166,
 			217
-		])) return At(e);
+		])) return jt(e);
 		if (this.check([
 			171,
 			75,
@@ -8398,7 +8396,7 @@ var qt = class e {
 			10,
 			135,
 			10
-		])) switch (await e.ignore(20), await e.readToken(new w(4, "ascii"))) {
+		])) switch (await e.ignore(20), await e.readToken(new C(4, "ascii"))) {
 			case "jp2 ": return {
 				ext: "jp2",
 				mime: "image/jp2"
@@ -8691,7 +8689,7 @@ var qt = class e {
 			0,
 			0,
 			0
-		], { offset: 257 }) && Xe(this.buffer)) return {
+		], { offset: 257 }) && Ze(this.buffer)) return {
 			ext: "tar",
 			mime: "application/x-tar"
 		};
@@ -8723,7 +8721,7 @@ var qt = class e {
 		};
 	};
 	detectImprecise = async (e) => {
-		this.buffer = new Uint8Array(Q);
+		this.buffer = new Uint8Array(Z);
 		let t = Vt(e.fileInfo.size);
 		if (await e.peekBuffer(this.buffer, {
 			length: Math.min(8, t),
@@ -8779,7 +8777,7 @@ var qt = class e {
 		}
 	};
 	async readTiffTag(e) {
-		let t = await this.tokenizer.readToken(e ? x : b);
+		let t = await this.tokenizer.readToken(e ? b : y);
 		switch (await this.tokenizer.ignore(10), t) {
 			case 50341: return {
 				ext: "arw",
@@ -8789,12 +8787,11 @@ var qt = class e {
 				ext: "dng",
 				mime: "image/x-adobe-dng"
 			};
-			default:
 		}
 	}
 	async readTiffIFD(e) {
-		let t = await this.tokenizer.readToken(e ? x : b);
-		if (!(t > Ft) && !(B(this.tokenizer) && 2 + t * 12 > Rt)) for (let n = 0; n < t; ++n) {
+		let t = await this.tokenizer.readToken(e ? b : y);
+		if (!(t > It) && !(z(this.tokenizer) && 2 + t * 12 > $)) for (let n = 0; n < t; ++n) {
 			let t = await this.readTiffTag(e);
 			if (t) return t;
 		}
@@ -8803,7 +8800,7 @@ var qt = class e {
 		let t = {
 			ext: "tif",
 			mime: "image/tiff"
-		}, n = (e ? x : b).get(this.buffer, 2), r = (e ? C : S).get(this.buffer, 4);
+		}, n = (e ? b : y).get(this.buffer, 2), r = (e ? S : x).get(this.buffer, 4);
 		if (n === 42) {
 			if (r >= 6) {
 				if (this.checkString("CR", { offset: 8 })) return {
@@ -8811,29 +8808,29 @@ var qt = class e {
 					mime: "image/x-canon-cr2"
 				};
 				if (r >= 8) {
-					let t = (e ? x : b).get(this.buffer, 8), n = (e ? x : b).get(this.buffer, 10);
+					let t = (e ? b : y).get(this.buffer, 8), n = (e ? b : y).get(this.buffer, 10);
 					if (t === 28 && n === 254 || t === 31 && n === 11) return {
 						ext: "nef",
 						mime: "image/x-nikon-nef"
 					};
 				}
 			}
-			if (B(this.tokenizer) && r > Lt) return t;
-			let n = B(this.tokenizer) ? Rt : this.tokenizer.fileInfo.size;
+			if (z(this.tokenizer) && r > Rt) return t;
+			let n = z(this.tokenizer) ? $ : this.tokenizer.fileInfo.size;
 			try {
-				await L(this.tokenizer, r, {
+				await I(this.tokenizer, r, {
 					maximumLength: n,
 					reason: "TIFF IFD offset"
 				});
 			} catch (e) {
-				if (e instanceof T) return;
+				if (e instanceof w) return;
 				throw e;
 			}
 			let i;
 			try {
 				i = await this.readTiffIFD(e);
 			} catch (e) {
-				if (e instanceof T) return;
+				if (e instanceof w) return;
 				throw e;
 			}
 			return i ?? t;
@@ -8879,7 +8876,7 @@ var qt = class e {
 		}
 	}
 };
-new Set(Qe), new Set($e);
+new Set($e), new Set(et);
 //#endregion
 //#region node_modules/@dpuse/dpuse-shared/dist/dpuse-shared-errors.es.js
 var Jt = 2048, Yt = class extends Error {
@@ -8915,7 +8912,7 @@ function Qt(e) {
 	return /* @__PURE__ */ Error("Unknown error");
 }
 function $t(e) {
-	if (!(e == null || e === "")) return e.length > Jt ? `${e.slice(0, Jt)}... [truncated]` : e;
+	if (e != null && e !== "") return e.length > Jt ? `${e.slice(0, Jt)}... [truncated]` : e;
 }
 //#endregion
 //#region node_modules/@dpuse/dpuse-shared/dist/dpuse-shared-encoding.es.js
@@ -9263,10 +9260,10 @@ var en = {
 		isDetectable: !1,
 		isDecodable: !0
 	}
-}, tn = 4096, nn = {
+}, tn = {
 	id: "utf8",
 	confidenceLevel: void 0
-}, rn = {
+}, nn = {
 	arrow: {
 		label: "Columnar format for tables of data.",
 		isAutoDetectable: !0,
@@ -9431,17 +9428,17 @@ var en = {
 		isSupported: !1,
 		notes: ""
 	}
-}, an = class {
+}, rn = class {
 	async previewFile(e, t, n) {
 		let r = await fetch(encodeURI(e), {
-			headers: { Range: `bytes=0-${String(n ?? tn - 1)}` },
+			headers: { Range: `bytes=0-${String(n ?? 4095)}` },
 			signal: t
 		});
-		if (!r.ok) throw await Zt(r, `Failed to fetch '${e}' file.`, "dpuse-tool-file-operators.previewRemoteFile");
-		return await on(new Uint8Array(await r.arrayBuffer()));
+		if (!r.ok) throw await Zt(r, `Failed to fetch '${e}' file.`, "dpuse-tool-file-previewer.previewRemoteFile");
+		return await an(new Uint8Array(await r.arrayBuffer()));
 	}
 };
-async function on(e) {
+async function an(e) {
 	if (e.length === 0) return {
 		bytes: e,
 		dataFormatId: void 0,
@@ -9452,17 +9449,17 @@ async function on(e) {
 	};
 	let t = await Kt(e);
 	if (t == null) {
-		let n = cn(e, sn(e));
+		let n = sn(e, on(e));
 		return {
 			bytes: e,
-			dataFormatId: ln(n.text) ? "json" : "dtv",
+			dataFormatId: cn(n.text) ? "json" : "dtv",
 			encodingId: n.encoding.id,
 			encodingConfidenceLevel: n.encoding.confidenceLevel,
 			fileTypeConfig: t,
 			text: n.text
 		};
 	}
-	let n = rn[t.ext];
+	let n = nn[t.ext];
 	return n == null ? {
 		bytes: e,
 		dataFormatId: void 0,
@@ -9479,7 +9476,7 @@ async function on(e) {
 		text: void 0
 	};
 }
-function sn(e) {
+function on(e) {
 	if (e[0] === 239 && e[1] === 187 && e[2] === 191) return {
 		confidenceLevel: 100,
 		id: "utf8"
@@ -9501,20 +9498,20 @@ function sn(e) {
 		id: r
 	};
 }
-function cn(e, t) {
+function sn(e, t) {
 	try {
 		return {
 			encoding: t,
-			text: new TextDecoder(t.id).decode(un(e))
+			text: new TextDecoder(t.id).decode(ln(e))
 		};
 	} catch {
 		return {
-			encoding: nn,
-			text: new TextDecoder(nn.id, { fatal: !1 }).decode(un(e))
+			encoding: tn,
+			text: new TextDecoder(tn.id, { fatal: !1 }).decode(ln(e))
 		};
 	}
 }
-function ln(e) {
+function cn(e) {
 	let t = e.trimStart();
 	if (t.length > 2) {
 		let e = t[0], n = e === "{", r = e === "[", i = /"\s*:\s*/.test(t), a = /\b(?:true|false|null)\b/.test(t), o = t.includes("\"");
@@ -9522,7 +9519,7 @@ function ln(e) {
 	}
 	return !1;
 }
-function un(e) {
+function ln(e) {
 	let t = e, n = t.length;
 	for (let e = n - 1; e >= 0; e--) {
 		let n = t[e];
@@ -9538,6 +9535,6 @@ function un(e) {
 	return t;
 }
 //#endregion
-export { an as Tool };
+export { rn as Tool };
 
-//# sourceMappingURL=dpuse-tool-file-operators.es.js.map
+//# sourceMappingURL=dpuse-tool-file-previewer.es.js.map

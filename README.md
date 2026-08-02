@@ -1,17 +1,17 @@
 # Data Positioning File Operators Tool
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![npm version](https://img.shields.io/npm/v/@dpuse/dpuse-tool-file-operators.svg)](https://www.npmjs.com/package/@dpuse/dpuse-tool-file-operators)
+[![npm version](https://img.shields.io/npm/v/@dpuse/dpuse-tool-file-previewer.svg)](https://www.npmjs.com/package/@dpuse/dpuse-tool-file-previewer)
 
 <!-- OPENING_START -->
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![DPUse version](https://img.shields.io/github/v/release/dpuse/dpuse-tool-file-operators?color=f6821f&label=DPUse)](https://github.com/dpuse/dpuse-tool-file-operators/releases/latest)
-[![CI](https://github.com/dpuse/dpuse-tool-file-operators/actions/workflows/ci.yml/badge.svg)](https://github.com/dpuse/dpuse-tool-file-operators/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/dpuse/dpuse-tool-file-operators/actions/workflows/codeql.yml/badge.svg)](https://github.com/dpuse/dpuse-tool-file-operators/actions/workflows/codeql.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dpuse_dpuse-tool-file-operators&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dpuse_dpuse-tool-file-operators)
+[![DPUse version](https://img.shields.io/github/v/release/dpuse/dpuse-tool-file-previewer?color=f6821f&label=DPUse)](https://github.com/dpuse/dpuse-tool-file-previewer/releases/latest)
+[![CI](https://github.com/dpuse/dpuse-tool-file-previewer/actions/workflows/ci.yml/badge.svg)](https://github.com/dpuse/dpuse-tool-file-previewer/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/dpuse/dpuse-tool-file-previewer/actions/workflows/codeql.yml/badge.svg)](https://github.com/dpuse/dpuse-tool-file-previewer/actions/workflows/codeql.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dpuse_dpuse-tool-file-previewer&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dpuse_dpuse-tool-file-previewer)
 
-[Documentation](https://www.dpuse.app) · [Report a Vulnerability](https://github.com/dpuse/dpuse-tool-file-operators/security/advisories/new) · [Open an Issue](https://github.com/dpuse/dpuse-tool-file-operators/issues)
+[Documentation](https://www.dpuse.app) · [Report a Vulnerability](https://github.com/dpuse/dpuse-tool-file-previewer/security/advisories/new) · [Open an Issue](https://github.com/dpuse/dpuse-tool-file-previewer/issues)
 
 ## About DPUse
 
@@ -30,8 +30,8 @@ This connector is automatically uploaded to the DPUse Engine cloud once released
 You may view or clone this repository for your own purposes, such as building a new, similar connector, though there is currently no process to accept third-party connectors into DPUse at this stage. Cloned or forked code is unsupported and isn't guaranteed to remain compatible with the DPUse Engine as it evolves.
 
 ```bash
-git clone https://github.com/dpuse/dpuse-tool-file-operators.git
-cd dpuse-tool-file-operators
+git clone https://github.com/dpuse/dpuse-tool-file-previewer.git
+cd dpuse-tool-file-previewer
 npm install
 ```
 
@@ -46,7 +46,7 @@ License data is collected automatically on each release using [license-checker](
 | Dependency                                                             | Version | License(s)   | Document                                                              |
 | :--------------------------------------------------------------------- | :-----: | :----------- | :-------------------------------------------------------------------- |
 | [@borewit/text-codec](https://github.com/Borewit/text-codec)           |  0.2.2  | MIT          | [LICENSE](licenses/downloads/@borewit/text-codec@0.2.2-LICENSE.txt)   |
-| [@dpuse/dpuse-shared](https://github.com/dpuse/dpuse-shared)           | 0.3.743 | MIT          | [LICENSE](licenses/downloads/@dpuse/dpuse-shared@0.3.743-LICENSE.txt) |
+| [@dpuse/dpuse-shared](https://github.com/dpuse/dpuse-shared)           | 0.3.760 | MIT          | [LICENSE](licenses/downloads/@dpuse/dpuse-shared@0.3.760-LICENSE.txt) |
 | [@tokenizer/inflate](https://github.com/Borewit/tokenizer-inflate)     |  0.4.1  | MIT          | [LICENSE](licenses/downloads/@tokenizer/inflate@0.4.1-LICENSE.txt)    |
 | [@tokenizer/token](https://github.com/Borewit/tokenizer-token)         |  0.3.0  | MIT          | [LICENSE](licenses/downloads/@tokenizer/token@0.3.0-LICENSE.txt)      |
 | [chardet](https://github.com/runk/node-chardet)                        |  2.2.0  | MIT          | [LICENSE](licenses/downloads/chardet@2.2.0-LICENSE.txt)               |
@@ -64,20 +64,20 @@ License data is collected automatically on each release using [license-checker](
 
 The dependency tree below lists every package in this project — direct and transitive — along with its installed version, release date, and update status. Packages flagged ❗ have a newer version available; ⚠️ indicates a package that hasn't been updated in the last 6 months or longer. Neither flag necessarily indicates a problem: we let new releases stabilise before upgrading, and some packages are simply mature and stable, requiring no active development.
 
-- **[@dpuse/dpuse-shared](https://github.com/dpuse/dpuse-shared)** 0.3.743 — this month: 2026-07-14
-- **[chardet](https://github.com/runk/node-chardet)** 2.2.0 — this month: 2026-06-20
-- **[file-type](https://github.com/sindresorhus/file-type)** 22.0.1 — 3 months ago: 2026-04-09
-    - **[@tokenizer/inflate](https://github.com/Borewit/tokenizer-inflate)** 0.4.1 — 7 months ago: 2025-11-18 ⚠️
-        - **[debug](https://github.com/debug-js/debug)** 4.4.3 — 10 months ago: 2025-09-13 ⚠️
-            - **[ms](https://github.com/vercel/ms)** 2.1.3 — 67 months ago: 2020-12-08 ⚠️
-        - **[token-types](https://github.com/Borewit/token-types)** 6.1.2 — 6 months ago: 2026-01-01
-    - **[strtok3](https://github.com/Borewit/strtok3)** 10.3.5 — 3 months ago: 2026-03-21
-        - **[@tokenizer/token](https://github.com/Borewit/tokenizer-token)** 0.3.0 — 60 months ago: 2021-07-12 ⚠️
-    - **[token-types](https://github.com/Borewit/token-types)** 6.1.2 — 6 months ago: 2026-01-01
-        - **[@borewit/text-codec](https://github.com/Borewit/text-codec)** 0.2.2 — 4 months ago: 2026-03-11
-        - **[@tokenizer/token](https://github.com/Borewit/tokenizer-token)** 0.3.0 — 60 months ago: 2021-07-12 ⚠️
-        - **[ieee754](https://github.com/feross/ieee754)** 1.2.1 — 68 months ago: 2020-10-27 ⚠️
-    - **[uint8array-extras](https://github.com/sindresorhus/uint8array-extras)** 1.5.0 — 10 months ago: 2025-08-22 ⚠️
+- **[@dpuse/dpuse-shared](https://github.com/dpuse/dpuse-shared)** 0.3.760 — this month: 2026-08-02
+- **[chardet](https://github.com/runk/node-chardet)** 2.2.0 — **1 month** ago: 2026-06-20
+- **[file-type](https://github.com/sindresorhus/file-type)** 22.0.1 — **3 months** ago: 2026-04-09
+    - **[@tokenizer/inflate](https://github.com/Borewit/tokenizer-inflate)** 0.4.1 — **8 months** ago: 2025-11-18 ⚠️
+        - **[debug](https://github.com/debug-js/debug)** 4.4.3 — **10 months** ago: 2025-09-13 ⚠️
+            - **[ms](https://github.com/vercel/ms)** 2.1.3 — **67 months** ago: 2020-12-08 ⚠️
+        - **[token-types](https://github.com/Borewit/token-types)** 6.1.2 — **7 months** ago: 2026-01-01 ⚠️
+    - **[strtok3](https://github.com/Borewit/strtok3)** 10.3.5 — **4 months** ago: 2026-03-21
+        - **[@tokenizer/token](https://github.com/Borewit/tokenizer-token)** 0.3.0 — **60 months** ago: 2021-07-12 ⚠️
+    - **[token-types](https://github.com/Borewit/token-types)** 6.1.2 — **7 months** ago: 2026-01-01 ⚠️
+        - **[@borewit/text-codec](https://github.com/Borewit/text-codec)** 0.2.2 — **4 months** ago: 2026-03-11
+        - **[@tokenizer/token](https://github.com/Borewit/tokenizer-token)** 0.3.0 — **60 months** ago: 2021-07-12 ⚠️
+        - **[ieee754](https://github.com/feross/ieee754)** 1.2.1 — **69 months** ago: 2020-10-27 ⚠️
+    - **[uint8array-extras](https://github.com/sindresorhus/uint8array-extras)** 1.5.0 — **11 months** ago: 2025-08-22 ⚠️
 
 <!-- DEPENDENCY_TREE_END -->
 
@@ -89,7 +89,7 @@ _Note: Sonda's Vite reports currently exclude CSS files, since Vite does not gen
 
 | Chunk/Module/File                                                                    | Composition                  |
 | :----------------------------------------------------------------------------------- | :--------------------------- |
-| dist/dpuse-tool-file-operators.es.js                                                 | 163.6 kB · brotli 29.0 kB    |
+| dist/dpuse-tool-file-previewer.es.js                                                 | 163.5 kB · brotli 29.0 kB    |
 | &nbsp;&nbsp;&nbsp;&nbsp;chardet                                                      | `██████░░░░░░░░░░░░░░` 29.5% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/encoding/sbcs.js                 | `████░░░░░░░░░░░░░░░░` 20.2% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/encoding/mbcs.js                 | `█░░░░░░░░░░░░░░░░░░░` 4.3%  |
@@ -101,7 +101,7 @@ _Note: Sonda's Vite reports currently exclude CSS files, since Vite does not gen
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/utils.js                         | `░░░░░░░░░░░░░░░░░░░░` 0.1%  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/match.js                         | `░░░░░░░░░░░░░░░░░░░░` 0.1%  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/fs/browser.js                    | `░░░░░░░░░░░░░░░░░░░░` 0.1%  |
-| &nbsp;&nbsp;&nbsp;&nbsp;file-type                                                    | `██████░░░░░░░░░░░░░░` 27.5% |
+| &nbsp;&nbsp;&nbsp;&nbsp;file-type                                                    | `█████░░░░░░░░░░░░░░░` 27.5% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source/index.js                      | `███░░░░░░░░░░░░░░░░░` 15.0% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source/detectors/zip.js              | `█░░░░░░░░░░░░░░░░░░░` 6.5%  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source/supported.js                  | `█░░░░░░░░░░░░░░░░░░░` 2.9%  |
@@ -115,7 +115,7 @@ _Note: Sonda's Vite reports currently exclude CSS files, since Vite does not gen
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/ReadStreamTokenizer.js           | `░░░░░░░░░░░░░░░░░░░░` 0.9%  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/AbstractTokenizer.js             | `░░░░░░░░░░░░░░░░░░░░` 0.9%  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/stream/AbstractStreamReader.js   | `░░░░░░░░░░░░░░░░░░░░` 0.6%  |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/stream/WebStreamDefaultReader.js | `░░░░░░░░░░░░░░░░░░░░` 0.5%  |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/stream/WebStreamDefaultReader.js | `░░░░░░░░░░░░░░░░░░░░` 0.4%  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/BlobTokenizer.js                 | `░░░░░░░░░░░░░░░░░░░░` 0.4%  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/BufferTokenizer.js               | `░░░░░░░░░░░░░░░░░░░░` 0.4%  |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/stream/WebStreamByobReader.js    | `░░░░░░░░░░░░░░░░░░░░` 0.2%  |
@@ -139,6 +139,8 @@ _Note: Sonda's Vite reports currently exclude CSS files, since Vite does not gen
 | &nbsp;&nbsp;&nbsp;&nbsp;token-types → lib/index.js                                   | `░░░░░░░░░░░░░░░░░░░░` 0.6%  |
 | &nbsp;&nbsp;&nbsp;&nbsp;uint8array-extras → index.js                                 | `░░░░░░░░░░░░░░░░░░░░` 0.6%  |
 
+(unassigned) = bytes Sonda can't trace to a specific source line (whitespace, stray keywords, bundler-injected region markers) — not actual missing/unknown code.
+
 <!-- BUNDLE_END -->
 
 <!-- GOVERNANCE_START -->
@@ -147,11 +149,11 @@ _Note: Sonda's Vite reports currently exclude CSS files, since Vite does not gen
 
 ### CodeQL
 
-[CodeQL](https://github.com/dpuse/dpuse-tool-file-operators/security/code-scanning) static analysis runs on every push to `main` and on a weekly schedule, scanning TypeScript, JavaScript, Rust, and GitHub Actions workflow files for security vulnerabilities and coding errors.
+[CodeQL](https://github.com/dpuse/dpuse-tool-file-previewer/security/code-scanning) static analysis runs on every push to `main` and on a weekly schedule, scanning TypeScript, JavaScript, Rust, and GitHub Actions workflow files for security vulnerabilities and coding errors.
 
 ### SonarCloud
 
-[SonarCloud](https://sonarcloud.io/summary/new_code?id=dpuse_dpuse-tool-file-operators) performs continuous code quality and security analysis on every push, detecting bugs, code smells, and security vulnerabilities in the TypeScript source.
+[SonarCloud](https://sonarcloud.io/summary/new_code?id=dpuse_dpuse-tool-file-previewer) performs continuous code quality and security analysis on every push, detecting bugs, code smells, and security vulnerabilities in the TypeScript source.
 
 ### Vulnerability Scanning
 
@@ -166,19 +168,19 @@ Two complementary tools continuously monitor dependencies for known vulnerabilit
 
 ### Reporting Vulnerabilities
 
-Please do not open public GitHub issues for security vulnerabilities. Use [GitHub private vulnerability reporting](https://github.com/dpuse/dpuse-tool-file-operators/security/advisories/new) instead. See [SECURITY.md](./SECURITY.md) for the full disclosure policy, contact details, and expected response times.
+Please do not open public GitHub issues for security vulnerabilities. Use [GitHub private vulnerability reporting](https://github.com/dpuse/dpuse-tool-file-previewer/security/advisories/new) instead. See [SECURITY.md](./SECURITY.md) for the full disclosure policy, contact details, and expected response times.
 
 ### OpenSSF 🚧
 
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/dpuse/dpuse-tool-file-operators/badge)](https://scorecard.dev/viewer/?uri=github.com/dpuse/dpuse-tool-file-operators)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/dpuse/dpuse-tool-file-previewer/badge)](https://scorecard.dev/viewer/?uri=github.com/dpuse/dpuse-tool-file-previewer)
 
-This project is working towards the [OpenSSF Best Practices](https://www.bestpractices.dev) Passing badge, a self-certification covering security policy, vulnerability reporting, build processes, code quality, and more. Currently the [OpenSSF Scorecard](https://scorecard.dev/viewer/?uri=github.com/dpuse/dpuse-tool-file-operators) provides an independent automated assessment of the project's security practices and is an ongoing area of improvement.
+This project is working towards the [OpenSSF Best Practices](https://www.bestpractices.dev) Passing badge, a self-certification covering security policy, vulnerability reporting, build processes, code quality, and more. Currently the [OpenSSF Scorecard](https://scorecard.dev/viewer/?uri=github.com/dpuse/dpuse-tool-file-previewer) provides an independent automated assessment of the project's security practices and is an ongoing area of improvement.
 
 ## Contributing
 
 This repository is maintained solely by its owner and does not, at present, accept external contributions into the canonical repo. Its source is published openly under the MIT License — every DPUse project is fully open source except DPUse Engine, which remains closed and proprietary.
 
-For security vulnerabilities, see [Reporting Vulnerabilities](#reporting-vulnerabilities). For bugs, inconsistencies, or other feedback, [open a GitHub issue](https://github.com/dpuse/dpuse-tool-file-operators/issues) — feedback is read, but responses and fixes are at the maintainer's discretion.
+For security vulnerabilities, see [Reporting Vulnerabilities](#reporting-vulnerabilities). For bugs, inconsistencies, or other feedback, [open a GitHub issue](https://github.com/dpuse/dpuse-tool-file-previewer/issues) — feedback is read, but responses and fixes are at the maintainer's discretion.
 
 ## License
 
