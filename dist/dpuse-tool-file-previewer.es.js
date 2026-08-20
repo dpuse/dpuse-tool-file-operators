@@ -6756,9 +6756,11 @@ async function at(e, { maximumLength: t = V } = {}) {
 		for (;;) {
 			let { done: e, value: a } = await n.read();
 			if (e) break;
-			if (i += a.length, i > t) throw await n.cancel(), Error(`ZIP entry decompressed data exceeds ${t} bytes`);
+			if (i += a.length, i > t) throw await n.cancel().catch(() => {}), Error(`ZIP entry decompressed data exceeds ${t} bytes`);
 			r.push(a);
 		}
+	} catch (e) {
+		if (e.code !== "ERR_TRAILING_JUNK_AFTER_STREAM_END") throw e;
 	} finally {
 		n.releaseLock();
 	}
@@ -7286,7 +7288,7 @@ async function jt(e) {
 }
 //#endregion
 //#region node_modules/file-type/source/index.js
-var Z = 4100, Mt = 4098, Nt = N, Pt = 1, Ft = 100, Q = N, It = 512, Lt = 256, Rt = 1048576, $ = N;
+var Z = 4100, Mt = 4096, Nt = N, Pt = 1, Ft = 100, Q = N, It = 512, Lt = 256, Rt = 1048576, $ = N;
 function zt(e) {
 	return Number.isFinite(e) ? Math.max(1, Math.trunc(e)) : Z;
 }
@@ -8769,9 +8771,9 @@ var qt = class e {
 			mime: "image/x-icon"
 		};
 		if (await e.peekBuffer(this.buffer, {
-			length: Math.min(2 + this.options.mpegOffsetTolerance, t),
+			length: Math.min(4 + this.options.mpegOffsetTolerance, t),
 			mayBeLess: !0
-		}), this.buffer.length >= 2 + this.options.mpegOffsetTolerance) for (let e = 0; e <= this.options.mpegOffsetTolerance; ++e) {
+		}), this.buffer.length >= 4 + this.options.mpegOffsetTolerance) for (let e = 0; e <= this.options.mpegOffsetTolerance; ++e) {
 			let t = this.scanMpeg(e);
 			if (t) return t;
 		}
@@ -8845,13 +8847,20 @@ var qt = class e {
 			if (this.check([16], {
 				offset: e + 1,
 				mask: [22]
-			})) return this.check([8], {
-				offset: e + 1,
-				mask: [8]
-			}), {
+			})) return {
 				ext: "aac",
 				mime: "audio/aac"
 			};
+			if (this.check([255, 254], { offset: e }) || this.check([8], {
+				offset: e + 1,
+				mask: [24]
+			}) || this.check([240], {
+				offset: e + 2,
+				mask: [240]
+			}) || this.check([12], {
+				offset: e + 2,
+				mask: [12]
+			})) return;
 			if (this.check([2], {
 				offset: e + 1,
 				mask: [6]
@@ -9536,5 +9545,3 @@ function ln(e) {
 }
 //#endregion
 export { rn as Tool };
-
-//# sourceMappingURL=dpuse-tool-file-previewer.es.js.map
